@@ -1,7 +1,7 @@
 import Navigation from "./components/layout/Navigation"
 import Hero from "./components/sections/Hero"
 import Tortas from "./components/sections/Tortas"
-import Kekes from "./components/sections/Kekes"
+import Queques from "./components/sections/Queques"
 import Clasicos from "./components/sections/Clasicos"
 import SocialProof from "./components/sections/SocialProof"
 import Footer from "./components/layout/Footer"
@@ -14,7 +14,7 @@ function App() {
       <main>
         <Hero />
         <Tortas />
-        <Kekes />
+        <Queques />
         <Clasicos />
         <SocialProof />
       </main>

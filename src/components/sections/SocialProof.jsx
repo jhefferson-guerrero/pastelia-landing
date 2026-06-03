@@ -1,25 +1,25 @@
 import { contactInfo } from '../../data/contact';
 
 export default function SocialProof() {
-  // 8 Unique images for the marquee
+  // 8 Imágenes únicas para la marquesina
   const uniqueImages = [
-    "https://images.unsplash.com/photo-1600857319983-305bcbc8f509?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1542826438-bd32f43d626f?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1509365465994-3e5369870d0c?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1514845555132-7eb4862f0f49?q=80&w=600&auto=format&fit=crop"
+    "/images/instagram-1.jpeg",
+    "/images/instagram-2.jpeg",
+    "/images/torta-de-chocolate.jpeg",
+    "/images/carrot-cake.jpeg",
+    "/images/choco-berry.jpeg",
+    "/images/vanilla-roll.jpeg",
+    "/images/queque-de-chocolate.jpeg",
+    "/images/tres-delicias.jpeg"
   ];
 
-  // Duplicate the array to create a seamless infinite loop
+  // Duplicar el array para crear un bucle infinito continuo
   const marqueeImages = [...uniqueImages, ...uniqueImages];
 
   return (
     <section className="pt-24 pb-24 bg-pastelia-cream overflow-hidden flex flex-col items-center border-t border-pastelia-brown/5">
       
-      {/* Header */}
+      {/* Encabezado */}
       <div className="flex flex-col items-center text-center mb-16 px-6">
         <h2 className="font-serif text-3xl md:text-5xl font-bold tracking-tight text-pastelia-burgundy mb-6">
           Síguenos en Instagram
@@ -34,9 +34,9 @@ export default function SocialProof() {
         </a>
       </div>
 
-      {/* Auto-scrolling Horizontal Photo Strip */}
+      {/* Tira de Fotos Horizontal con Desplazamiento Automático */}
       <div className="w-full relative mb-16 flex overflow-hidden">
-        {/* Marquee Container */}
+        {/* Contenedor de Marquesina */}
         <div className="flex w-max gap-4 md:gap-6 px-4 md:px-6 animate-marquee hover:animation-play-state-paused">
           {marqueeImages.map((img, idx) => (
             <a
@@ -58,7 +58,7 @@ export default function SocialProof() {
         </div>
       </div>
 
-      {/* Footer Link CTA */}
+      {/* CTA de Enlace en el Pie de Página */}
       <div className="px-6 flex justify-center">
         <a 
           href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`}

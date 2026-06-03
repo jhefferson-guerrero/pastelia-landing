@@ -8,7 +8,7 @@ export default function Footer() {
       
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
         
-        {/* Brand & Mission */}
+        {/* Marca y Misión */}
         <div className="mb-10 flex flex-col items-center">
           <img 
             src="/assets/images/logo-pastelia.png" 
@@ -29,7 +29,7 @@ export default function Footer() {
 
         <div className="w-full h-px bg-pastelia-cream/10 mb-10 max-w-md mx-auto"></div>
 
-        {/* The Action Area */}
+        {/* Área de Acción */}
         <div className="flex flex-col items-center justify-center w-full max-w-2xl gap-6 mb-16">
           <span className="font-serif italic text-xl md:text-3xl text-pastelia-cream">
             Realiza tu pedido vía WhatsApp
@@ -54,7 +54,7 @@ export default function Footer() {
             <MessageCircle className="w-6 h-6 mr-3" /> Hacer pedido por WhatsApp
           </a>
 
-          {/* Elegant Text Social Links */}
+          {/* Enlaces Sociales en Texto Elegante */}
           <div className="flex items-center gap-5 mt-6">
             <a 
               href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`} 
@@ -75,7 +75,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Fine Print (Hours & Delivery) */}
+        {/* Letra Pequeña (Horario y Entrega) */}
         <div className="w-full flex flex-col items-center gap-4 pt-8 border-t border-pastelia-cream/10 text-pastelia-cream/40 text-[9px] md:text-[10px] uppercase tracking-[0.2em]">
           
           <div className="flex flex-col md:flex-row items-center gap-3 md:gap-6 text-center">

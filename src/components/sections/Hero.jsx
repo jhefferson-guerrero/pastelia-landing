@@ -7,20 +7,20 @@ export default function Hero() {
   return (
     <section className="relative min-h-[85vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-pastelia-cream px-6 pt-24 pb-16">
       
-      {/* Editorial Artistic Backgrounds */}
+      {/* Fondos Artísticos Editoriales */}
       <div className="absolute inset-0 bg-cherry-pattern opacity-[0.015] pointer-events-none"></div>
       <OrganicBlob className="bg-pastelia-brown/10 w-[40rem] h-[40rem] -top-20 -left-20" delay={0} />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-10 items-center mt-12 md:mt-16">
         
-        {/* Asymmetrical Text Block (Centered on mobile) */}
+        {/* Bloque de Texto Asimétrico (Centrado en móviles) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
           className="md:col-span-7 flex flex-col items-center md:items-start text-center md:text-left w-full max-w-full z-20 pt-4 md:pt-0"
         >
-          {/* Logo / Brand Name as the massive focal point */}
+          {/* Logo / Nombre de Marca como el punto focal masivo */}
           <h1 className="font-serif text-[15vw] sm:text-6xl md:text-8xl lg:text-[7.5rem] font-bold tracking-tight text-pastelia-burgundy mb-6 md:mb-8 leading-[0.9] max-w-full break-words">
             Pastelia
           </h1>
@@ -35,7 +35,7 @@ export default function Hero() {
             </p>
             
             <p className="text-pastelia-brown/70 text-base md:text-lg max-w-md leading-relaxed font-light px-4 md:px-0">
-              Tortas, kekes y dulces elaborados con dedicación, ingredientes de calidad y atención al detalle.
+              Tortas, queques y dulces elaborados con dedicación, ingredientes de calidad y atención al detalle.
             </p>
           </div>
 
@@ -47,16 +47,16 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* Asymmetrical Image Block (Responsive scaling) */}
+        {/* Bloque de Imagen Asimétrico (Escalado responsivo) */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.95, rotate: 2 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1.2, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
-          className="md:col-span-5 relative z-10 mt-6 md:mt-0 flex justify-center md:justify-end w-full"
+          className="md:col-span-5 relative z-10 mt-3 md:mt-0 flex justify-center md:justify-end w-full"
         >
           <div className="relative aspect-[4/3] md:aspect-[4/5] w-[90%] sm:w-[80%] md:w-full max-h-[280px] md:max-h-none max-w-[400px] sm:max-w-[440px] md:max-w-[460px] lg:max-w-[520px] my-6 md:my-0 mx-auto md:mr-auto overflow-hidden shadow-md md:shadow-2xl shadow-pastelia-brown/10 md:shadow-pastelia-brown/20 rounded-[2.5rem] md:rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] border border-pastelia-brown/10 md:border-0 md:-translate-x-4 lg:-translate-x-8">
             <img 
-              src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1600&auto=format&fit=crop"
+              src="/images/torta-de-chocolate.jpeg"
               alt="Pastelia Bakery Artisan Quality"
               className="w-full h-full object-cover"
               loading="eager"

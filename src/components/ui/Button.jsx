@@ -20,7 +20,7 @@ export default function Button({ href, label, variant = 'primary', className = '
         ${className}
       `}
     >
-      <span className="mr-2 whitespace-nowrap">{label}</span>
+      <span className="mr-0 text-base whitespace-nowrap">{label}</span>
       <span 
         className={`
           flex h-8 w-8 items-center justify-center rounded-full

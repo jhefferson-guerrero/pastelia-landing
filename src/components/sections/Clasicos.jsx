@@ -15,7 +15,7 @@ export default function Clasicos() {
   return (
     <section id="clasicos" className="relative py-24 scroll-mt-24 md:py-32 px-6 bg-pastelia-burgundy overflow-hidden">
       
-      {/* Decorative Overlays */}
+      {/* Capas Decorativas */}
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
       <OrganicBlob className="bg-pastelia-white/5 w-[35rem] h-[35rem] top-1/4 -right-10 mix-blend-overlay" delay={1.5} />
       
@@ -37,8 +37,8 @@ export default function Clasicos() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {clasicos.map((product, idx) => (
-            <motion.a 
-              key={product.id} href={product.waLink} target="_blank" rel="noopener noreferrer"
+            <motion.div 
+              key={product.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -60,15 +60,15 @@ export default function Clasicos() {
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-serif italic text-3xl text-pastelia-burgundy">{product.name}</h3>
                 </div>
-                <p className="text-pastelia-brown/60 text-sm leading-relaxed mb-6 font-light">{product.description}</p>
+                <p className="text-pastelia-brown/60 text-base leading-relaxed mb-6 font-light">{product.description}</p>
                 <div className="mt-auto flex items-center justify-between">
                   <span className="font-sans font-medium text-xl text-pastelia-brown">{product.price}</span>
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-pastelia-burgundy text-white group-hover:scale-110 transition-transform">
+                  <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-pastelia-burgundy text-white hover:scale-110 transition-transform">
                     <MessageCircle className="w-4 h-4" />
-                  </div>
+                  </a>
                 </div>
               </div>
-            </motion.a>
+            </motion.div>
           ))}
         </div>
       </div>

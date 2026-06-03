@@ -6,13 +6,10 @@ export default function DoppelrandCard({ product }) {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <a 
-      href={product.waLink} 
-      target="_blank" 
-      rel="noopener noreferrer"
+    <div 
       className="group block h-full relative"
     >
-      {/* Decorative background shift for editorial depth */}
+      {/* Cambio de fondo decorativo para profundidad editorial */}
       <div className="absolute inset-0 bg-pastelia-brown/5 rounded-[2rem] transform translate-x-2 translate-y-2 group-hover:translate-x-3 group-hover:translate-y-3 transition-transform duration-500"></div>
 
       <motion.div
@@ -56,13 +53,13 @@ export default function DoppelrandCard({ product }) {
             {product.description}
           </p>
 
-          <div className="mt-auto flex items-center text-[10px] font-bold uppercase tracking-[0.2em] text-pastelia-burgundy/50 group-hover:text-pastelia-burgundy transition-colors">
+          <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="mt-auto flex w-fit items-center text-[10px] font-bold uppercase tracking-[0.2em] text-pastelia-burgundy/50 hover:text-pastelia-burgundy transition-colors">
             Descubrir
             <ArrowRight className="w-4 h-4 ml-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500" />
-          </div>
+          </a>
 
         </div>
       </motion.div>
-    </a>
+    </div>
   );
 }

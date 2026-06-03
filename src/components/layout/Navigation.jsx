@@ -12,7 +12,7 @@ export default function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      const sections = ['tortas', 'kekes', 'clasicos'];
+      const sections = ['tortas', 'queques', 'clasicos'];
       let current = '';
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -26,7 +26,7 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent background scrolling when mobile menu is open
+  // Prevenir el desplazamiento del fondo cuando el menú móvil está abierto
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -40,35 +40,28 @@ export default function Navigation() {
 
   const navLinks = [
     { label: 'Tortas', href: '#tortas' },
-    { label: 'Kekes', href: '#kekes' },
+    { label: 'Queques', href: '#queques' },
     { label: 'Clásicos', href: '#clasicos' },
   ];
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none pt-6 px-4">
-        <div className="max-w-5xl mx-auto relative flex justify-center items-center pointer-events-auto">
+        <div className="max-w-6xl mx-auto relative flex justify-center items-center pointer-events-auto">
           
           <div className={`
-            flex items-center justify-between w-full md:w-auto px-6 py-3 md:px-10 md:py-4 rounded-full transition-[background-color,box-shadow,backdrop-filter,transform,opacity] duration-700 ease-[var(--ease-fluid)] border relative z-20
+            flex items-center justify-between w-full md:w-auto px-6 py-2.5 md:px-16 md:py-3 rounded-full transition-[background-color,box-shadow,backdrop-filter,transform,opacity] duration-700 ease-[var(--ease-fluid)] border relative z-20
             ${scrolled || isOpen ? 'bg-white backdrop-blur-2xl shadow-sm border-pastelia-brown/15' : 'bg-transparent border-transparent shadow-none ring-0 outline-none'}
           `}>
-            <a href="#" className="flex-shrink-0 md:mr-12" onClick={() => setIsOpen(false)}>
+            <a href="#" className="flex-shrink-0 md:mr-20 -mt-1" onClick={() => setIsOpen(false)}>
               <img 
-                src="/assets/images/logo-pastelia.png" 
+                src="/images/logo.jpg" 
                 alt="Pastelia Bakery" 
-                className="h-8 md:h-10 w-auto"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'block';
-                }}
+                className="h-11 md:h-10 w-auto mix-blend-multiply hover:scale-105 transition-transform duration-300"
               />
-              <span className="hidden font-serif text-2xl font-bold tracking-tight text-pastelia-burgundy">
-                Pastelia
-              </span>
             </a>
 
-            <nav className="hidden md:flex items-center gap-8 md:gap-12">
+            <nav className="hidden md:flex items-center gap-8 md:gap-16">
               {navLinks.map((link) => (
                 <a 
                   key={link.label}
@@ -85,7 +78,7 @@ export default function Navigation() {
               className="md:hidden flex items-center justify-center p-2 -mr-2 text-pastelia-brown transition-transform hover:scale-105 active:scale-95"
               aria-label="Toggle Menu"
             >
-              {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+              {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
             </button>
           </div>
 
