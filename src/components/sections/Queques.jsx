@@ -12,7 +12,7 @@ export default function Queques() {
   };
 
   return (
-    <section id="queques" className="relative py-24 scroll-mt-24 md:py-32 px-6 max-w-7xl mx-auto border-t border-pastelia-brown/5 overflow-hidden">
+    <section id="queques" className="relative py-24 scroll-mt-10 md:scroll-mt-5 md:py-32 px-6 max-w-7xl mx-auto border-t border-pastelia-brown/5 overflow-hidden">
       
       <motion.div 
         initial={{ opacity: 0, y: 40 }}

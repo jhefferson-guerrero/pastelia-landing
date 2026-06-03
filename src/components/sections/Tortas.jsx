@@ -13,7 +13,7 @@ export default function Tortas() {
   };
 
   return (
-    <section id="tortas" className="relative py-24 scroll-mt-24 md:py-32 px-6 max-w-7xl mx-auto border-t border-pastelia-brown/5 overflow-hidden">
+    <section id="tortas" className="relative py-24 scroll-mt-10 md:scroll-mt-5 md:py-32 px-6 max-w-7xl mx-auto border-t border-pastelia-brown/5 overflow-hidden">
       <OrganicBlob className="bg-pastelia-burgundy/5 w-[30rem] h-[30rem] top-10 md:top-[60px] right-0" delay={1} />
       
       <motion.div 

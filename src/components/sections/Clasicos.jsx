@@ -13,7 +13,7 @@ export default function Clasicos() {
   };
 
   return (
-    <section id="clasicos" className="relative py-24 scroll-mt-24 md:py-32 px-6 bg-pastelia-burgundy overflow-hidden">
+    <section id="clasicos" className="relative py-24 scroll-mt-10 md:scroll-mt-5 md:py-32 px-6 bg-pastelia-burgundy overflow-hidden">
       
       {/* Capas Decorativas */}
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
