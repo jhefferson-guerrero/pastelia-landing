@@ -39,10 +39,6 @@ export default function Footer() {
             <a href={`https://wa.me/${contactInfo.whatsapp1.replace(/\s/g, '')}`} className="hover:text-white transition-colors">
               {contactInfo.whatsapp1}
             </a>
-            <span className="opacity-40">|</span>
-            <a href={`https://wa.me/${contactInfo.whatsapp2.replace(/\s/g, '')}`} className="hover:text-white transition-colors">
-              {contactInfo.whatsapp2}
-            </a>
           </div>
           
           <a 
@@ -76,7 +72,7 @@ export default function Footer() {
         </div>
 
         {/* Letra Pequeña (Horario y Entrega) */}
-        <div className="w-full flex flex-col items-center gap-4 pt-8 border-t border-pastelia-cream/10 text-pastelia-cream/40 text-[9px] md:text-[10px] uppercase tracking-[0.2em]">
+        <div className="w-full flex flex-col items-center gap-4 pt-8 border-t border-pastelia-cream/10 text-pastelia-cream/50 text-xs md:text-sm tracking-[0.1em] md:tracking-[0.15em]">
           
           <div className="flex flex-col md:flex-row items-center gap-3 md:gap-6 text-center">
             <span className="flex items-center gap-2">
