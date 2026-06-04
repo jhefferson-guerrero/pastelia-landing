@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import MagneticButton from '../ui/MagneticButton';
 import Button from '../ui/Button';
 import { contactInfo } from '../../data/contact';
 import { OrganicBlob, OrganicBlobAlt } from '../ui/Decorations';
@@ -39,12 +40,14 @@ export default function Hero() {
             </p>
           </div>
 
-          <Button 
-            href={contactInfo.whatsappUrl} 
-            label="Hacer Pedido" 
-            variant="primary" 
-            className="pl-5 md:pl-8 pr-3 md:pr-5 py-2.5 md:py-4 text-sm md:text-lg tracking-wide shadow-md hover:shadow-2xl hover:shadow-pastelia-burgundy/20 hover:-translate-y-[2px] hover:scale-[1.02] transition-all duration-500 ease-out"
-          />
+          <MagneticButton>
+            <Button 
+              href={contactInfo.whatsappUrl} 
+              label="Hacer Pedido" 
+              variant="primary" 
+              className="pl-5 md:pl-8 pr-3 md:pr-5 py-2.5 md:py-4 text-sm md:text-lg tracking-wide shadow-md hover:shadow-2xl hover:shadow-pastelia-burgundy/20 hover:-translate-y-[2px] hover:scale-[1.02] transition-all duration-500 ease-out"
+            />
+          </MagneticButton>
         </motion.div>
 
         {/* Bloque de Imagen Asimétrico (Escalado responsivo) */}
@@ -52,13 +55,13 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.95, rotate: 2 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1.2, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
-          className="md:col-span-5 relative z-10 mt-3 md:mt-0 flex justify-center md:justify-end w-full"
+          className="md:col-span-5 relative z-10 mt-3 md:mt-0 flex justify-center md:justify-end w-full group"
         >
-          <div className="relative aspect-[4/3] md:aspect-[4/5] w-[90%] sm:w-[80%] md:w-full max-h-[280px] md:max-h-none max-w-[400px] sm:max-w-[440px] md:max-w-[460px] lg:max-w-[520px] my-6 md:my-0 mx-auto md:mr-auto overflow-hidden shadow-md md:shadow-2xl shadow-pastelia-brown/10 md:shadow-pastelia-brown/20 rounded-[2.5rem] md:rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] border border-pastelia-brown/10 md:border-0 md:-translate-x-4 lg:-translate-x-8">
+          <div className="relative aspect-[4/3] md:aspect-[4/5] w-[90%] sm:w-[80%] md:w-full max-h-[280px] md:max-h-none max-w-[400px] sm:max-w-[440px] md:max-w-[460px] lg:max-w-[520px] my-6 md:my-0 mx-auto md:mr-auto overflow-hidden shadow-md md:shadow-2xl shadow-pastelia-brown/10 md:shadow-pastelia-brown/20 rounded-[2.5rem] md:rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] border border-pastelia-brown/10 md:border-0 md:-translate-x-4 lg:-translate-x-8 transition-shadow duration-[1.5s] group-hover:shadow-[0_30px_60px_-15px_rgba(89,17,25,0.3)]">
             <img 
-              src="/images/torta-de-chocolate.jpeg"
+              src="/images/torta-de-chocolate.webp"
               alt="Pastelia Bakery Artisan Quality"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
               loading="eager"
             />
           </div>

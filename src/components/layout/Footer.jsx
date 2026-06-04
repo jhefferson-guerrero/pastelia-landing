@@ -31,7 +31,7 @@ export default function Footer() {
 
         {/* Área de Acción */}
         <div className="flex flex-col items-center justify-center w-full max-w-2xl gap-6 mb-16">
-          <span className="font-serif italic text-xl md:text-3xl text-pastelia-cream">
+          <span className="font-serif italic text-xl md:text-2xl text-pastelia-cream">
             Realiza tu pedido vía WhatsApp
           </span>
           
@@ -56,17 +56,19 @@ export default function Footer() {
               href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-xs md:text-sm font-medium tracking-[0.08em] uppercase text-pastelia-cream/85 hover:text-white hover:-translate-y-[2px] transition-all duration-300 ease-out flex items-center gap-1"
+              className="group relative text-xs md:text-sm font-medium tracking-[0.08em] uppercase text-pastelia-cream/85 hover:text-white transition-all duration-300 ease-out flex items-center gap-1 pb-1"
             >
               Instagram <span className="font-sans text-xs md:text-sm">↗</span>
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
             </a>
             <a 
               href="https://facebook.com/pasteliabakery" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-xs md:text-sm font-medium tracking-[0.08em] uppercase text-pastelia-cream/85 hover:text-white hover:-translate-y-[2px] transition-all duration-300 ease-out flex items-center gap-1"
+              className="group relative text-xs md:text-sm font-medium tracking-[0.08em] uppercase text-pastelia-cream/85 hover:text-white transition-all duration-300 ease-out flex items-center gap-1 pb-1"
             >
               Facebook <span className="font-sans text-xs md:text-sm">↗</span>
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
             </a>
           </div>
         </div>

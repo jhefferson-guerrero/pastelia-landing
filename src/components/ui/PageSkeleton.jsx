@@ -56,7 +56,7 @@ export default function PageSkeleton({ children }) {
                     }}
                   >
                     <img 
-                      src="/images/logo-skeleton.jpg" 
+                      src="/images/logo-skeleton.webp" 
                       alt="Cargando Pastelia..." 
                       className="w-36 sm:w-48 md:w-64 aspect-square p-3 sm:p-4 md:p-6 object-contain rounded-full bg-pastelia-burgundy shadow-[0_20px_50px_rgba(89,17,25,0.15)] border border-pastelia-brown/5"
                     />

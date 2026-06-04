@@ -7,7 +7,7 @@ export const catalog = {
       name: "Torta de Chocolate",
       price: "S/ 60.00",
       description: "Ganache intenso y virutas de chocolate en cada detalle.",
-      image: "/images/torta-de-chocolate.jpeg",
+      image: "/images/torta-de-chocolate.webp",
       waLink: contactInfo.whatsappUrl
     },
     {
@@ -15,7 +15,7 @@ export const catalog = {
       name: "Choco Berry",
       price: "S/ 55.00",
       description: "Chocolate, fresas frescas y arándanos en perfecta armonía.",
-      image: "/images/choco-berry.jpeg",
+      image: "/images/choco-berry.webp",
       waLink: contactInfo.whatsappUrl
     },
     {
@@ -23,7 +23,7 @@ export const catalog = {
       name: "Carrot Cake",
       price: "S/ 75.00",
       description: "Tres capas de zanahoria, queso crema y pecanas tostadas.",
-      image: "/images/carrot-cake.jpeg",
+      image: "/images/carrot-cake.webp",
       waLink: contactInfo.whatsappUrl
     }
   ],
@@ -33,7 +33,7 @@ export const catalog = {
       name: "Queque de Chocolate",
       price: "S/ 30.00",
       description: "El compañero ideal para el café de la tarde.",
-      image: "/images/queque-de-chocolate.jpeg",
+      image: "/images/queque-de-chocolate.webp",
       waLink: contactInfo.whatsappUrl
     },
     {
@@ -41,7 +41,7 @@ export const catalog = {
       name: "Queque de Carrot",
       price: "S/ 30.00",
       description: "Húmedo, especiado y cubierto con frosting de queso crema.",
-      image: "/images/queque-de-carrot.jpeg",
+      image: "/images/queque-de-carrot.webp",
       waLink: contactInfo.whatsappUrl
     },
     {
@@ -49,7 +49,7 @@ export const catalog = {
       name: "Queque de Naranja",
       price: "S/ 25.00",
       description: "Aromático y fresco, con un delicado toque cítrico.",
-      image: "/images/queque-de-naranja.jpeg",
+      image: "/images/queque-de-naranja.webp",
       waLink: contactInfo.whatsappUrl
     },
     {
@@ -57,7 +57,7 @@ export const catalog = {
       name: "Queque de Arándanos y Yogurt",
       price: "S/ 35.00",
       description: "Suave y equilibrado, con arándanos en cada bocado.",
-      image: "/images/queque-de-arandanos-y-yogurt.jpeg",
+      image: "/images/queque-de-arandanos-y-yogurt.webp",
       waLink: contactInfo.whatsappUrl
     },
     {
@@ -65,7 +65,7 @@ export const catalog = {
       name: "Queque de Plátano",
       price: "S/ 25.00",
       description: "Esponjoso y reconfortante, con plátano caramelizado.",
-      image: "/images/queque-de-platano.jpeg",
+      image: "/images/queque-de-platano.webp",
       waLink: contactInfo.whatsappUrl
     }
   ],
@@ -75,7 +75,7 @@ export const catalog = {
       name: "Vanilla Roll",
       price: "S/ 30.00",
       description: "Bizcocho de vainilla y manjar blanco en un clásico irresistible.",
-      image: "/images/vanilla-roll.jpeg",
+      image: "/images/vanilla-roll.webp",
       waLink: contactInfo.whatsappUrl
     },
     {
@@ -83,7 +83,7 @@ export const catalog = {
       name: "Caramel Kiss",
       price: "S/ 55.00",
       description: "Suave, cremoso y bañado en un delicado caramelo artesanal.",
-      image: "/images/caramel-kiss.jpeg",
+      image: "/images/caramel-kiss.webp",
       waLink: contactInfo.whatsappUrl
     },
     {
@@ -91,7 +91,7 @@ export const catalog = {
       name: "Tres Delicias",
       price: "S/ 50.00",
       description: "Tres leches de vainilla con una textura ligera y sedosa.",
-      image: "/images/tres-delicias.jpeg",
+      image: "/images/tres-delicias.webp",
       waLink: contactInfo.whatsappUrl
     }
   ]

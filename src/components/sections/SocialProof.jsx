@@ -3,14 +3,14 @@ import { contactInfo } from '../../data/contact';
 export default function SocialProof() {
   // 8 Imágenes únicas para la marquesina
   const uniqueImages = [
-    "/images/instagram-1.jpeg",
-    "/images/instagram-2.jpeg",
-    "/images/torta-de-chocolate.jpeg",
-    "/images/carrot-cake.jpeg",
-    "/images/choco-berry.jpeg",
-    "/images/vanilla-roll.jpeg",
-    "/images/queque-de-chocolate.jpeg",
-    "/images/tres-delicias.jpeg"
+    "/images/instagram-1.webp",
+    "/images/instagram-2.webp",
+    "/images/torta-de-chocolate.webp",
+    "/images/carrot-cake.webp",
+    "/images/choco-berry.webp",
+    "/images/vanilla-roll.webp",
+    "/images/queque-de-chocolate.webp",
+    "/images/tres-delicias.webp"
   ];
 
   // Duplicar el array para crear un bucle infinito continuo
