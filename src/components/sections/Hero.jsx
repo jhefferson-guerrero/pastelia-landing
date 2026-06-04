@@ -12,7 +12,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-cherry-pattern opacity-[0.015] pointer-events-none"></div>
       <OrganicBlob className="bg-pastelia-brown/10 w-[40rem] h-[40rem] -top-20 -left-20" delay={0} />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-10 items-center mt-12 md:mt-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-10 items-center mt-8 md:mt-16">
         
         {/* Bloque de Texto Asimétrico (Centrado en móviles) */}
         <motion.div
