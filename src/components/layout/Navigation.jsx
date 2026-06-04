@@ -50,7 +50,7 @@ export default function Navigation() {
         <div className="max-w-6xl mx-auto relative flex justify-center items-center pointer-events-auto">
           
           <div className={`
-            flex items-center justify-between w-full md:w-auto px-6 py-2.5 md:px-16 md:py-3 rounded-full transition-[background-color,box-shadow,backdrop-filter,transform,opacity] duration-700 ease-[var(--ease-fluid)] border relative z-20
+            flex items-center justify-between w-full md:w-auto px-4 py-2.5 md:px-16 md:py-3 rounded-full transition-[background-color,box-shadow,backdrop-filter,transform,opacity] duration-700 ease-[var(--ease-fluid)] border relative z-20
             ${scrolled || isOpen ? 'bg-white backdrop-blur-2xl shadow-sm border-pastelia-brown/15' : 'bg-transparent border-transparent shadow-none ring-0 outline-none'}
           `}>
             <a href="#" className="flex-shrink-0 md:mr-20 -mt-1" onClick={() => setIsOpen(false)}>
