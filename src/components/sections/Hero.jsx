@@ -43,7 +43,7 @@ export default function Hero() {
             href={contactInfo.whatsappUrl} 
             label="Hacer Pedido" 
             variant="primary" 
-            className="pl-5 md:pl-8 pr-3 md:pr-5 py-2.5 md:py-4 text-sm md:text-lg shadow-md hover:shadow-2xl hover:shadow-pastelia-burgundy/20 hover:-translate-y-[2px] hover:scale-[1.02] transition-all duration-500 ease-out"
+            className="pl-5 md:pl-8 pr-3 md:pr-5 py-2.5 md:py-4 text-sm md:text-lg tracking-wide shadow-md hover:shadow-2xl hover:shadow-pastelia-burgundy/20 hover:-translate-y-[2px] hover:scale-[1.02] transition-all duration-500 ease-out"
           />
         </motion.div>
 

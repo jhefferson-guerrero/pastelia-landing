@@ -6,21 +6,24 @@ import Clasicos from "./components/sections/Clasicos"
 import SocialProof from "./components/sections/SocialProof"
 import Footer from "./components/layout/Footer"
 import FloatingWhatsApp from "./components/ui/FloatingWhatsApp"
+import PageSkeleton from "./components/ui/PageSkeleton"
 
 function App() {
   return (
-    <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-pastelia-cream text-pastelia-brown font-sans selection:bg-pastelia-burgundy selection:text-pastelia-cream">
-      <Navigation />
-      <main>
-        <Hero />
-        <Tortas />
-        <Queques />
-        <Clasicos />
-        <SocialProof />
-      </main>
-      <Footer />
-      <FloatingWhatsApp />
-    </div>
+    <PageSkeleton>
+      <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-pastelia-cream text-pastelia-brown font-sans selection:bg-pastelia-burgundy selection:text-pastelia-cream">
+        <Navigation />
+        <main>
+          <Hero />
+          <Tortas />
+          <Queques />
+          <Clasicos />
+          <SocialProof />
+        </main>
+        <Footer />
+        <FloatingWhatsApp />
+      </div>
+    </PageSkeleton>
   )
 }
 

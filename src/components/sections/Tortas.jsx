@@ -65,7 +65,7 @@ export default function Tortas() {
                   <span className="font-sans font-medium text-xl md:text-2xl text-pastelia-brown mb-6">{product.price}</span>
                   <p className="text-pastelia-brown/60 text-base md:text-lg leading-relaxed mb-8 font-light">{product.description}</p>
                   <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-bold uppercase tracking-[0.2em] text-pastelia-burgundy hover:text-pastelia-brown transition-colors w-fit">
-                    <MessageCircle className="w-5 h-5 mr-3" /> Pedir por WhatsApp
+                    <MessageCircle className="w-5 h-5 md:w-6 md:h-6 mr-3" /> Pedir por WhatsApp
                   </a>
                 </div>
 

@@ -63,8 +63,8 @@ export default function Clasicos() {
                 <p className="text-pastelia-brown/60 text-base leading-relaxed mb-6 font-light">{product.description}</p>
                 <div className="mt-auto flex items-center justify-between">
                   <span className="font-sans font-medium text-xl text-pastelia-brown">{product.price}</span>
-                  <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-pastelia-burgundy text-white hover:scale-110 transition-transform">
-                    <MessageCircle className="w-4 h-4" />
+                  <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-pastelia-burgundy text-white hover:scale-110 transition-transform">
+                    <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
                   </a>
                 </div>
               </div>
