@@ -62,7 +62,7 @@ export default function Footer() {
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
             </a>
             <a 
-              href="https://facebook.com/pasteliabakery" 
+              href="https://www.facebook.com/dulcesdemama76" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="group relative text-xs md:text-sm font-medium tracking-[0.08em] uppercase text-pastelia-cream/85 hover:text-white transition-all duration-300 ease-out flex items-center gap-1 pb-1"

@@ -59,7 +59,7 @@ export default function Hero() {
         >
           <div className="relative aspect-[4/3] md:aspect-[4/5] w-[90%] sm:w-[80%] md:w-full max-h-[280px] md:max-h-none max-w-[400px] sm:max-w-[440px] md:max-w-[460px] lg:max-w-[520px] my-6 md:my-0 mx-auto md:mr-auto overflow-hidden shadow-md md:shadow-2xl shadow-pastelia-brown/10 md:shadow-pastelia-brown/20 rounded-[2.5rem] md:rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] border border-pastelia-brown/10 md:border-0 md:-translate-x-4 lg:-translate-x-8 transition-shadow duration-[1.5s] group-hover:shadow-[0_30px_60px_-15px_rgba(89,17,25,0.3)]">
             <img 
-              src="/images/torta-de-chocolate.webp"
+              src="/images/carrot-cake.webp"
               alt="Pastelia Bakery Artisan Quality"
               className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
               loading="eager"
