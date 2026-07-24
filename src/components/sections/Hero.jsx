@@ -23,7 +23,7 @@ export default function Hero() {
         >
           {/* Logo / Nombre de Marca como el punto focal masivo */}
           <h1 className="font-serif text-[15vw] sm:text-6xl md:text-8xl lg:text-[7.5rem] font-bold tracking-tight text-pastelia-burgundy mb-6 md:mb-8 leading-[0.9] max-w-full break-words">
-            Pastelia
+            Pastelia <span className="sr-only">Bakery</span>
           </h1>
           
           <div className="flex flex-col items-center md:items-start gap-4 md:gap-6 mb-8 md:mb-10 border-t md:border-t-0 border-l-0 md:border-l border-pastelia-brown/20 pt-6 md:pt-0 md:pl-5 w-full">
