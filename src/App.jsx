@@ -6,6 +6,8 @@ import Tortas from "./components/sections/Tortas"
 import Queques from "./components/sections/Queques"
 import Clasicos from "./components/sections/Clasicos"
 import SocialProof from "./components/sections/SocialProof"
+import FAQ from "./components/sections/FAQ"
+import HowToOrder from "./components/sections/HowToOrder"
 import Footer from "./components/layout/Footer"
 import FloatingWhatsApp from "./components/ui/FloatingWhatsApp"
 import PageSkeleton from "./components/ui/PageSkeleton"
@@ -45,6 +47,8 @@ function App() {
           <Tortas />
           <Queques />
           <Clasicos />
+          <HowToOrder />
+          <FAQ />
           <SocialProof />
         </main>
         <Footer />

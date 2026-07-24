@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { catalog } from '../../data/products';
 import { MessageCircle, CakeSlice } from 'lucide-react';
+import Lightbox from '../ui/Lightbox';
 
 export default function Queques() {
   const queques = catalog.queques;
   const [imgError, setImgError] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImgError = (id) => {
     setImgError(prev => ({ ...prev, [id]: true }));
@@ -41,7 +43,10 @@ export default function Queques() {
             className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 md:py-6 rounded-[28px] bg-[rgba(255,255,255,0.45)] border border-pastelia-burgundy/10 hover:bg-[rgba(255,255,255,0.85)] hover:shadow-xl hover:shadow-pastelia-brown/5 hover:-translate-y-1 transition-all duration-500 ease-out"
           >
             {/* 1. Imagen a la izquierda (Incrementada 40%) */}
-            <div className="relative w-full sm:w-56 md:w-64 aspect-[4/3] sm:aspect-square flex-shrink-0 overflow-hidden rounded-[2rem] bg-pastelia-cream/50 mb-6 sm:mb-0 sm:mr-8">
+            <div 
+              className="relative w-full sm:w-56 md:w-64 aspect-[4/3] sm:aspect-square flex-shrink-0 overflow-hidden rounded-[2rem] bg-pastelia-cream/50 mb-6 sm:mb-0 sm:mr-8 cursor-zoom-in"
+              onClick={() => !imgError[product.id] && setSelectedImage({ src: product.image, alt: product.name })}
+            >
               {!imgError[product.id] ? (
                 <img 
                   src={product.image} alt={product.name} 
@@ -71,6 +76,13 @@ export default function Queques() {
           </motion.div>
         ))}
       </div>
+
+      <Lightbox 
+        isOpen={!!selectedImage} 
+        imageSrc={selectedImage?.src} 
+        imageAlt={selectedImage?.alt} 
+        onClose={() => setSelectedImage(null)} 
+      />
     </section>
   );
 }

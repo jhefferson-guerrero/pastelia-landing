@@ -3,10 +3,12 @@ import { motion } from 'motion/react';
 import { OrganicBlob } from '../ui/Decorations';
 import { catalog } from '../../data/products';
 import { MessageCircle, CakeSlice } from 'lucide-react';
+import Lightbox from '../ui/Lightbox';
 
 export default function Clasicos() {
   const clasicos = catalog.clasicos;
   const [imgError, setImgError] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImgError = (id) => {
     setImgError(prev => ({ ...prev, [id]: true }));
@@ -45,7 +47,10 @@ export default function Clasicos() {
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               className="group flex flex-col bg-pastelia-cream p-5 md:p-6 rounded-[3rem] shadow-xl hover:shadow-2xl transition-all duration-500 ease-out"
             >
-              <div className="relative aspect-square w-full overflow-hidden rounded-[2.5rem] bg-pastelia-white mb-6">
+              <div 
+                className="relative aspect-square w-full overflow-hidden rounded-[2.5rem] bg-pastelia-white mb-6 cursor-zoom-in"
+                onClick={() => !imgError[product.id] && setSelectedImage({ src: product.image, alt: product.name })}
+              >
                 {!imgError[product.id] ? (
                   <img 
                     src={product.image} alt={product.name} 
@@ -72,6 +77,13 @@ export default function Clasicos() {
           ))}
         </div>
       </div>
+      
+      <Lightbox 
+        isOpen={!!selectedImage} 
+        imageSrc={selectedImage?.src} 
+        imageAlt={selectedImage?.alt} 
+        onClose={() => setSelectedImage(null)} 
+      />
     </section>
   );
 }

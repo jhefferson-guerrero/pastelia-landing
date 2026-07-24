@@ -12,7 +12,7 @@ export default function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      const sections = ['tortas', 'queques', 'clasicos'];
+      const sections = ['tortas', 'queques', 'clasicos', 'faq'];
       let current = '';
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -42,6 +42,7 @@ export default function Navigation() {
     { label: 'Tortas', href: '#tortas' },
     { label: 'Queques', href: '#queques' },
     { label: 'Clásicos', href: '#clasicos' },
+    { label: 'Preguntas', href: '#faq' },
   ];
 
   return (

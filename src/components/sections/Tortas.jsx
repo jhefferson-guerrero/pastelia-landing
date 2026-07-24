@@ -3,10 +3,12 @@ import { motion } from 'motion/react';
 import { OrganicBlob } from '../ui/Decorations';
 import { catalog } from '../../data/products';
 import { MessageCircle, CakeSlice } from 'lucide-react';
+import Lightbox from '../ui/Lightbox';
 
 export default function Tortas() {
   const tortas = catalog.tortas;
   const [imgError, setImgError] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImgError = (id) => {
     setImgError(prev => ({ ...prev, [id]: true }));
@@ -47,7 +49,10 @@ export default function Tortas() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 
                 {/* Bloque de Imagen */}
-                <div className={`lg:col-span-7 relative aspect-square md:aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] bg-pastelia-cream/50 order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'}`}>
+                <div 
+                  className={`lg:col-span-7 relative aspect-square md:aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] bg-pastelia-cream/50 order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'} cursor-zoom-in`}
+                  onClick={() => !imgError[product.id] && setSelectedImage({ src: product.image, alt: product.name })}
+                >
                   {!imgError[product.id] ? (
                     <img 
                       src={product.image} alt={product.name} 
@@ -57,6 +62,8 @@ export default function Tortas() {
                   ) : (
                     <div className="flex flex-col items-center justify-center w-full h-full text-pastelia-brown/30"><CakeSlice className="w-12 h-12 mb-2 opacity-30" /></div>
                   )}
+                  {/* Overlay decorativo en hover */}
+                  <div className="absolute inset-0 bg-pastelia-burgundy/0 group-hover:bg-pastelia-burgundy/5 transition-colors duration-500 pointer-events-none"></div>
                 </div>
 
                 {/* Bloque de Texto */}
@@ -75,6 +82,13 @@ export default function Tortas() {
         })}
 
       </div>
+
+      <Lightbox 
+        isOpen={!!selectedImage} 
+        imageSrc={selectedImage?.src} 
+        imageAlt={selectedImage?.alt} 
+        onClose={() => setSelectedImage(null)} 
+      />
     </section>
   );
 }
