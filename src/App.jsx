@@ -2,7 +2,6 @@ import { useEffect } from "react"
 import Lenis from "lenis"
 import Navigation from "./components/layout/Navigation"
 import Hero from "./components/sections/Hero"
-import TextMarquee from "./components/ui/TextMarquee"
 import Tortas from "./components/sections/Tortas"
 import Queques from "./components/sections/Queques"
 import Clasicos from "./components/sections/Clasicos"
@@ -43,7 +42,6 @@ function App() {
         <Navigation />
         <main>
           <Hero />
-          <TextMarquee />
           <Tortas />
           <Queques />
           <Clasicos />
