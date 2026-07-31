@@ -29,7 +29,7 @@ export default function Clasicos() {
           transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
           className="mb-16 md:mb-24 text-center"
         >
-          <h2 className="font-serif text-5xl md:text-7xl font-bold tracking-tight text-pastelia-cream mb-6">
+          <h2 className="font-serif text-5xl md:text-6xl 2xl:text-7xl font-bold tracking-tight text-pastelia-cream mb-6">
             Clásicos de Pastelia
           </h2>
           <p className="text-pastelia-cream/80 text-lg md:text-2xl font-serif max-w-2xl mx-auto tracking-wide">

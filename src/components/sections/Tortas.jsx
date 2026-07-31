@@ -25,7 +25,7 @@ export default function Tortas() {
         transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
         className="relative z-10 mb-16 md:mb-24 text-center md:text-left"
       >
-        <h2 className="font-serif text-5xl md:text-7xl font-bold tracking-tight text-pastelia-burgundy mb-6">
+        <h2 className="font-serif text-5xl md:text-6xl 2xl:text-7xl font-bold tracking-tight text-pastelia-burgundy mb-6">
           Nuestras Tortas
         </h2>
         <p className="text-pastelia-brown/70 text-lg md:text-2xl font-serif max-w-2xl tracking-wide">
@@ -68,7 +68,7 @@ export default function Tortas() {
 
                 {/* Bloque de Texto */}
                 <div className={`lg:col-span-5 flex flex-col order-2 ${isReverse ? 'lg:order-1 lg:pr-10' : 'lg:order-2 lg:pl-10'}`}>
-                  <h3 className="font-serif italic text-3xl md:text-5xl text-pastelia-burgundy mb-4">{product.name}</h3>
+                  <h3 className="font-serif italic text-3xl md:text-4xl 2xl:text-5xl text-pastelia-burgundy mb-4">{product.name}</h3>
                   <span className="font-sans font-medium text-xl md:text-2xl text-pastelia-brown mb-6">{product.price}</span>
                   <p className="text-pastelia-brown/60 text-base md:text-lg leading-relaxed mb-8 font-light">{product.description}</p>
                   <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-bold uppercase tracking-[0.2em] text-pastelia-burgundy hover:text-pastelia-brown transition-colors w-fit">

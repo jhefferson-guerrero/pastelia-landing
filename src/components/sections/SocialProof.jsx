@@ -21,7 +21,7 @@ export default function SocialProof() {
       
       {/* Encabezado */}
       <div className="flex flex-col items-center text-center mb-16 px-6">
-        <h2 className="font-serif text-3xl md:text-5xl font-bold tracking-tight text-pastelia-burgundy mb-6">
+        <h2 className="font-serif text-3xl md:text-4xl 2xl:text-5xl font-bold tracking-tight text-pastelia-burgundy mb-6">
           Síguenos en Instagram
         </h2>
         <a 

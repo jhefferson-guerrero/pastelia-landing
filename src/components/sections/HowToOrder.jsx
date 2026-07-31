@@ -30,7 +30,7 @@ export default function HowToOrder() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 md:mb-24"
         >
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-pastelia-burgundy mb-4">
+          <h2 className="font-serif text-4xl md:text-4xl 2xl:text-5xl font-bold text-pastelia-burgundy mb-4">
             Cómo hacer tu pedido
           </h2>
           <p className="text-pastelia-brown/70 text-lg font-light max-w-xl mx-auto">

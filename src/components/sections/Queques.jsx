@@ -23,7 +23,7 @@ export default function Queques() {
         transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
         className="relative z-10 mb-16 md:mb-24 text-center max-w-xl mx-auto flex flex-col items-center"
       >
-        <h2 className="font-serif text-5xl md:text-7xl font-bold tracking-tight text-pastelia-burgundy mb-6">
+        <h2 className="font-serif text-5xl md:text-6xl 2xl:text-7xl font-bold tracking-tight text-pastelia-burgundy mb-6">
           Queques Artesanales
         </h2>
         <p className="text-pastelia-brown/70 text-lg md:text-2xl font-serif tracking-wide">
