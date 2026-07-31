@@ -22,16 +22,26 @@ export default function SocialProof() {
       {/* Encabezado */}
       <div className="flex flex-col items-center text-center mb-16 px-6">
         <h2 className="font-serif text-3xl md:text-4xl 2xl:text-5xl font-bold tracking-tight text-pastelia-burgundy mb-6">
-          Síguenos en Instagram
+          Únete a nuestra dulce comunidad
         </h2>
-        <a 
-          href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block text-pastelia-brown/80 hover:text-pastelia-burgundy text-lg font-light tracking-wide transition-colors"
-        >
-          {contactInfo.instagram}
-        </a>
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+          <a 
+            href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-pastelia-brown/80 hover:text-pastelia-burgundy text-lg font-medium tracking-wide transition-colors"
+          >
+            Instagram: {contactInfo.instagram}
+          </a>
+          <a 
+            href={`https://tiktok.com/${contactInfo.tiktok}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-pastelia-brown/80 hover:text-pastelia-burgundy text-lg font-medium tracking-wide transition-colors"
+          >
+            TikTok: {contactInfo.tiktok}
+          </a>
+        </div>
       </div>
 
       {/* Tira de Fotos Horizontal con Desplazamiento Automático */}
@@ -59,14 +69,22 @@ export default function SocialProof() {
       </div>
 
       {/* CTA de Enlace en el Pie de Página */}
-      <div className="px-6 flex justify-center">
+      <div className="px-6 flex flex-col sm:flex-row justify-center gap-4">
         <a 
           href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-7 py-3.5 rounded-full border border-pastelia-burgundy text-sm md:text-base font-medium tracking-[0.08em] uppercase text-pastelia-burgundy hover:bg-pastelia-burgundy hover:text-white hover:-translate-y-[2px] transition-all duration-300 ease-out flex items-center gap-2"
+          className="px-7 py-3.5 rounded-full border border-pastelia-burgundy text-sm md:text-base font-medium tracking-[0.08em] uppercase text-pastelia-burgundy hover:bg-pastelia-burgundy hover:text-white hover:-translate-y-[2px] transition-all duration-300 ease-out flex items-center justify-center gap-2"
         >
           Ver Instagram <span className="font-sans text-sm">↗</span>
+        </a>
+        <a 
+          href={`https://tiktok.com/${contactInfo.tiktok}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-7 py-3.5 rounded-full border border-pastelia-burgundy text-sm md:text-base font-medium tracking-[0.08em] uppercase text-pastelia-burgundy hover:bg-pastelia-burgundy hover:text-white hover:-translate-y-[2px] transition-all duration-300 ease-out flex items-center justify-center gap-2"
+        >
+          Ver TikTok <span className="font-sans text-sm">↗</span>
         </a>
       </div>
 

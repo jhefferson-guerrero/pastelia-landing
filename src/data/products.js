@@ -94,5 +94,47 @@ export const catalog = {
       image: "/images/tres-delicias.webp",
       waLink: contactInfo.whatsappUrl
     }
+  ],
+  cuchareables: [
+    {
+      id: "cuchareable-chocodosis",
+      name: "Choco Dosis",
+      price: "S/ 8.00",
+      description: "Capas de bizcocho húmedo, ganache y crema de chocolate para disfrutar a cucharadas.",
+      image: "", // Pon aquí el URL de la imagen
+      waLink: contactInfo.whatsappUrl
+    },
+    {
+      id: "cuchareable-carrotcake",
+      name: "Carrot Cake",
+      price: "S/ 8.00",
+      description: "Todo el sabor de nuestro clásico queque de zanahoria con su infaltable frosting de queso crema.",
+      image: "", // Pon aquí el URL de la imagen
+      waLink: contactInfo.whatsappUrl
+    },
+    {
+      id: "cuchareable-alfajor",
+      name: "Alfajor",
+      price: "S/ 8.00",
+      description: "Capas suaves y crocantes intercaladas con abundante manjar blanco.",
+      image: "", // Pon aquí el URL de la imagen
+      waLink: contactInfo.whatsappUrl
+    },
+    {
+      id: "cuchareable-cheesecake",
+      name: "Cheesecake de Frutos Rojos",
+      price: "S/ 8.00",
+      description: "Suave crema de queso sobre base crocante, coronado con confitura de frutos rojos.",
+      image: "", // Pon aquí el URL de la imagen
+      waLink: contactInfo.whatsappUrl
+    },
+    {
+      id: "cuchareable-tresleches",
+      name: "Tres Leches",
+      price: "S/ 8.00",
+      description: "Esponjoso bizcocho bañado en nuestras tres leches de la casa.",
+      image: "", // Pon aquí el URL de la imagen
+      waLink: contactInfo.whatsappUrl
+    }
   ]
 };

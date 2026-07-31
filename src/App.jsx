@@ -1,16 +1,20 @@
 import { useEffect } from "react"
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import Lenis from "lenis"
 import Navigation from "./components/layout/Navigation"
-import Hero from "./components/sections/Hero"
-import Tortas from "./components/sections/Tortas"
-import Queques from "./components/sections/Queques"
-import Clasicos from "./components/sections/Clasicos"
-import SocialProof from "./components/sections/SocialProof"
-import FAQ from "./components/sections/FAQ"
-import HowToOrder from "./components/sections/HowToOrder"
 import Footer from "./components/layout/Footer"
 import FloatingWhatsApp from "./components/ui/FloatingWhatsApp"
 import PageSkeleton from "./components/ui/PageSkeleton"
+import Home from "./pages/Home"
+import Catalogo from "./pages/Catalogo"
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 function App() {
   useEffect(() => {
@@ -39,22 +43,22 @@ function App() {
   }, [])
 
   return (
-    <PageSkeleton>
-      <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-pastelia-cream text-pastelia-brown font-sans selection:bg-pastelia-burgundy selection:text-pastelia-cream">
-        <Navigation />
-        <main>
-          <Hero />
-          <Tortas />
-          <Queques />
-          <Clasicos />
-          <HowToOrder />
-          <FAQ />
-          <SocialProof />
-        </main>
-        <Footer />
-        <FloatingWhatsApp />
-      </div>
-    </PageSkeleton>
+    <BrowserRouter>
+      <ScrollToTop />
+      <PageSkeleton>
+        <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-pastelia-cream text-pastelia-brown font-sans selection:bg-pastelia-burgundy selection:text-pastelia-cream">
+          <Navigation />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/catalogo" element={<Catalogo />} />
+            </Routes>
+          </main>
+          <Footer />
+          <FloatingWhatsApp />
+        </div>
+      </PageSkeleton>
+    </BrowserRouter>
   )
 }
 
