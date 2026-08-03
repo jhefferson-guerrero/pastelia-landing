@@ -24,24 +24,7 @@ export default function SocialProof() {
         <h2 className="font-serif text-3xl md:text-4xl 2xl:text-5xl font-bold tracking-tight text-pastelia-burgundy mb-6">
           Únete a nuestra dulce comunidad
         </h2>
-        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-          <a 
-            href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center text-pastelia-brown/80 hover:text-pastelia-burgundy text-lg font-medium tracking-wide transition-colors"
-          >
-            Instagram: {contactInfo.instagram}
-          </a>
-          <a 
-            href={`https://tiktok.com/${contactInfo.tiktok}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center text-pastelia-brown/80 hover:text-pastelia-burgundy text-lg font-medium tracking-wide transition-colors"
-          >
-            TikTok: {contactInfo.tiktok}
-          </a>
-        </div>
+
       </div>
 
       {/* Tira de Fotos Horizontal con Desplazamiento Automático */}

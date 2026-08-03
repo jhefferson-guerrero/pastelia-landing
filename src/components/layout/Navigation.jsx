@@ -43,7 +43,6 @@ export default function Navigation() {
     { label: 'Queques', href: '/#queques' },
     { label: 'Cuchareables', href: '/#cuchareables' },
     { label: 'Clásicos', href: '/#clasicos' },
-    { label: 'Preguntas', href: '/#faq' },
   ];
 
   return (

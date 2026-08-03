@@ -57,7 +57,7 @@ export default function Cuchareables() {
               )}
             </div>
             
-            <div className="flex flex-col justify-center max-w-lg">
+            <div className="flex flex-col justify-center max-w-lg sm:pr-6 md:pr-10">
               <h3 className="font-serif italic text-2xl md:text-3xl text-pastelia-brown mb-2">{product.name}</h3>
               <p className="text-pastelia-brown/60 text-base md:text-base leading-relaxed mb-4 sm:mb-0 font-light">
                 {product.description}
