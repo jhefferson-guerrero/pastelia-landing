@@ -34,13 +34,39 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[85vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-pastelia-cream px-6 pt-24 pb-16">
+    <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-pastelia-cream px-6 pt-24 md:pt-24 pb-16 md:pb-0">
 
       {/* Fondos Artísticos Editoriales */}
       <div className="absolute inset-0 bg-cherry-pattern opacity-[0.015] pointer-events-none"></div>
       <OrganicBlob className="bg-pastelia-brown/10 w-[40rem] h-[40rem] -top-20 -left-20" delay={0} />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-10 items-center mt-4 md:mt-8 2xl:mt-16">
+      {/* Desktop Full-Height Image Background */}
+      <div className="hidden md:block absolute top-0 right-0 bottom-0 w-1/2 z-0 [mask-image:linear-gradient(to_right,transparent,black_20%)] group">
+        <AnimatePresence>
+          <motion.img
+            key={currentIndex}
+            src={heroImages[currentIndex].src}
+            alt={heroImages[currentIndex].alt}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
+            loading={currentIndex === 0 ? "eager" : "lazy"}
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 flex items-center justify-end px-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+          <button
+            onClick={nextImage}
+            className="w-12 h-12 flex items-center justify-center rounded-full bg-pastelia-cream/80 text-pastelia-burgundy backdrop-blur-sm shadow-lg hover:bg-pastelia-cream hover:scale-110 transition-all duration-300"
+            aria-label="Siguiente imagen"
+          >
+            <ChevronRight className="w-6 h-6" strokeWidth={1.5} />
+          </button>
+        </div>
+      </div>
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-10 items-center mt-4 md:mt-0">
 
         {/* Bloque de Texto Asimétrico (Centrado en móviles) */}
         <motion.div
@@ -78,14 +104,14 @@ export default function Hero() {
           </MagneticButton>
         </motion.div>
 
-        {/* Bloque de Imagen Asimétrico (Escalado responsivo) */}
+        {/* Bloque de Imagen (Arco elegante en móviles) */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, rotate: 2 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1.2, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
-          className="md:col-span-5 relative z-10 mt-0 flex justify-center md:justify-end w-full group"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
+          className="md:hidden relative z-10 mt-2 flex justify-center w-full group"
         >
-          <div className="relative isolate transform-gpu [mask-image:radial-gradient(white,black)] aspect-square md:aspect-[5/6] w-[90%] sm:w-[80%] md:w-full max-h-[350px] md:max-h-none max-w-[400px] sm:max-w-[440px] md:max-w-[400px] lg:max-w-[450px] 2xl:max-w-[520px] my-6 md:my-0 mx-auto md:mr-auto overflow-hidden shadow-md md:shadow-2xl shadow-pastelia-brown/10 md:shadow-pastelia-brown/20 rounded-[60%_40%_50%_50%_/_50%_50%_60%_40%] md:rounded-[60%_40%_30%_70%_/_60%_30%_70%_40%] border-[3px] md:border-[4px] border-pastelia-burgundy/40 md:-translate-x-4 lg:-translate-x-8 transition-all duration-[1.5s] ease-in-out group-hover:shadow-[0_30px_60px_-15px_rgba(89,17,25,0.3)] group-hover:rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%]">
+          <div className="relative isolate transform-gpu aspect-[4/5] w-[85%] max-w-[360px] my-6 mx-auto overflow-hidden shadow-2xl shadow-pastelia-brown/15 rounded-t-full rounded-b-3xl transition-all duration-700 ease-in-out group-hover:-translate-y-1 group-hover:shadow-pastelia-burgundy/15">
 
             <AnimatePresence>
               <motion.img
@@ -101,18 +127,10 @@ export default function Hero() {
               />
             </AnimatePresence>
 
-            {/* Controles de flechas (visibles al pasar el mouse) */}
-            <div className="absolute inset-0 flex items-center justify-between px-4 md:px-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-              <button
-                onClick={prevImage}
-                className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-pastelia-cream/80 text-pastelia-burgundy backdrop-blur-sm shadow-lg hover:bg-pastelia-cream hover:scale-110 transition-all duration-300"
-                aria-label="Imagen anterior"
-              >
-                <ChevronLeft className="w-6 h-6" strokeWidth={1.5} />
-              </button>
+            <div className="absolute inset-0 flex items-center justify-end px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
               <button
                 onClick={nextImage}
-                className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-pastelia-cream/80 text-pastelia-burgundy backdrop-blur-sm shadow-lg hover:bg-pastelia-cream hover:scale-110 transition-all duration-300"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-pastelia-cream/80 text-pastelia-burgundy backdrop-blur-sm shadow-lg hover:bg-pastelia-cream hover:scale-110 transition-all duration-300"
                 aria-label="Siguiente imagen"
               >
                 <ChevronRight className="w-6 h-6" strokeWidth={1.5} />

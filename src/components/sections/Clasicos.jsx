@@ -45,7 +45,7 @@ export default function Clasicos() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="group flex flex-col bg-pastelia-cream p-5 md:p-6 rounded-[3rem] shadow-xl hover:shadow-2xl transition-all duration-500 ease-out"
+              className="group flex flex-col bg-pastelia-cream p-5 md:p-6 rounded-[3rem] shadow-xl hover:shadow-2xl hover:shadow-black/20 hover:-translate-y-2 transition-all duration-500 ease-out"
             >
               <div 
                 className="relative aspect-square w-full overflow-hidden rounded-[2.5rem] bg-pastelia-white mb-6 cursor-zoom-in"
@@ -68,8 +68,8 @@ export default function Clasicos() {
                 <p className="text-pastelia-brown/60 text-base leading-relaxed mb-6 font-light">{product.description}</p>
                 <div className="mt-auto flex items-center justify-between">
                   <span className="font-sans font-medium text-xl text-pastelia-brown">{product.price}</span>
-                  <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-pastelia-burgundy text-white hover:scale-110 transition-transform">
-                    <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
+                  <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="group/wa flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-pastelia-burgundy text-white hover:scale-110 hover:shadow-lg transition-all duration-300">
+                    <MessageCircle className="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover/wa:rotate-12 group-hover/wa:scale-110" />
                   </a>
                 </div>
               </div>

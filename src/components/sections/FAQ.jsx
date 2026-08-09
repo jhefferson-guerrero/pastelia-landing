@@ -45,7 +45,7 @@ export default function FAQ() {
             >
               <button
                 onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none"
+                className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group"
                 aria-expanded={isOpen}
               >
                 <span className="font-serif text-lg md:text-xl text-pastelia-brown font-medium pr-8">
@@ -54,7 +54,7 @@ export default function FAQ() {
                 <motion.div
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-                  className="flex-shrink-0 text-pastelia-burgundy bg-pastelia-burgundy/5 p-2 rounded-full"
+                  className="flex-shrink-0 text-pastelia-burgundy bg-pastelia-burgundy/5 p-2 rounded-full transition-all duration-300 group-hover:bg-pastelia-burgundy/10 group-hover:translate-y-1"
                 >
                   <ChevronDown className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />
                 </motion.div>
