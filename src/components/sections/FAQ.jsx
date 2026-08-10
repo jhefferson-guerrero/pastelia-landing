@@ -5,7 +5,7 @@ import { ChevronDown } from 'lucide-react';
 const faqs = [
   {
     question: '¿Con cuánto tiempo de anticipación debo hacer mi pedido?',
-    answer: 'Para tortas y pedidos clásicos solicitamos un mínimo de 48 horas de anticipación. Si deseas un diseño personalizado o para un evento especial, te recomendamos escribirnos con 1 o 2 semanas de antelación.'
+    answer: 'Para tortas y pedidos clásicos solicitamos un mínimo de 48 horas de anticipación. Si deseas un diseño personalizado o para un evento especial, te recomendamos escribirnos con 2 a 5 días de antelación.'
   },
   {
     question: '¿Tienen servicio de delivery?',
@@ -16,8 +16,8 @@ const faqs = [
     answer: 'Para confirmar tu pedido solicitamos el 50% de adelanto mediante Yape, Plin o transferencia bancaria. El saldo restante se cancela tranquilamente al momento de la entrega o recojo.'
   },
   {
-    question: '¿Tienen opciones sin gluten o veganas?',
-    answer: 'Actualmente nuestro menú se centra en recetas artesanales tradicionales con insumos clásicos. Estamos perfeccionando algunas opciones especiales, ¡te invitamos a seguirnos en nuestras redes para enterarte cuando las lancemos!'
+    question: '¿Cómo debo conservar mi postre?',
+    answer: 'Para disfrutar de la mejor textura y sabor, te sugerimos mantener las tortas refrigeradas y retirarlas a temperatura ambiente unos 30 minutos antes de consumirlas.'
   }
 ];
 

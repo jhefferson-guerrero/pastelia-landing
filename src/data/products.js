@@ -1,5 +1,9 @@
 import { contactInfo } from './contact';
 
+const generateWaLink = (productName) => {
+  return `https://wa.me/51906650350?text=${encodeURIComponent('¡Hola! Quisiera hacer un pedido de: ' + productName)}`;
+};
+
 export const catalog = {
   tortas: [
     {
@@ -8,7 +12,7 @@ export const catalog = {
       price: "S/ 60.00",
       description: "Ganache intenso y virutas de chocolate en cada detalle.",
       image: "/images/torta-de-chocolate.webp",
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Torta de Chocolate")
     },
     {
       id: "torta-chocoberry",
@@ -16,7 +20,7 @@ export const catalog = {
       price: "S/ 55.00",
       description: "Chocolate, fresas frescas y arándanos en perfecta armonía.",
       image: "/images/choco-berry.webp",
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Choco Berry")
     },
     {
       id: "torta-carrotcake",
@@ -24,7 +28,7 @@ export const catalog = {
       price: "S/ 75.00",
       description: "Tres capas de zanahoria, queso crema y pecanas tostadas.",
       image: "/images/carrot-cake.webp",
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Carrot Cake")
     }
   ],
   queques: [
@@ -34,7 +38,7 @@ export const catalog = {
       price: "S/ 30.00",
       description: "El compañero ideal para el café de la tarde.",
       image: "/images/queque-de-chocolate.webp",
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Queque de Chocolate")
     },
     {
       id: "queque-carrot",
@@ -42,7 +46,7 @@ export const catalog = {
       price: "S/ 30.00",
       description: "Húmedo, especiado y cubierto con frosting de queso crema.",
       image: "/images/queque-de-carrot.webp",
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Queque de Carrot")
     },
     {
       id: "queque-naranja",
@@ -50,7 +54,7 @@ export const catalog = {
       price: "S/ 25.00",
       description: "Aromático y fresco, con un delicado toque cítrico.",
       image: "/images/queque-de-naranja.webp",
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Queque de Naranja")
     },
     {
       id: "queque-arandanos",
@@ -58,7 +62,7 @@ export const catalog = {
       price: "S/ 35.00",
       description: "Suave y equilibrado, con arándanos en cada bocado.",
       image: "/images/queque-de-arandanos-y-yogurt.webp",
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Queque de Arándanos y Yogurt")
     },
     {
       id: "queque-platano",
@@ -66,7 +70,7 @@ export const catalog = {
       price: "S/ 25.00",
       description: "Esponjoso y reconfortante, con plátano caramelizado.",
       image: "/images/queque-de-platano.webp",
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Queque de Plátano")
     }
   ],
   clasicos: [
@@ -76,7 +80,7 @@ export const catalog = {
       price: "S/ 30.00",
       description: "Bizcocho de vainilla y manjar blanco en un clásico irresistible.",
       image: "/images/vanilla-roll.webp",
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Vanilla Roll")
     },
     {
       id: "clasico-caramelkiss",
@@ -84,7 +88,7 @@ export const catalog = {
       price: "S/ 55.00",
       description: "Suave, cremoso y bañado en un delicado caramelo artesanal.",
       image: "/images/caramel-kiss.webp",
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Caramel Kiss")
     },
     {
       id: "clasico-tresdelicias",
@@ -92,7 +96,7 @@ export const catalog = {
       price: "S/ 50.00",
       description: "Tres leches de vainilla con una textura ligera y sedosa.",
       image: "/images/tres-delicias.webp",
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Tres Delicias")
     }
   ],
   cuchareables: [
@@ -102,7 +106,7 @@ export const catalog = {
       price: "S/ 8.00",
       description: "Capas de bizcocho húmedo, ganache y crema de chocolate para disfrutar a cucharadas.",
       image: "", // Pon aquí el URL de la imagen
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Choco Dosis")
     },
     {
       id: "cuchareable-carrotcake",
@@ -110,7 +114,7 @@ export const catalog = {
       price: "S/ 8.00",
       description: "Todo el sabor de nuestro clásico queque de zanahoria con su infaltable frosting de queso crema.",
       image: "", // Pon aquí el URL de la imagen
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Carrot Cake")
     },
     {
       id: "cuchareable-alfajor",
@@ -118,7 +122,7 @@ export const catalog = {
       price: "S/ 8.00",
       description: "Capas suaves y crocantes intercaladas con abundante manjar blanco.",
       image: "", // Pon aquí el URL de la imagen
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Alfajor")
     },
     {
       id: "cuchareable-cheesecake",
@@ -126,7 +130,7 @@ export const catalog = {
       price: "S/ 8.00",
       description: "Suave crema de queso sobre base crocante, coronado con confitura de frutos rojos.",
       image: "", // Pon aquí el URL de la imagen
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Cheesecake de Frutos Rojos")
     },
     {
       id: "cuchareable-tresleches",
@@ -134,7 +138,7 @@ export const catalog = {
       price: "S/ 8.00",
       description: "Esponjoso bizcocho bañado en nuestras tres leches de la casa.",
       image: "", // Pon aquí el URL de la imagen
-      waLink: contactInfo.whatsappUrl
+      waLink: generateWaLink("Tres Leches")
     }
   ]
 };

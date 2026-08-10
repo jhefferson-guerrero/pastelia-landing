@@ -91,7 +91,7 @@ export default function Footer() {
             </span>
             <span className="hidden md:inline opacity-30">|</span>
             <span className="flex items-center gap-2">
-              <span className="font-bold opacity-70">Atención:</span> Lun-Sab 8am-8pm, Dom 9am-2pm
+              <span className="font-bold opacity-70">Atención:</span> Lun-Vie 10am-7pm, Sab 1pm-7pm
             </span>
           </div>
 
