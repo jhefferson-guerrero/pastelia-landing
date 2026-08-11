@@ -34,7 +34,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-pastelia-cream px-6 pt-24 md:pt-24 pb-16 md:pb-0">
+    <section className="relative min-h-[75vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-pastelia-cream px-6 pt-24 md:pt-24 pb-16 md:pb-0">
 
       {/* Fondos Artísticos Editoriales */}
       <div className="absolute inset-0 bg-cherry-pattern opacity-[0.015] pointer-events-none"></div>
