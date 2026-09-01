@@ -39,8 +39,9 @@ Una landing page moderna, dinámica y altamente atractiva para **Pastelia**, esp
 
 Sigue estos pasos para levantar el entorno de desarrollo en tu máquina local.
 
-1. **Clona el repositorio** (si aplica) o navega a la carpeta del proyecto:
+1. **Clona el repositorio** y navega a la carpeta del proyecto:
    ```bash
+   git clone https://github.com/jhefferson-guerrero/pastelia-landing.git
    cd pastelia-landing
    ```
 
