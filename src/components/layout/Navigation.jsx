@@ -12,7 +12,8 @@ export default function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      const sections = ['tortas', 'queques', 'cuchareables', 'clasicos', 'faq'];
+      // Mismo orden que las secciones en la página
+      const sections = ['tortas', 'clasicos', 'queques', 'cuchareables', 'faq'];
       let current = '';
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -40,9 +41,9 @@ export default function Navigation() {
 
   const navLinks = [
     { label: 'Tortas', href: '/#tortas' },
+    { label: 'Clásicos', href: '/#clasicos' },
     { label: 'Queques', href: '/#queques' },
     { label: 'Cuchareables', href: '/#cuchareables' },
-    { label: 'Clásicos', href: '/#clasicos' },
   ];
 
   return (

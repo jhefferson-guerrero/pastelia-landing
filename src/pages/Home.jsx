@@ -12,12 +12,12 @@ export default function Home() {
     <>
       <Hero />
       <Tortas />
+      <Clasicos />
       <Queques />
       <Cuchareables />
-      <Clasicos />
       <HowToOrder />
-      <FAQ />
       <SocialProof />
+      <FAQ />
     </>
   )
 }
