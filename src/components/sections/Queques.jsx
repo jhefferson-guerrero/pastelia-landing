@@ -14,19 +14,23 @@ export default function Queques() {
   };
 
   return (
-    <section id="queques" className="relative py-24 scroll-mt-10 md:scroll-mt-5 md:py-32 px-6 max-w-7xl mx-auto border-t border-pastelia-brown/5 overflow-hidden">
-      
-      <motion.div 
+    <section id="queques" className="relative py-24 scroll-mt-10 md:scroll-mt-5 md:py-32 px-6 bg-pastelia-burgundy overflow-hidden">
+
+      {/* Capas Decorativas */}
+      <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+      <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
         className="relative z-10 mb-16 md:mb-24 text-center max-w-xl mx-auto flex flex-col items-center"
       >
-        <h2 className="font-serif text-5xl md:text-6xl 2xl:text-7xl font-bold tracking-tight text-pastelia-burgundy mb-6">
+        <h2 className="font-serif text-5xl md:text-6xl 2xl:text-7xl font-bold tracking-tight text-pastelia-cream mb-6">
           Queques Artesanales
         </h2>
-        <p className="text-pastelia-brown/70 text-lg md:text-2xl font-serif tracking-wide">
+        <p className="text-pastelia-cream/80 text-lg md:text-2xl font-serif tracking-wide">
           El acompañante definitivo. Migas suaves, cortezas doradas y sabores pensados para la hora del té.
         </p>
       </motion.div>
@@ -40,7 +44,7 @@ export default function Queques() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: idx * 0.1 }}
-            className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 md:py-6 rounded-[28px] bg-[rgba(255,255,255,0.45)] border border-pastelia-burgundy/10 hover:bg-[rgba(255,255,255,0.85)] hover:shadow-xl hover:shadow-pastelia-brown/5 hover:-translate-y-1 transition-all duration-500 ease-out"
+            className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 md:py-6 rounded-[28px] bg-pastelia-cream border border-pastelia-cream hover:bg-white hover:shadow-2xl hover:shadow-black/20 hover:-translate-y-1 transition-all duration-500 ease-out"
           >
             {/* 1. Imagen a la izquierda (Incrementada 40%) */}
             <div 
@@ -76,8 +80,9 @@ export default function Queques() {
           </motion.div>
         ))}
       </div>
+      </div>
 
-      <Lightbox 
+      <Lightbox
         isOpen={!!selectedImage} 
         imageSrc={selectedImage?.src} 
         imageAlt={selectedImage?.alt} 
