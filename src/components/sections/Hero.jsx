@@ -57,7 +57,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
+            className="absolute inset-0 w-full h-full object-cover"
             loading={currentIndex === 0 ? "eager" : "lazy"}
           />
         </AnimatePresence>
@@ -72,10 +72,10 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-10 items-center mt-4 md:mt-0">
+      <div className="relative z-10 w-full max-w-7xl mx-auto pointer-events-none grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-10 items-center mt-4 md:mt-0">
 
         {/* Bloque de Texto Asimétrico (Centrado en móviles) */}
-        <div className="md:col-span-7 flex flex-col items-center md:items-start text-center md:text-left w-full max-w-full z-20 pt-4 md:pt-0">
+        <div className="md:col-span-7 pointer-events-auto flex flex-col items-center md:items-start text-center md:text-left w-full max-w-full z-20 pt-4 md:pt-0">
           {/* Logo / Nombre de Marca como el punto focal masivo */}
           <motion.h1 {...enter(0)} className="font-serif text-[15vw] sm:text-6xl md:text-7xl lg:text-7xl 2xl:text-[7.5rem] font-bold tracking-tight text-pastelia-burgundy mb-3 md:mb-6 2xl:mb-8 leading-[0.9] max-w-full break-words">
             Pastelia <span className="sr-only">Bakery</span>
@@ -112,7 +112,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.9, ease: EASE, delay: 0.3 }}
-          className="md:hidden relative z-10 mt-2 flex justify-center w-full group"
+          className="md:hidden pointer-events-auto relative z-10 mt-2 flex justify-center w-full group"
         >
           <div className="relative isolate transform-gpu aspect-[4/5] w-[85%] max-w-[360px] my-6 mx-auto overflow-hidden shadow-2xl shadow-pastelia-brown/15 rounded-t-full rounded-b-3xl transition-all duration-700 ease-in-out group-hover:-translate-y-1 group-hover:shadow-pastelia-burgundy/15">
 
@@ -125,7 +125,7 @@ export default function Hero() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.8, ease: "easeInOut" }}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
+                className="absolute inset-0 w-full h-full object-cover"
                 loading={currentIndex === 0 ? "eager" : "lazy"}
               />
             </AnimatePresence>
