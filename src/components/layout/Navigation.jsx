@@ -62,9 +62,9 @@ export default function Navigation() {
             flex items-center justify-between w-full md:max-w-6xl mx-auto px-4 py-2.5 md:px-8 md:py-4 pointer-events-auto
             rounded-full md:rounded-none border
             ${isOpen 
-              ? 'bg-white/95 backdrop-blur-3xl shadow-md border-pastelia-brown/10 md:bg-transparent md:shadow-none md:border-transparent' 
+              ? 'bg-pastelia-cream/95 backdrop-blur-3xl shadow-md border-pastelia-brown/15 md:bg-transparent md:shadow-none md:border-transparent' 
               : scrolled 
-                ? 'bg-white/95 backdrop-blur-3xl shadow-sm border-pastelia-brown/15 transition-all duration-300 md:bg-transparent md:shadow-none md:border-transparent' 
+                ? 'bg-pastelia-cream/95 backdrop-blur-3xl shadow-sm border-pastelia-brown/15 transition-all duration-300 md:bg-transparent md:shadow-none md:border-transparent' 
                 : 'bg-transparent border-transparent shadow-none transition-all duration-300'}
           `}>
             <div className="flex-1 flex justify-start">
@@ -114,7 +114,7 @@ export default function Navigation() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
-                className="absolute top-full mt-2 left-4 right-4 z-10 bg-white/95 backdrop-blur-3xl shadow-2xl border border-pastelia-brown/10 rounded-[2rem] overflow-y-auto overscroll-contain max-h-[calc(100dvh-6.5rem)] flex flex-col p-4 md:hidden pointer-events-auto"
+                className="absolute top-full mt-2 left-4 right-4 z-10 bg-pastelia-cream/95 backdrop-blur-3xl shadow-2xl border border-pastelia-brown/15 rounded-[2rem] overflow-y-auto overscroll-contain max-h-[calc(100dvh-6.5rem)] flex flex-col p-4 md:hidden pointer-events-auto"
               >
                 <nav className="flex flex-col items-center justify-center w-full">
                   {navLinks.map((link, i) => (
@@ -158,17 +158,17 @@ export default function Navigation() {
                       href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center py-3 rounded-full border border-pastelia-burgundy/25 text-sm font-medium text-pastelia-burgundy active:bg-pastelia-burgundy/5 transition-colors"
+                      className="flex items-center justify-center gap-1.5 py-3 rounded-full border border-pastelia-burgundy/25 text-sm font-medium text-pastelia-burgundy active:bg-pastelia-burgundy/5 transition-colors"
                     >
-                      Instagram
+                      Instagram <span className="font-sans text-sm">↗</span>
                     </a>
                     <a
                       href={`https://tiktok.com/${contactInfo.tiktok}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center py-3 rounded-full border border-pastelia-burgundy/25 text-sm font-medium text-pastelia-burgundy active:bg-pastelia-burgundy/5 transition-colors"
+                      className="flex items-center justify-center gap-1.5 py-3 rounded-full border border-pastelia-burgundy/25 text-sm font-medium text-pastelia-burgundy active:bg-pastelia-burgundy/5 transition-colors"
                     >
-                      TikTok
+                      TikTok <span className="font-sans text-sm">↗</span>
                     </a>
                   </div>
                 </div>
