@@ -68,17 +68,17 @@ export default function Catalogo() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: (idx % 4) * 0.1 }}
-              className="group flex flex-col bg-white p-5 rounded-[2rem] shadow-lg hover:shadow-xl transition-all duration-300"
+              className="group flex flex-col bg-white p-5 rounded-[2rem] shadow-lg"
             >
               <div 
-                className="relative aspect-square w-full overflow-hidden rounded-[1.5rem] bg-pastelia-cream mb-4 cursor-zoom-in"
+                className="relative aspect-square w-full overflow-hidden rounded-[1.5rem] bg-pastelia-cream mb-4 cursor-zoom-in group/img"
                 onClick={() => !imgError[product.id] && setSelectedImage({ src: product.image, alt: product.name })}
               >
                 {!imgError[product.id] ? (
                   <img 
                     src={product.image} alt={product.name} 
                     onError={() => handleImgError(product.id)}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.03]" loading="lazy"
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center w-full h-full text-pastelia-brown/30"><CakeSlice className="w-8 h-8 mb-2 opacity-30" /></div>
@@ -89,7 +89,7 @@ export default function Catalogo() {
                 <p className="text-pastelia-brown/60 text-sm leading-relaxed mb-4 font-light flex-1">{product.description}</p>
                 <div className="mt-auto flex items-center justify-between">
                   <span className="font-sans font-medium text-lg text-pastelia-brown">{product.price}</span>
-                  <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-pastelia-burgundy text-white hover:scale-110 transition-transform">
+                  <a href={product.waLink} target="_blank" rel="noopener noreferrer" style={{ animationDelay: `${idx * 0.5}s` }} className="wa-pulse flex items-center justify-center w-10 h-10 rounded-full bg-pastelia-burgundy text-white hover:scale-110 transition-transform">
                     <MessageCircle className="w-5 h-5" />
                   </a>
                 </div>

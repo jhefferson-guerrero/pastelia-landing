@@ -44,17 +44,17 @@ export default function Cuchareables() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: idx * 0.1 }}
-            className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 md:py-6 rounded-[28px] bg-pastelia-cream border border-pastelia-cream hover:bg-white hover:shadow-2xl hover:shadow-black/20 hover:-translate-y-1 transition-all duration-500 ease-out"
+            className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 md:py-6 rounded-[28px] bg-pastelia-cream border border-pastelia-cream hover:bg-white transition-colors duration-500 ease-out"
           >
             <div 
-              className="relative w-full sm:w-56 md:w-64 aspect-[4/3] sm:aspect-square flex-shrink-0 overflow-hidden rounded-[2rem] bg-white mb-6 sm:mb-0 sm:mr-8 cursor-zoom-in"
+              className="relative w-full sm:w-56 md:w-64 aspect-[4/3] sm:aspect-square flex-shrink-0 overflow-hidden rounded-[2rem] bg-white mb-6 sm:mb-0 sm:mr-8 cursor-zoom-in group/img"
               onClick={() => product.image && !imgError[product.id] && setSelectedImage({ src: product.image, alt: product.name })}
             >
               {product.image && !imgError[product.id] ? (
                 <img 
                   src={product.image} alt={product.name} 
                   onError={() => handleImgError(product.id)}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.03]" loading="lazy"
                 />
               ) : (
                 <div className="flex items-center justify-center w-full h-full text-pastelia-brown/30"><CakeSlice className="w-10 h-10 opacity-30" /></div>
@@ -70,7 +70,7 @@ export default function Cuchareables() {
 
             <div className="sm:ml-auto flex flex-row sm:flex-col justify-between sm:justify-center items-center w-full sm:w-auto gap-3 mt-4 sm:mt-0 border-t sm:border-t-0 border-pastelia-brown/10 pt-5 sm:pt-0">
               <span className="font-sans font-medium text-lg md:text-xl text-pastelia-burgundy whitespace-nowrap">{product.price}</span>
-              <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-pastelia-burgundy text-white hover:bg-pastelia-brown hover:text-white transition-colors shadow-sm">
+              <a href={product.waLink} target="_blank" rel="noopener noreferrer" style={{ animationDelay: `${idx * 0.5}s` }} className="wa-pulse flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-pastelia-burgundy text-white hover:bg-pastelia-brown hover:text-white transition-colors shadow-sm">
                 <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
               </a>
             </div>

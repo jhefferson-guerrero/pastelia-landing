@@ -51,14 +51,14 @@ export default function Tortas() {
                 
                 {/* Bloque de Imagen */}
                 <div 
-                  className={`lg:col-span-6 relative aspect-square md:aspect-[4/3] w-full max-h-[55vh] lg:max-h-[60vh] overflow-hidden rounded-[1.75rem] md:rounded-[2rem] bg-pastelia-cream/50 order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'} cursor-zoom-in`}
+                  className={`lg:col-span-6 relative aspect-square md:aspect-[4/3] w-full max-h-[55vh] lg:max-h-[60vh] overflow-hidden rounded-[1.75rem] md:rounded-[2rem] bg-pastelia-cream/50 group/img order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'} cursor-zoom-in`}
                   onClick={() => !imgError[product.id] && setSelectedImage({ src: product.image, alt: product.name })}
                 >
                   {!imgError[product.id] ? (
                     <img 
                       src={product.image} alt={product.name} 
                       onError={() => handleImgError(product.id)}
-                      className="w-full h-full object-cover" loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.03]" loading="lazy"
                     />
                   ) : (
                     <div className="flex flex-col items-center justify-center w-full h-full text-pastelia-brown/30"><CakeSlice className="w-12 h-12 mb-2 opacity-30" /></div>
@@ -73,7 +73,7 @@ export default function Tortas() {
                   <span className="font-sans font-medium text-xl md:text-2xl text-pastelia-brown mb-4 md:mb-6">{product.price}</span>
                   <p className="text-pastelia-brown/60 text-base md:text-lg leading-relaxed mb-6 md:mb-8 font-light">{product.description}</p>
                   <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="group/btn relative inline-flex items-center text-sm font-bold uppercase tracking-[0.2em] text-pastelia-burgundy hover:text-pastelia-brown transition-colors w-fit pb-1">
-                    <MessageCircle className="w-5 h-5 md:w-6 md:h-6 mr-3 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:scale-110" /> 
+                    <MessageCircle className="wa-wiggle w-5 h-5 md:w-6 md:h-6 mr-3 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:scale-110" /> 
                     Pedir por WhatsApp
                     <span className="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-pastelia-brown transition-all duration-300 ease-out group-hover/btn:w-full"></span>
                   </a>
