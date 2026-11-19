@@ -79,7 +79,12 @@ export default function Navigation() {
         md:pointer-events-auto md:bg-pastelia-cream md:border-b md:border-pastelia-brown/10
         ${scrolled ? 'md:shadow-md' : ''}
       `}>
-        <div className="w-full relative flex justify-center items-center pointer-events-none md:pointer-events-auto pt-4 px-4 md:p-0">
+        <motion.div
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1], delay: 0.5 }}
+          className="w-full relative flex justify-center items-center pointer-events-none md:pointer-events-auto pt-4 px-4 md:p-0"
+        >
           
           <div className={`
             flex items-center justify-between w-full md:max-w-6xl mx-auto px-4 py-1.5 md:px-8 md:py-4 pointer-events-auto
@@ -199,7 +204,7 @@ export default function Navigation() {
             )}
           </AnimatePresence>
 
-        </div>
+        </motion.div>
       </header>
     </>
   );

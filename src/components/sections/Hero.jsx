@@ -7,6 +7,14 @@ import { contactInfo } from '../../data/contact';
 import { heroImages } from '../../data/hero';
 import { OrganicBlob } from '../ui/Decorations';
 
+// Entrada escalonada: cada elemento aparece un poco después del anterior
+const EASE = [0.32, 0.72, 0, 1];
+const enter = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8, ease: EASE, delay },
+});
+
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -34,8 +42,13 @@ export default function Hero() {
       <OrganicBlob className="bg-pastelia-brown/10 w-[40rem] h-[40rem] -top-20 -left-20" delay={0} />
 
       {/* Desktop Full-Height Image Background */}
-      <div className="hidden md:block absolute top-0 right-0 bottom-0 w-1/2 z-0 [mask-image:linear-gradient(to_right,transparent,black_20%)] group">
-        <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, scale: 1.06 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.3, ease: EASE, delay: 0.05 }}
+        className="hidden md:block absolute top-0 right-0 bottom-0 w-1/2 z-0 [mask-image:linear-gradient(to_right,transparent,black_20%)] group"
+      >
+        <AnimatePresence initial={false}>
           <motion.img
             key={currentIndex}
             src={heroImages[currentIndex].src}
@@ -57,23 +70,18 @@ export default function Hero() {
             <ChevronRight className="w-6 h-6" strokeWidth={1.5} />
           </button>
         </div>
-      </div>
+      </motion.div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-10 items-center mt-4 md:mt-0">
 
         {/* Bloque de Texto Asimétrico (Centrado en móviles) */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
-          className="md:col-span-7 flex flex-col items-center md:items-start text-center md:text-left w-full max-w-full z-20 pt-4 md:pt-0"
-        >
+        <div className="md:col-span-7 flex flex-col items-center md:items-start text-center md:text-left w-full max-w-full z-20 pt-4 md:pt-0">
           {/* Logo / Nombre de Marca como el punto focal masivo */}
-          <h1 className="font-serif text-[15vw] sm:text-6xl md:text-7xl lg:text-7xl 2xl:text-[7.5rem] font-bold tracking-tight text-pastelia-burgundy mb-3 md:mb-6 2xl:mb-8 leading-[0.9] max-w-full break-words">
+          <motion.h1 {...enter(0)} className="font-serif text-[15vw] sm:text-6xl md:text-7xl lg:text-7xl 2xl:text-[7.5rem] font-bold tracking-tight text-pastelia-burgundy mb-3 md:mb-6 2xl:mb-8 leading-[0.9] max-w-full break-words">
             Pastelia <span className="sr-only">Bakery</span>
-          </h1>
+          </motion.h1>
 
-          <div className="flex flex-col items-center md:items-start gap-2 md:gap-4 2xl:gap-6 mb-5 md:mb-8 2xl:mb-10 border-t md:border-t-0 border-l-0 md:border-l border-pastelia-brown/20 pt-4 md:pt-0 md:pl-5 w-full">
+          <motion.div {...enter(0.12)} className="flex flex-col items-center md:items-start gap-2 md:gap-4 2xl:gap-6 mb-5 md:mb-8 2xl:mb-10 border-t md:border-t-0 border-l-0 md:border-l border-pastelia-brown/20 pt-4 md:pt-0 md:pl-5 w-full">
             <h2 className="uppercase text-pastelia-brown/60 text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] font-bold">
               Carta de Pedidos 2026
             </h2>
@@ -85,8 +93,9 @@ export default function Hero() {
             <p className="hidden md:block text-pastelia-brown/70 text-base md:text-lg max-w-md leading-relaxed font-light px-4 md:px-0">
               Tortas, queques y dulces elaborados con dedicación, ingredientes de calidad y atención al detalle.
             </p>
-          </div>
+          </motion.div>
 
+          <motion.div {...enter(0.24)}>
           <MagneticButton>
             <Button
               href={contactInfo.whatsappUrl}
@@ -95,18 +104,19 @@ export default function Hero() {
               className="pl-5 md:pl-8 pr-3 md:pr-5 py-2.5 md:py-4 text-sm md:text-lg tracking-wide shadow-md hover:shadow-2xl hover:shadow-pastelia-burgundy/20 hover:-translate-y-[2px] hover:scale-[1.02] transition-all duration-500 ease-out"
             />
           </MagneticButton>
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* Bloque de Imagen (Arco elegante en móviles) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, ease: EASE, delay: 0.3 }}
           className="md:hidden relative z-10 mt-2 flex justify-center w-full group"
         >
           <div className="relative isolate transform-gpu aspect-[4/5] w-[85%] max-w-[360px] my-6 mx-auto overflow-hidden shadow-2xl shadow-pastelia-brown/15 rounded-t-full rounded-b-3xl transition-all duration-700 ease-in-out group-hover:-translate-y-1 group-hover:shadow-pastelia-burgundy/15">
 
-            <AnimatePresence>
+            <AnimatePresence initial={false}>
               <motion.img
                 key={currentIndex}
                 src={heroImages[currentIndex].src}

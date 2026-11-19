@@ -74,7 +74,7 @@ export default function PageSkeleton({ children }) {
       await Promise.all([wait(MIN_VISIBLE_MS), assets])
       if (cancelled) return
       setStage(1)
-      await wait(800)
+      await wait(450)
       if (cancelled) return
       setStage(2)
       warmCatalogImages()
@@ -94,14 +94,14 @@ export default function PageSkeleton({ children }) {
           <motion.div
             className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-pastelia-cream"
             initial={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
+            exit={{ opacity: 0, transition: { duration: 0.2, ease: "easeOut" } }}
           >
             <AnimatePresence>
               {logoReady && stage === 0 && (
                 <motion.div
                   initial={hasStaticSplash ? false : { opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
+                  exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)", transition: { duration: 0.45, ease: "easeIn" } }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
                   className="relative flex flex-col items-center"
                 >

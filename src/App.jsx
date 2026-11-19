@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
+import { MotionConfig } from "motion/react"
 import Lenis from "lenis"
 import Navigation from "./components/layout/Navigation"
 import Footer from "./components/layout/Footer"
@@ -43,6 +44,7 @@ function App() {
   }, [])
 
   return (
+    <MotionConfig reducedMotion="user">
     <BrowserRouter>
       <ScrollToTop />
       <PageSkeleton>
@@ -59,6 +61,7 @@ function App() {
         </div>
       </PageSkeleton>
     </BrowserRouter>
+    </MotionConfig>
   )
 }
 
