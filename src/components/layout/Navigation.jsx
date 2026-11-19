@@ -59,7 +59,7 @@ export default function Navigation() {
         <div className="w-full relative flex justify-center items-center pointer-events-none md:pointer-events-auto pt-4 px-4 md:p-0">
           
           <div className={`
-            flex items-center justify-between w-full md:max-w-6xl mx-auto px-4 py-2.5 md:px-8 md:py-4 pointer-events-auto
+            flex items-center justify-between w-full md:max-w-6xl mx-auto px-4 py-1.5 md:px-8 md:py-4 pointer-events-auto
             rounded-full md:rounded-none border
             ${isOpen 
               ? 'bg-pastelia-cream/95 backdrop-blur-3xl shadow-md border-pastelia-brown/15 md:bg-transparent md:shadow-none md:border-transparent' 
@@ -72,7 +72,7 @@ export default function Navigation() {
                 <img 
                   src="/images/logo.jpg" 
                   alt="Pastelia Bakery" 
-                  className="h-10 md:h-11 w-auto mix-blend-multiply hover:scale-105 transition-transform duration-300"
+                  className="h-9 md:h-11 w-auto mix-blend-multiply hover:scale-105 transition-transform duration-300"
                 />
               </a>
             </div>
@@ -99,10 +99,10 @@ export default function Navigation() {
               </a>
               <button 
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden flex items-center justify-center p-2 -mr-2 text-pastelia-brown transition-transform hover:scale-105 active:scale-95"
+                className="md:hidden flex items-center justify-center p-1.5 -mr-1.5 text-pastelia-brown transition-transform hover:scale-105 active:scale-95"
                 aria-label="Toggle Menu"
               >
-                {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+                {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
               </button>
             </div>
           </div>
