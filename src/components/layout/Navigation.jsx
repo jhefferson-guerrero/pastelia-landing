@@ -50,8 +50,31 @@ export default function Navigation() {
   ];
   const desktopLinks = navLinks.filter((link) => !link.mobileOnly);
 
+  // Cerrar el menú con la tecla Escape
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e) => { if (e.key === 'Escape') setIsOpen(false); };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isOpen]);
+
   return (
     <>
+      {/* Fondo oscurecido: enfoca el menú móvil y cierra al tocar fuera */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+            className="fixed inset-0 z-[55] md:hidden bg-pastelia-brown/45 backdrop-blur-[2px]"
+          />
+        )}
+      </AnimatePresence>
+
       <header className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 pointer-events-none
         md:pointer-events-auto md:bg-pastelia-cream md:border-b md:border-pastelia-brown/10
         ${scrolled ? 'md:shadow-md' : ''}
