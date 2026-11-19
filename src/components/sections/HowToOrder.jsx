@@ -21,7 +21,7 @@ const steps = [
 
 export default function HowToOrder() {
   return (
-    <section className="py-24 md:py-32 px-6 bg-pastelia-cream overflow-hidden border-t border-pastelia-brown/5 relative z-10">
+    <section id="como-pedir" className="scroll-mt-10 md:scroll-mt-5 py-24 md:py-32 px-6 bg-pastelia-cream overflow-hidden border-t border-pastelia-brown/5 relative z-10">
       <div className="max-w-6xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

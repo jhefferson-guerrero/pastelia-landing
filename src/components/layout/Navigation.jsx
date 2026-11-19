@@ -13,7 +13,7 @@ export default function Navigation() {
       setScrolled(window.scrollY > 50);
 
       // Mismo orden que las secciones en la página
-      const sections = ['tortas', 'clasicos', 'queques', 'cuchareables', 'faq'];
+      const sections = ['tortas', 'clasicos', 'queques', 'cuchareables', 'como-pedir', 'comunidad', 'faq'];
       let current = '';
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -44,7 +44,11 @@ export default function Navigation() {
     { label: 'Clásicos', href: '/#clasicos' },
     { label: 'Queques', href: '/#queques' },
     { label: 'Cuchareables', href: '/#cuchareables' },
+    // Solo en el menú móvil: en escritorio el botón "Hacer Pedido" ya cumple esa función
+    { label: 'Cómo pedir', href: '/#como-pedir', mobileOnly: true },
+    { label: 'Preguntas', href: '/#faq' },
   ];
+  const desktopLinks = navLinks.filter((link) => !link.mobileOnly);
 
   return (
     <>
@@ -73,15 +77,15 @@ export default function Navigation() {
               </a>
             </div>
 
-          <nav className="hidden md:flex flex-1 justify-center items-center gap-8 lg:gap-12">
-            {navLinks.map((link) => (
-              <a 
+          <nav className="hidden md:flex flex-1 justify-center items-center gap-4 lg:gap-8 xl:gap-10">
+            {desktopLinks.map((link) => (
+              <a
                 key={link.label}
                 href={link.href}
-                className={`relative group inline-block text-[15px] md:text-base font-medium transition-colors duration-300 py-1 ${activeSection === link.href.substring(1) ? 'text-pastelia-burgundy' : 'text-pastelia-brown/70 hover:text-pastelia-burgundy'}`}
+                className={`relative group inline-block text-sm lg:text-base font-medium transition-colors duration-300 py-1 ${activeSection === link.href.replace('/#', '') ? 'text-pastelia-burgundy' : 'text-pastelia-brown/70 hover:text-pastelia-burgundy'}`}
               >
                 {link.label}
-                <span className={`absolute -bottom-0.5 left-0 h-[1.5px] bg-pastelia-burgundy transition-all duration-300 ease-out ${activeSection === link.href.substring(1) ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'}`} />
+                <span className={`absolute -bottom-0.5 left-0 h-[1.5px] bg-pastelia-burgundy transition-all duration-300 ease-out ${activeSection === link.href.replace('/#', '') ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'}`} />
               </a>
             ))}
           </nav>
@@ -89,7 +93,7 @@ export default function Navigation() {
             <div className="flex-1 flex justify-end items-center">
               <a 
                 href={contactInfo.whatsappUrl} 
-                className="hidden md:inline-flex items-center justify-center gap-1.5 bg-pastelia-burgundy text-white px-6 py-2.5 rounded-full text-[15px] font-medium transition-all duration-300 shadow-sm hover:shadow-md hover:shadow-pastelia-burgundy/15 hover:-translate-y-0.5 group"
+                className="hidden md:inline-flex items-center justify-center gap-1.5 bg-pastelia-burgundy text-white px-4 lg:px-6 py-2.5 rounded-full text-sm lg:text-[15px] font-medium transition-all duration-300 shadow-sm hover:shadow-md hover:shadow-pastelia-burgundy/15 hover:-translate-y-0.5 group"
               >
                 Hacer Pedido <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
@@ -137,6 +141,37 @@ export default function Navigation() {
                     </div>
                   ))}
                 </nav>
+
+                {/* Llamado a la acción y redes dentro del menú móvil */}
+                <div className="flex flex-col items-center gap-4 mt-4 pt-5 border-t border-pastelia-burgundy/10">
+                  <a
+                    href={contactInfo.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                    className="inline-flex items-center justify-center gap-1.5 bg-pastelia-burgundy text-white px-8 py-3 rounded-full text-base font-medium shadow-sm active:scale-95 transition-transform"
+                  >
+                    Hacer Pedido <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                  <div className="flex items-center gap-6 text-xs font-medium tracking-[0.08em] uppercase text-pastelia-brown/70">
+                    <a
+                      href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-pastelia-burgundy transition-colors"
+                    >
+                      Instagram ↗
+                    </a>
+                    <a
+                      href={`https://tiktok.com/${contactInfo.tiktok}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-pastelia-burgundy transition-colors"
+                    >
+                      TikTok ↗
+                    </a>
+                  </div>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>

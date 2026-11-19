@@ -17,7 +17,7 @@ export default function SocialProof() {
   const marqueeImages = [...uniqueImages, ...uniqueImages];
 
   return (
-    <section className="relative pt-24 pb-24 bg-pastelia-burgundy overflow-hidden flex flex-col items-center">
+    <section id="comunidad" className="relative pt-24 pb-24 bg-pastelia-burgundy overflow-hidden flex flex-col items-center">
 
       {/* Capas Decorativas */}
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
