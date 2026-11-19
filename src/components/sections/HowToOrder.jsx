@@ -54,7 +54,7 @@ export default function HowToOrder() {
               <div className="w-24 h-24 md:w-32 md:h-32 bg-white rounded-full flex items-center justify-center mb-8 shadow-md shadow-pastelia-brown/5 border border-pastelia-burgundy/10 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-pastelia-brown/10 transition-all duration-500 ease-out">
                 {step.icon}
               </div>
-              <h3 className="font-serif italic text-2xl md:text-3xl text-pastelia-burgundy mb-4">
+              <h3 className="font-serif italic font-semibold text-2xl md:text-3xl text-pastelia-burgundy mb-4">
                 {step.title}
               </h3>
               <p className="text-pastelia-brown/70 font-light leading-relaxed max-w-[280px]">

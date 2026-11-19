@@ -27,7 +27,7 @@ export default function FAQ() {
   return (
     <section id="faq" className="py-24 md:py-32 px-6 max-w-4xl mx-auto border-t border-pastelia-brown/5 relative z-10">
       <div className="text-center mb-12 md:mb-16">
-        <h2 className="font-serif text-4xl md:text-4xl 2xl:text-5xl text-pastelia-burgundy mb-4">
+        <h2 className="font-serif font-semibold text-4xl md:text-4xl 2xl:text-5xl text-pastelia-burgundy mb-4">
           Preguntas Frecuentes
         </h2>
         <p className="text-pastelia-brown/70 max-w-xl mx-auto text-lg">
@@ -48,7 +48,7 @@ export default function FAQ() {
                 className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group"
                 aria-expanded={isOpen}
               >
-                <span className="font-serif text-lg md:text-xl text-pastelia-brown font-medium pr-8">
+                <span className="font-serif text-lg md:text-xl text-pastelia-brown font-semibold pr-8">
                   {faq.question}
                 </span>
                 <motion.div
