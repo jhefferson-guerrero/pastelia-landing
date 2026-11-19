@@ -25,14 +25,12 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0); // El primero abierto por defecto
 
   return (
-    <section id="faq" className="relative py-24 md:py-32 px-6 bg-pastelia-burgundy overflow-hidden">
-      <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
-      <div className="relative z-10 max-w-4xl mx-auto">
+    <section id="faq" className="py-24 md:py-32 px-6 max-w-4xl mx-auto border-t border-pastelia-brown/5 relative z-10">
       <div className="text-center mb-12 md:mb-16">
-        <h2 className="font-serif font-semibold text-4xl md:text-4xl 2xl:text-5xl text-pastelia-cream mb-4">
+        <h2 className="font-serif font-semibold text-4xl md:text-4xl 2xl:text-5xl text-pastelia-burgundy mb-4">
           Preguntas Frecuentes
         </h2>
-        <p className="text-pastelia-cream/80 max-w-xl mx-auto text-lg">
+        <p className="text-pastelia-brown/70 max-w-xl mx-auto text-lg">
           Resolvemos tus principales dudas para que tu experiencia de compra sea lo más dulce posible.
         </p>
       </div>
@@ -43,20 +41,20 @@ export default function FAQ() {
           return (
             <div 
               key={index} 
-              className={`border border-pastelia-cream/20 rounded-[1.5rem] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-pastelia-cream/10 shadow-md shadow-black/10' : 'bg-transparent hover:bg-pastelia-cream/5'}`}
+              className={`border border-pastelia-brown/10 rounded-[1.5rem] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-white/60 shadow-md shadow-pastelia-brown/5' : 'bg-transparent hover:bg-white/30'}`}
             >
               <button
                 onClick={() => setOpenIndex(isOpen ? null : index)}
                 className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group"
                 aria-expanded={isOpen}
               >
-                <span className="font-serif text-lg md:text-xl text-pastelia-cream font-semibold pr-8">
+                <span className="font-serif text-lg md:text-xl text-pastelia-brown font-semibold pr-8">
                   {faq.question}
                 </span>
                 <motion.div
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-                  className="flex-shrink-0 text-pastelia-cream bg-pastelia-cream/10 p-2 rounded-full transition-all duration-300 group-hover:bg-pastelia-cream/20 group-hover:translate-y-1"
+                  className="flex-shrink-0 text-pastelia-burgundy bg-pastelia-burgundy/5 p-2 rounded-full transition-all duration-300 group-hover:bg-pastelia-burgundy/10 group-hover:translate-y-1"
                 >
                   <ChevronDown className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />
                 </motion.div>
@@ -70,7 +68,7 @@ export default function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
                   >
-                    <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0 text-pastelia-cream/80 leading-relaxed font-light">
+                    <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0 text-pastelia-brown/70 leading-relaxed font-light">
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -79,7 +77,6 @@ export default function FAQ() {
             </div>
           );
         })}
-      </div>
       </div>
     </section>
   );
