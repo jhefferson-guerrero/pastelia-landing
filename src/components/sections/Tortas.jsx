@@ -16,7 +16,7 @@ export default function Tortas() {
 
   return (
     <section id="tortas" className="relative w-full border-t border-pastelia-brown/5 overflow-hidden py-24 md:py-32 scroll-mt-10 md:scroll-mt-5">
-      <div className="max-w-7xl mx-auto px-6 relative w-full h-full">
+      <div className="max-w-6xl 2xl:max-w-7xl mx-auto px-6 relative w-full h-full">
         <OrganicBlob className="bg-pastelia-burgundy/5 w-[30rem] h-[30rem] top-10 md:top-[60px] right-0" delay={1} />
       
       <motion.div 
@@ -34,7 +34,7 @@ export default function Tortas() {
         </p>
       </motion.div>
 
-      <div className="relative z-10 flex flex-col gap-12 lg:gap-32">
+      <div className="relative z-10 flex flex-col gap-10 lg:gap-14 2xl:gap-20">
         
         {tortas.map((product, idx) => {
           const isReverse = idx % 2 !== 0;
@@ -45,13 +45,13 @@ export default function Tortas() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="group block bg-white/40 backdrop-blur-sm border border-pastelia-brown/5 rounded-[28px] md:rounded-[2.5rem] p-6 lg:p-10 shadow-sm hover:shadow-xl hover:shadow-pastelia-burgundy/5 hover:-translate-y-2 transition-all duration-500 ease-out"
+              className="group block bg-white/40 backdrop-blur-sm border border-pastelia-brown/5 rounded-[28px] md:rounded-[2.5rem] p-5 md:p-6 lg:p-8 shadow-sm hover:shadow-xl hover:shadow-pastelia-burgundy/5 hover:-translate-y-2 transition-all duration-500 ease-out"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-center">
                 
                 {/* Bloque de Imagen */}
                 <div 
-                  className={`lg:col-span-7 relative aspect-square md:aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] bg-pastelia-cream/50 order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'} cursor-zoom-in`}
+                  className={`lg:col-span-6 relative aspect-square md:aspect-[4/3] w-full max-h-[55vh] lg:max-h-[60vh] overflow-hidden rounded-[1.75rem] md:rounded-[2rem] bg-pastelia-cream/50 order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'} cursor-zoom-in`}
                   onClick={() => !imgError[product.id] && setSelectedImage({ src: product.image, alt: product.name })}
                 >
                   {!imgError[product.id] ? (
@@ -68,10 +68,10 @@ export default function Tortas() {
                 </div>
 
                 {/* Bloque de Texto */}
-                <div className={`lg:col-span-5 flex flex-col order-2 ${isReverse ? 'lg:order-1 lg:pr-10' : 'lg:order-2 lg:pl-10'}`}>
-                  <h3 className="font-serif italic text-3xl md:text-4xl 2xl:text-5xl text-pastelia-burgundy mb-4">{product.name}</h3>
-                  <span className="font-sans font-medium text-xl md:text-2xl text-pastelia-brown mb-6">{product.price}</span>
-                  <p className="text-pastelia-brown/60 text-base md:text-lg leading-relaxed mb-8 font-light">{product.description}</p>
+                <div className={`lg:col-span-6 flex flex-col order-2 ${isReverse ? 'lg:order-1 lg:pr-6 2xl:pr-10' : 'lg:order-2 lg:pl-6 2xl:pl-10'}`}>
+                  <h3 className="font-serif italic text-3xl md:text-4xl 2xl:text-5xl text-pastelia-burgundy mb-3 md:mb-4">{product.name}</h3>
+                  <span className="font-sans font-medium text-xl md:text-2xl text-pastelia-brown mb-4 md:mb-6">{product.price}</span>
+                  <p className="text-pastelia-brown/60 text-base md:text-lg leading-relaxed mb-6 md:mb-8 font-light">{product.description}</p>
                   <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="group/btn relative inline-flex items-center text-sm font-bold uppercase tracking-[0.2em] text-pastelia-burgundy hover:text-pastelia-brown transition-colors w-fit pb-1">
                     <MessageCircle className="w-5 h-5 md:w-6 md:h-6 mr-3 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:scale-110" /> 
                     Pedir por WhatsApp
