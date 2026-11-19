@@ -45,7 +45,7 @@ export default function Tortas() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="group block bg-white/40 backdrop-blur-sm border border-pastelia-brown/5 rounded-[28px] md:rounded-[2.5rem] p-5 md:p-6 lg:p-8 shadow-sm hover:shadow-xl hover:shadow-pastelia-burgundy/5 hover:-translate-y-2 transition-all duration-500 ease-out"
+              className="group block bg-white/40 backdrop-blur-sm border border-pastelia-brown/5 rounded-[28px] md:rounded-[2.5rem] p-5 md:p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow duration-500 ease-out"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-center">
                 
@@ -58,7 +58,7 @@ export default function Tortas() {
                     <img 
                       src={product.image} alt={product.name} 
                       onError={() => handleImgError(product.id)}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" loading="lazy"
+                      className="w-full h-full object-cover" loading="lazy"
                     />
                   ) : (
                     <div className="flex flex-col items-center justify-center w-full h-full text-pastelia-brown/30"><CakeSlice className="w-12 h-12 mb-2 opacity-30" /></div>

@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import { MotionConfig } from "motion/react"
 import Lenis from "lenis"
+import { setLenis } from "./lib/smoothScroll"
 import Navigation from "./components/layout/Navigation"
 import Footer from "./components/layout/Footer"
 import FloatingWhatsApp from "./components/ui/FloatingWhatsApp"
@@ -37,8 +38,10 @@ function App() {
     }
 
     requestAnimationFrame(raf)
+    setLenis(lenis)
 
     return () => {
+      setLenis(null)
       lenis.destroy()
     }
   }, [])

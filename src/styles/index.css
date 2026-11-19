@@ -41,10 +41,6 @@ html, body, #root {
   overflow-x: hidden;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background-color: var(--color-pastelia-cream);
   color: var(--color-pastelia-brown);

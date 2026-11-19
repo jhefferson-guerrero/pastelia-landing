@@ -1,12 +1,40 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { contactInfo } from '../../data/contact';
+import { scrollToSection, scrollToTop } from '../../lib/smoothScroll';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  // Navega a una sección con scroll suave (también desde /catalogo: vuelve al inicio y baja)
+  const goToSection = (e, href) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const id = href.replace('/#', '');
+    // Pequeña espera para que el menú móvil termine de cerrarse antes de empezar a desplazar
+    const run = () => scrollToSection(id);
+    if (pathname !== '/') {
+      navigate('/');
+      setTimeout(run, 250);
+    } else {
+      setTimeout(run, 60);
+    }
+    window.history.replaceState(null, '', href);
+  };
+
+  const goToTop = (e) => {
+    e.preventDefault();
+    setIsOpen(false);
+    if (pathname !== '/') navigate('/');
+    else setTimeout(() => scrollToTop(), 60);
+    window.history.replaceState(null, '', '/');
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,7 +124,7 @@ export default function Navigation() {
                 : 'bg-transparent border-transparent shadow-none transition-all duration-300'}
           `}>
             <div className="flex-1 flex justify-start">
-              <a href="#" className="flex-shrink-0 -mt-1" onClick={() => setIsOpen(false)}>
+              <a href="/" className="flex-shrink-0 -mt-1" onClick={goToTop}>
                 <img 
                   src="/images/logo.jpg" 
                   alt="Pastelia Bakery" 
@@ -110,6 +138,7 @@ export default function Navigation() {
               <a
                 key={link.label}
                 href={link.href}
+                onClick={(e) => goToSection(e, link.href)}
                 className={`relative group inline-block text-sm lg:text-base font-medium transition-colors duration-300 py-1 ${activeSection === link.href.replace('/#', '') ? 'text-pastelia-burgundy' : 'text-pastelia-brown/70 hover:text-pastelia-burgundy'}`}
               >
                 {link.label}
@@ -149,7 +178,7 @@ export default function Navigation() {
                     <div key={link.label} className="w-full flex flex-col items-center">
                       <motion.a
                         href={link.href}
-                        onClick={() => setIsOpen(false)}
+                        onClick={(e) => goToSection(e, link.href)}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3, ease: 'easeOut' }}
