@@ -70,7 +70,7 @@ export default function Navigation() {
             transition={{ duration: 0.25, ease: 'easeOut' }}
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
-            className="fixed inset-0 z-[55] md:hidden bg-pastelia-brown/45 backdrop-blur-[2px]"
+            className="fixed inset-0 z-[55] md:hidden bg-pastelia-brown/25 backdrop-blur-[2px]"
           />
         )}
       </AnimatePresence>
