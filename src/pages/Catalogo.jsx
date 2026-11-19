@@ -89,7 +89,7 @@ export default function Catalogo() {
                 <p className="text-pastelia-brown/60 text-sm leading-relaxed mb-4 font-light flex-1">{product.description}</p>
                 <div className="mt-auto flex items-center justify-between">
                   <span className="font-sans font-medium text-lg text-pastelia-brown">{product.price}</span>
-                  <a href={product.waLink} target="_blank" rel="noopener noreferrer" style={{ animationDelay: `${idx * 0.5}s` }} className="wa-pulse flex items-center justify-center w-10 h-10 rounded-full bg-pastelia-burgundy text-white hover:scale-110 transition-transform">
+                  <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-pastelia-burgundy text-white hover:scale-110 transition-transform">
                     <MessageCircle className="w-5 h-5" />
                   </a>
                 </div>

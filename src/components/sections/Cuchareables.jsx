@@ -70,7 +70,7 @@ export default function Cuchareables() {
 
             <div className="sm:ml-auto flex flex-row sm:flex-col justify-between sm:justify-center items-center w-full sm:w-auto gap-3 mt-4 sm:mt-0 border-t sm:border-t-0 border-pastelia-brown/10 pt-5 sm:pt-0">
               <span className="font-sans font-medium text-lg md:text-xl text-pastelia-burgundy whitespace-nowrap">{product.price}</span>
-              <a href={product.waLink} target="_blank" rel="noopener noreferrer" style={{ animationDelay: `${idx * 0.5}s` }} className="wa-pulse flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-pastelia-burgundy text-white hover:bg-pastelia-brown hover:text-white transition-colors shadow-sm">
+              <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-pastelia-burgundy text-white hover:bg-pastelia-brown hover:text-white transition-colors shadow-sm">
                 <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
               </a>
             </div>
