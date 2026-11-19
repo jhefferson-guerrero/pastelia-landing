@@ -1,29 +1,89 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
+import { heroImages } from "../../data/hero"
+import { catalog } from "../../data/products"
+
+const LOGO_SRC = "/images/logo-skeleton.webp"
+
+// El logo se muestra como mínimo este tiempo, para que la animación siempre se vea completa
+const MIN_VISIBLE_MS = 2400
+// Tope máximo de espera por recursos en conexiones lentas (el preloader nunca se queda colgado)
+const MAX_ASSETS_WAIT_MS = 8000
+// Tope de espera por el propio logo antes de arrancar la animación
+const MAX_LOGO_WAIT_MS = 3000
+
+function loadImage(src) {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.onload = () => resolve()
+    img.onerror = () => resolve()
+    img.src = src
+    if (img.decode) img.decode().then(resolve, resolve)
+  })
+}
+
+function loadFonts() {
+  if (!document.fonts?.load) return Promise.resolve()
+  return Promise.all([
+    document.fonts.load('400 1em "Playfair Display Variable"'),
+    document.fonts.load('600 1em "Playfair Display Variable"'),
+    document.fonts.load('italic 400 1em "Playfair Display Variable"'),
+    document.fonts.load('400 1em "Plus Jakarta Sans Variable"'),
+  ]).catch(() => {})
+}
+
+// Calienta la caché con las fotos del catálogo mientras el navegador está libre
+function warmCatalogImages() {
+  if (navigator.connection?.saveData) return
+  const urls = Object.values(catalog).flat().map((p) => p.image).filter(Boolean)
+  const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 300))
+  idle(() => urls.forEach((src) => loadImage(src)))
+}
 
 export default function PageSkeleton({ children }) {
+  const [logoReady, setLogoReady] = useState(false)
+  // Si el HTML trae el splash estático, el logo de React ya parte visible (sin fundido de entrada)
+  const [hasStaticSplash] = useState(() => !!document.getElementById("splash"))
+  // 0: logo visible · 1: el logo se desvanece · 2: el fondo se desvanece y se monta la app
   const [stage, setStage] = useState(0)
 
+  // El logo de React ya está pintado encima: se retira el splash estático del HTML
   useEffect(() => {
-    // Etapa 1: El logo empieza a desaparecer
-    const timer1 = setTimeout(() => {
+    if (logoReady) document.getElementById("splash")?.remove()
+  }, [logoReady])
+
+  useEffect(() => {
+    let cancelled = false
+    const timers = []
+    const wait = (ms) => new Promise((resolve) => timers.push(setTimeout(resolve, ms)))
+
+    async function run() {
+      // 1. Esperar al logo: la cuenta de la animación empieza cuando ya es visible
+      await Promise.race([loadImage(LOGO_SRC), wait(MAX_LOGO_WAIT_MS)])
+      if (cancelled) return
+      setLogoReady(true)
+
+      // 2. Mientras se anima, cargar fuentes y fotos del hero (el resto en segundo plano)
+      heroImages.slice(1).forEach((img) => loadImage(img.src))
+      const assets = Promise.race([
+        Promise.all([loadFonts(), loadImage(heroImages[0].src)]),
+        wait(MAX_ASSETS_WAIT_MS),
+      ])
+
+      // 3. Se sale solo cuando pasó el tiempo mínimo Y todo está listo
+      await Promise.all([wait(MIN_VISIBLE_MS), assets])
+      if (cancelled) return
       setStage(1)
-    }, 2400)
-
-    // Etapa 2: El fondo del skeleton desaparece, revelando el lienzo en blanco
-    const timer2 = setTimeout(() => {
+      await wait(800)
+      if (cancelled) return
       setStage(2)
-    }, 3200)
+      warmCatalogImages()
+    }
 
-    // Etapa 3: Montamos la aplicación para que las animaciones iniciales arranquen desde cero
-    const timer3 = setTimeout(() => {
-      setStage(3)
-    }, 3800)
-
+    run()
     return () => {
-      clearTimeout(timer1)
-      clearTimeout(timer2)
-      clearTimeout(timer3)
+      cancelled = true
+      timers.forEach(clearTimeout)
     }
   }, [])
 
@@ -37,16 +97,16 @@ export default function PageSkeleton({ children }) {
             exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
           >
             <AnimatePresence>
-              {stage === 0 && (
+              {logoReady && stage === 0 && (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={hasStaticSplash ? false : { opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
                   className="relative flex flex-col items-center"
                 >
                   <motion.div
-                    animate={{ 
+                    animate={{
                       y: [0, -8, 0],
                     }}
                     transition={{
@@ -55,25 +115,25 @@ export default function PageSkeleton({ children }) {
                       repeat: Infinity,
                     }}
                   >
-                    <img 
-                      src="/images/logo-skeleton.webp" 
-                      alt="Cargando Pastelia..." 
-                      className="w-36 sm:w-48 md:w-64 aspect-square p-3 sm:p-4 md:p-6 object-contain rounded-full bg-pastelia-burgundy shadow-[0_20px_50px_rgba(89,17,25,0.15)] border border-pastelia-brown/5"
+                    <img
+                      src={LOGO_SRC}
+                      alt="Cargando Pastelia..."
+                      className="splash-logo"
                     />
                   </motion.div>
-                  
+
                   {/* Barra de progreso premium */}
-                  <div className="mt-14 overflow-hidden h-[3px] w-48 sm:w-64 md:w-80 rounded-full bg-pastelia-burgundy/10 relative">
-                    <motion.div 
+                  <div className="splash-bar overflow-hidden rounded-full bg-pastelia-burgundy/10 relative">
+                    <motion.div
                       className="absolute top-0 left-0 bottom-0 bg-pastelia-burgundy/80 w-full rounded-full"
                       initial={{ x: "-100%" }}
                       animate={{ x: "0%" }}
-                      transition={{ duration: 2.2, ease: [0.76, 0, 0.24, 1] }}
+                      transition={{ duration: MIN_VISIBLE_MS / 1000 - 0.2, ease: [0.76, 0, 0.24, 1] }}
                     />
                   </div>
-                  
-                  <motion.span 
-                    className="mt-6 font-serif font-semibold text-pastelia-burgundy/70 tracking-[0.3em] text-sm sm:text-base md:text-lg uppercase text-center px-4"
+
+                  <motion.span
+                    className="splash-text text-pastelia-burgundy/70"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 1 }}
@@ -86,10 +146,9 @@ export default function PageSkeleton({ children }) {
           </motion.div>
         )}
       </AnimatePresence>
-      
-      {/* Montamos los children SOLO cuando el skeleton ha desaparecido casi por completo.
-          Esto asegura que el Hero y demás componentes ejecuten sus animaciones de entrada 
-          después de que el skeleton termina, como solicitó el usuario. */}
+
+      {/* La app se monta solo cuando el preloader ya casi desapareció, para que las
+          animaciones de entrada del Hero arranquen después. */}
       {stage >= 2 && children}
     </>
   )
