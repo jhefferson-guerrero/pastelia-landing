@@ -168,7 +168,7 @@ export default function Lightbox({ imageSrc, imageAlt, isOpen, onClose }) {
           onClick={onOverlayClick}
           data-lenis-prevent
           style={{ touchAction: 'none' }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-10 bg-pastelia-cream/95 backdrop-blur-md cursor-zoom-out overflow-hidden"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-10 bg-pastelia-cream/95 backdrop-blur-md cursor-default overflow-hidden"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
