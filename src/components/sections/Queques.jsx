@@ -40,7 +40,7 @@ export default function Queques() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: idx * 0.1 }}
-            className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 md:py-6 rounded-[28px] bg-[rgba(255,255,255,0.45)] border border-pastelia-burgundy/10 hover:bg-[rgba(255,255,255,0.85)] transition-colors duration-500 ease-out"
+            className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 md:py-6 rounded-[28px] bg-white/40 backdrop-blur-sm border border-pastelia-brown/5 shadow-sm hover:shadow-md transition-shadow duration-500 ease-out"
           >
             {/* 1. Imagen a la izquierda (Incrementada 40%) */}
             <div 
@@ -56,6 +56,8 @@ export default function Queques() {
               ) : (
                 <div className="flex items-center justify-center w-full h-full text-pastelia-brown/30"><CakeSlice className="w-10 h-10 opacity-30" /></div>
               )}
+            {/* Tinte sutil al pasar el cursor, igual que en Tortas */}
+            <div className="absolute inset-0 bg-pastelia-burgundy/0 group-hover:bg-pastelia-burgundy/5 transition-colors duration-500 pointer-events-none"></div>
             </div>
             
             {/* 2. Información del producto al centro */}

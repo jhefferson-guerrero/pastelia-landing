@@ -68,7 +68,7 @@ export default function Catalogo() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: (idx % 4) * 0.1 }}
-              className="group flex flex-col bg-white p-5 rounded-[2rem] shadow-lg"
+              className="group flex flex-col bg-white/40 backdrop-blur-sm border border-pastelia-brown/5 p-5 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow duration-500 ease-out"
             >
               <div 
                 className="relative aspect-square w-full overflow-hidden rounded-[1.5rem] bg-pastelia-cream mb-4 cursor-zoom-in group/img"
@@ -83,6 +83,8 @@ export default function Catalogo() {
                 ) : (
                   <div className="flex flex-col items-center justify-center w-full h-full text-pastelia-brown/30"><CakeSlice className="w-8 h-8 mb-2 opacity-30" /></div>
                 )}
+              {/* Tinte sutil al pasar el cursor, igual que en Tortas */}
+              <div className="absolute inset-0 bg-pastelia-burgundy/0 group-hover:bg-pastelia-burgundy/5 transition-colors duration-500 pointer-events-none"></div>
               </div>
               <div className="flex flex-col flex-1 px-2 pb-2">
                 <h3 className="font-serif italic text-xl text-pastelia-burgundy mb-2">{product.name}</h3>

@@ -44,7 +44,7 @@ export default function Cuchareables() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: idx * 0.1 }}
-            className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 md:py-6 rounded-[28px] bg-pastelia-cream border border-pastelia-cream hover:bg-white transition-colors duration-500 ease-out"
+            className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 md:py-6 rounded-[28px] bg-pastelia-cream border border-pastelia-cream shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-out"
           >
             <div 
               className="relative w-full sm:w-56 md:w-64 aspect-[4/3] sm:aspect-square flex-shrink-0 overflow-hidden rounded-[2rem] bg-white mb-6 sm:mb-0 sm:mr-8 cursor-zoom-in group/img"
@@ -59,6 +59,8 @@ export default function Cuchareables() {
               ) : (
                 <div className="flex items-center justify-center w-full h-full text-pastelia-brown/30"><CakeSlice className="w-10 h-10 opacity-30" /></div>
               )}
+            {/* Tinte sutil al pasar el cursor, igual que en Tortas */}
+            <div className="absolute inset-0 bg-pastelia-burgundy/0 group-hover:bg-pastelia-burgundy/5 transition-colors duration-500 pointer-events-none"></div>
             </div>
             
             <div className="flex flex-col justify-center max-w-lg sm:pr-6 md:pr-10">

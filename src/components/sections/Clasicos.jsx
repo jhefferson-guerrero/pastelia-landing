@@ -45,7 +45,7 @@ export default function Clasicos() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="group flex flex-col bg-pastelia-cream p-5 md:p-6 rounded-[3rem] shadow-xl"
+              className="group flex flex-col bg-pastelia-cream p-5 md:p-6 rounded-[3rem] shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-out"
             >
               <div 
                 className="group/img relative aspect-square w-full overflow-hidden rounded-[2.5rem] bg-pastelia-white mb-6 cursor-zoom-in"
@@ -60,6 +60,8 @@ export default function Clasicos() {
                 ) : (
                   <div className="flex flex-col items-center justify-center w-full h-full text-pastelia-brown/30"><CakeSlice className="w-10 h-10 mb-2 opacity-30" /></div>
                 )}
+              {/* Tinte sutil al pasar el cursor, igual que en Tortas */}
+              <div className="absolute inset-0 bg-pastelia-burgundy/0 group-hover:bg-pastelia-burgundy/5 transition-colors duration-500 pointer-events-none"></div>
               </div>
               <div className="flex flex-col flex-1 px-4 pb-4">
                 <div className="flex items-center justify-between mb-4">
