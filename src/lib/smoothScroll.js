@@ -42,3 +42,12 @@ export function scrollToSection(id, options) {
 export function scrollToTop(options) {
   scrollTarget(0, options);
 }
+
+// Bloquea el scroll de la página mientras hay un visor de imagen abierto
+export function lockScroll() {
+  lenisInstance?.stop();
+}
+
+export function unlockScroll() {
+  lenisInstance?.start();
+}
