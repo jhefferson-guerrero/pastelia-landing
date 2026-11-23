@@ -60,6 +60,9 @@
   <link rel="preload" as="image" href="/images/logo-skeleton.webp" fetchpriority="high">
   <link rel="preload" as="image" href="/images/carrot-cake.webp">
   <!-- Las fuentes (Playfair Display y Plus Jakarta Sans) se sirven desde el propio sitio (@fontsource) -->
+
+  <!-- CSS mínimo del splash (public/splash.css): se ve bien desde el primer instante, antes de la hoja principal -->
+  <link rel="stylesheet" href="/splash.css">
 </head>
 
 <body>
@@ -72,6 +75,8 @@
       <img
         src="/images/logo-skeleton.webp"
         alt="Cargando Pastelia..."
+        width="144"
+        height="144"
         fetchpriority="high"
         decoding="sync"
         class="splash-logo"
