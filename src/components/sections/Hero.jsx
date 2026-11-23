@@ -126,16 +126,6 @@ export default function Hero() {
               />
             </AnimatePresence>
 
-            <div className="absolute inset-0 flex items-center justify-end px-4 pointer-events-none pointer-fine:opacity-0 pointer-fine:group-hover:opacity-100 pointer-fine:group-focus-within:opacity-100 transition-opacity duration-300 z-20">
-              <button
-                onClick={nextImage}
-                className="pointer-events-auto w-10 h-10 flex items-center justify-center rounded-full bg-pastelia-cream/80 text-pastelia-burgundy backdrop-blur-sm shadow-lg hover:bg-pastelia-cream hover:scale-110 transition-all duration-300"
-                aria-label="Siguiente imagen"
-              >
-                <ChevronRight className="w-6 h-6" strokeWidth={1.5} />
-              </button>
-            </div>
-
           </div>
         </motion.div>
 
