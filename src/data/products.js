@@ -1,8 +1,7 @@
-import { contactInfo } from './contact';
+import { whatsappLink } from './contact';
 
-const generateWaLink = (productName) => {
-  return `https://wa.me/51906650350?text=${encodeURIComponent('¡Hola! Quisiera hacer un pedido de: ' + productName)}`;
-};
+const generateWaLink = (productName) =>
+  whatsappLink('¡Hola! Quisiera hacer un pedido de: ' + productName);
 
 export const catalog = {
   tortas: [

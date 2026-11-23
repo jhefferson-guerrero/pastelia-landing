@@ -1,5 +1,5 @@
 import { contactInfo } from '../../data/contact';
-import { MessageCircle, Instagram, Facebook } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -10,16 +10,7 @@ export default function Footer() {
         
         {/* Marca y Misión */}
         <div className="mb-10 flex flex-col items-center">
-          <img 
-            src="/assets/images/logo-pastelia.png" 
-            alt="Pastelia Bakery" 
-            className="h-10 md:h-16 w-auto mb-6 opacity-90"
-            onError={(e) => {
-              e.target.style.display = 'none';
-              e.target.nextSibling.style.display = 'block';
-            }}
-          />
-          <span className="hidden font-serif text-4xl font-bold tracking-tight mb-6">
+          <span className="font-serif text-4xl md:text-5xl font-bold tracking-tight mb-6">
             Pastelia
           </span>
           <p className="text-pastelia-cream/80 text-lg md:text-2xl font-serif italic max-w-xl leading-relaxed">
@@ -36,7 +27,7 @@ export default function Footer() {
           </span>
           
           <div className="flex flex-wrap justify-center items-center gap-4 font-sans text-lg md:text-xl text-pastelia-cream/80 font-light mb-2">
-            <a href={`https://wa.me/${contactInfo.whatsapp1.replace(/\s/g, '')}`} className="hover:text-white transition-colors">
+            <a href={contactInfo.whatsappChatUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               {contactInfo.whatsapp1}
             </a>
           </div>
