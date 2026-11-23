@@ -18,28 +18,23 @@ const enter = (delay = 0) => ({
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Rotación automática cada 5 segundos
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [heroImages.length]);
-
   const nextImage = () => {
     setCurrentIndex((prev) => (prev + 1) % heroImages.length);
   };
 
-  const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-  };
+  // Rotación automática: 5 segundos después de cada cambio, también si fue manual (así el
+  // temporizador se reinicia y la foto que acabas de elegir no se va de inmediato)
+  useEffect(() => {
+    const timer = setTimeout(nextImage, 5000);
+    return () => clearTimeout(timer);
+  }, [currentIndex]);
 
   return (
     <section className="relative min-h-[75vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-pastelia-cream px-6 pt-24 md:pt-24 pb-16 md:pb-0">
 
       {/* Fondos Artísticos Editoriales */}
       <div className="absolute inset-0 bg-cherry-pattern opacity-[0.015] pointer-events-none"></div>
-      <OrganicBlob className="bg-pastelia-brown/10 w-[40rem] h-[40rem] -top-20 -left-20" delay={0} />
+      <OrganicBlob className="bg-pastelia-brown/10 w-[40rem] h-[40rem] -top-20 -left-20" />
 
       {/* Desktop Full-Height Image Background */}
       <motion.div
@@ -61,10 +56,11 @@ export default function Hero() {
             loading={currentIndex === 0 ? "eager" : "lazy"}
           />
         </AnimatePresence>
-        <div className="absolute inset-0 flex items-center justify-end px-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+        {/* Con mouse el botón aparece al pasar el cursor; en pantallas táctiles (sin hover) siempre se ve */}
+        <div className="absolute inset-0 flex items-center justify-end px-8 pointer-events-none pointer-fine:opacity-0 pointer-fine:group-hover:opacity-100 pointer-fine:group-focus-within:opacity-100 transition-opacity duration-300 z-20">
           <button
             onClick={nextImage}
-            className="w-12 h-12 flex items-center justify-center rounded-full bg-pastelia-cream/80 text-pastelia-burgundy backdrop-blur-sm shadow-lg hover:bg-pastelia-cream hover:scale-110 transition-all duration-300"
+            className="pointer-events-auto w-12 h-12 flex items-center justify-center rounded-full bg-pastelia-cream/80 text-pastelia-burgundy backdrop-blur-sm shadow-lg hover:bg-pastelia-cream hover:scale-110 transition-all duration-300"
             aria-label="Siguiente imagen"
           >
             <ChevronRight className="w-6 h-6" strokeWidth={1.5} />
@@ -83,7 +79,7 @@ export default function Hero() {
 
           <motion.div {...enter(0.12)} className="flex flex-col items-center md:items-start gap-2 md:gap-4 2xl:gap-6 mb-5 md:mb-8 2xl:mb-10 border-t md:border-t-0 border-l-0 md:border-l border-pastelia-brown/20 pt-4 md:pt-0 md:pl-5 w-full">
             <h2 className="uppercase text-pastelia-brown/60 text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] font-bold">
-              Carta de Pedidos 2026
+              Carta de Pedidos {new Date().getFullYear()}
             </h2>
 
             <p className="text-pastelia-brown text-2xl font-serif italic max-w-lg leading-relaxed">
@@ -130,10 +126,10 @@ export default function Hero() {
               />
             </AnimatePresence>
 
-            <div className="absolute inset-0 flex items-center justify-end px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+            <div className="absolute inset-0 flex items-center justify-end px-4 pointer-events-none pointer-fine:opacity-0 pointer-fine:group-hover:opacity-100 pointer-fine:group-focus-within:opacity-100 transition-opacity duration-300 z-20">
               <button
                 onClick={nextImage}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-pastelia-cream/80 text-pastelia-burgundy backdrop-blur-sm shadow-lg hover:bg-pastelia-cream hover:scale-110 transition-all duration-300"
+                className="pointer-events-auto w-10 h-10 flex items-center justify-center rounded-full bg-pastelia-cream/80 text-pastelia-burgundy backdrop-blur-sm shadow-lg hover:bg-pastelia-cream hover:scale-110 transition-all duration-300"
                 aria-label="Siguiente imagen"
               >
                 <ChevronRight className="w-6 h-6" strokeWidth={1.5} />
