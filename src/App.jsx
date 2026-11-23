@@ -8,7 +8,7 @@ import Footer from "./components/layout/Footer"
 import FloatingWhatsApp from "./components/ui/FloatingWhatsApp"
 import PageSkeleton from "./components/ui/PageSkeleton"
 import Home from "./pages/Home"
-import Catalogo from "./pages/Catalogo"
+import NotFound from "./pages/NotFound"
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -23,24 +23,26 @@ function App() {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      syncTouch: false, // en pantallas táctiles se usa el scroll nativo
       touchMultiplier: 2,
       infinite: false,
     })
 
+    let rafId
     function raf(time) {
       lenis.raf(time)
-      requestAnimationFrame(raf)
+      rafId = requestAnimationFrame(raf)
     }
 
-    requestAnimationFrame(raf)
+    rafId = requestAnimationFrame(raf)
     setLenis(lenis)
 
     return () => {
+      cancelAnimationFrame(rafId)
       setLenis(null)
       lenis.destroy()
     }
@@ -56,7 +58,7 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/catalogo" element={<Catalogo />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
           <Footer />
