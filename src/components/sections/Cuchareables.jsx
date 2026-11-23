@@ -23,7 +23,7 @@ export default function Cuchareables() {
         className="relative z-10 mb-16 md:mb-24 text-center max-w-xl mx-auto flex flex-col items-center"
       >
         <span className="text-pastelia-cream/70 font-sans uppercase tracking-widest text-sm font-semibold mb-2">Nuevo Lanzamiento</span>
-        <h2 className="font-serif text-5xl md:text-6xl 2xl:text-7xl font-bold tracking-tight text-pastelia-cream mb-6">
+        <h2 className="font-serif text-[2.75rem] md:text-[3.25rem] 2xl:text-6xl font-bold tracking-tight text-pastelia-cream mb-6">
           Cuchareables
         </h2>
         <p className="text-pastelia-cream/80 text-lg md:text-2xl font-serif tracking-wide">
