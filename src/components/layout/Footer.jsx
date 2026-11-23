@@ -3,16 +3,21 @@ import { MessageCircle } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-pastelia-burgundy text-pastelia-cream overflow-hidden pt-16 pb-8 px-6">
+    <footer className="relative bg-pastelia-burgundy text-pastelia-cream overflow-hidden pt-16 pb-24 md:pb-8 px-6">
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
       
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
         
         {/* Marca y Misión */}
         <div className="mb-10 flex flex-col items-center">
-          <span className="font-serif text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            Pastelia
-          </span>
+          <img
+            src="/images/logo-skeleton.webp"
+            alt="Pastelia Bakery"
+            width="160"
+            height="160"
+            loading="lazy"
+            className="h-24 w-24 md:h-32 md:w-32 object-contain mb-4"
+          />
           <p className="text-pastelia-cream/80 text-lg md:text-2xl font-serif italic max-w-xl leading-relaxed">
             "Postres artesanales hechos con dedicación para momentos especiales."
           </p>
@@ -74,21 +79,23 @@ export default function Footer() {
         </div>
 
         {/* Letra Pequeña (Horario y Entrega) */}
-        <div className="w-full flex flex-col items-center gap-4 pt-8 border-t border-pastelia-cream/10 text-pastelia-cream/50 text-xs md:text-sm tracking-[0.1em] md:tracking-[0.15em]">
-          
-          <div className="flex flex-col md:flex-row items-center gap-3 md:gap-6 text-center">
-            <span className="flex items-center gap-2">
-              <span className="font-bold opacity-70">Reparto:</span> San Isidro, Miraflores, Surco
-            </span>
-            <span className="hidden md:inline opacity-30">|</span>
-            <span className="flex items-center gap-2">
-              <span className="font-bold opacity-70">Atención:</span> Lun-Vie 10am-7pm, Sab 1pm-7pm
-            </span>
+        <div className="w-full flex flex-col items-center gap-5 pt-8 border-t border-pastelia-cream/15">
+
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center">
+            <p className="flex flex-col md:flex-row items-center gap-1 md:gap-3">
+              <span className="uppercase text-xs tracking-[0.2em] font-semibold text-pastelia-cream/60">Reparto</span>
+              <span className="text-sm md:text-base text-pastelia-cream/90">Lima, Perú</span>
+            </p>
+            <span aria-hidden="true" className="hidden md:block h-5 w-px bg-pastelia-cream/25"></span>
+            <p className="flex flex-col md:flex-row items-center gap-1 md:gap-3">
+              <span className="uppercase text-xs tracking-[0.2em] font-semibold text-pastelia-cream/60">Atención</span>
+              <span className="text-sm md:text-base text-pastelia-cream/90">Lun-Vie 10am-7pm, Sáb 1pm-7pm</span>
+            </p>
           </div>
 
-          <div className="mt-2 opacity-80">
+          <p className="text-xs md:text-sm tracking-wide text-pastelia-cream/60">
             &copy; {new Date().getFullYear()} Pastelia Bakery.
-          </div>
+          </p>
 
         </div>
 
