@@ -3,7 +3,7 @@ import { MessageCircle } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-pastelia-burgundy text-pastelia-cream overflow-hidden pt-16 pb-24 md:pb-8 px-6">
+    <footer className="relative bg-pastelia-burgundy text-pastelia-cream overflow-hidden pt-16 pb-8 px-6">
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
       
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
