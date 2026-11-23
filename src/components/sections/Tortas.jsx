@@ -1,23 +1,18 @@
-import { useState } from 'react';
 import { motion } from 'motion/react';
 import { OrganicBlob } from '../ui/Decorations';
 import { catalog } from '../../data/products';
-import { MessageCircle, CakeSlice } from 'lucide-react';
-import Lightbox from '../ui/Lightbox';
+import { MessageCircle } from 'lucide-react';
+import { useLightbox } from '../ui/Lightbox';
+import ProductImage from '../ui/ProductImage';
 
 export default function Tortas() {
   const tortas = catalog.tortas;
-  const [imgError, setImgError] = useState({});
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleImgError = (id) => {
-    setImgError(prev => ({ ...prev, [id]: true }));
-  };
+  const [openImage, lightbox] = useLightbox();
 
   return (
     <section id="tortas" className="relative w-full border-t border-pastelia-brown/5 overflow-hidden py-24 md:py-32 scroll-mt-10 md:scroll-mt-5">
       <div className="max-w-6xl 2xl:max-w-7xl mx-auto px-6 relative w-full h-full">
-        <OrganicBlob className="bg-pastelia-burgundy/5 w-[30rem] h-[30rem] top-10 md:top-[60px] right-0" delay={1} />
+        <OrganicBlob className="bg-pastelia-burgundy/5 w-[30rem] h-[30rem] top-10 md:top-[60px] right-0" />
       
       <motion.div 
         initial={{ opacity: 0, y: 40 }}
@@ -50,22 +45,12 @@ export default function Tortas() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-center">
                 
                 {/* Bloque de Imagen */}
-                <div 
-                  className={`lg:col-span-6 relative aspect-square md:aspect-[4/3] w-full max-h-[55vh] lg:max-h-[60vh] overflow-hidden rounded-[1.75rem] md:rounded-[2rem] bg-pastelia-cream/50 group/img order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'} cursor-zoom-in`}
-                  onClick={() => !imgError[product.id] && setSelectedImage({ src: product.image, alt: product.name })}
-                >
-                  {!imgError[product.id] ? (
-                    <img 
-                      src={product.image} alt={product.name} 
-                      onError={() => handleImgError(product.id)}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.03]" loading="lazy"
-                    />
-                  ) : (
-                    <div className="flex flex-col items-center justify-center w-full h-full text-pastelia-brown/30"><CakeSlice className="w-12 h-12 mb-2 opacity-30" /></div>
-                  )}
-                  {/* Overlay decorativo en hover */}
-                  <div className="absolute inset-0 bg-pastelia-burgundy/0 group-hover:bg-pastelia-burgundy/5 transition-colors duration-500 pointer-events-none"></div>
-                </div>
+                <ProductImage
+                  product={product}
+                  onZoom={openImage}
+                  iconClass="w-12 h-12"
+                  className={`lg:col-span-6 aspect-square md:aspect-[4/3] w-full max-h-[55vh] lg:max-h-[60vh] rounded-[1.75rem] md:rounded-[2rem] bg-pastelia-cream/50 order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'}`}
+                />
 
                 {/* Bloque de Texto */}
                 <div className={`lg:col-span-6 flex flex-col order-2 ${isReverse ? 'lg:order-1 lg:pr-6 2xl:pr-10' : 'lg:order-2 lg:pl-6 2xl:pl-10'}`}>
@@ -88,12 +73,7 @@ export default function Tortas() {
 
       </div>
 
-      <Lightbox 
-        isOpen={!!selectedImage} 
-        imageSrc={selectedImage?.src} 
-        imageAlt={selectedImage?.alt} 
-        onClose={() => setSelectedImage(null)} 
-      />
+      {lightbox}
     </section>
   );
 }

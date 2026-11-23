@@ -233,3 +233,19 @@ export default function Lightbox({ imageSrc, imageAlt, isOpen, onClose }) {
     </AnimatePresence>
   );
 }
+
+// Estado + visor listos para usar en una sección:
+//   const [openImage, lightbox] = useLightbox();
+//   ...onClick → openImage({ src, alt })   ...y renderizar {lightbox} una vez
+export function useLightbox() {
+  const [selected, setSelected] = useState(null);
+  const lightbox = (
+    <Lightbox
+      isOpen={!!selected}
+      imageSrc={selected?.src}
+      imageAlt={selected?.alt}
+      onClose={() => setSelected(null)}
+    />
+  );
+  return [setSelected, lightbox];
+}

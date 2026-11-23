@@ -1,25 +1,20 @@
-import { useState } from 'react';
 import { motion } from 'motion/react';
 import { OrganicBlob } from '../ui/Decorations';
 import { catalog } from '../../data/products';
-import { MessageCircle, CakeSlice } from 'lucide-react';
-import Lightbox from '../ui/Lightbox';
+import { MessageCircle } from 'lucide-react';
+import { useLightbox } from '../ui/Lightbox';
+import ProductImage from '../ui/ProductImage';
 
 export default function Clasicos() {
   const clasicos = catalog.clasicos;
-  const [imgError, setImgError] = useState({});
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleImgError = (id) => {
-    setImgError(prev => ({ ...prev, [id]: true }));
-  };
+  const [openImage, lightbox] = useLightbox();
 
   return (
     <section id="clasicos" className="relative py-24 scroll-mt-10 md:scroll-mt-5 md:py-32 px-6 bg-pastelia-burgundy overflow-hidden">
       
       {/* Capas Decorativas */}
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
-      <OrganicBlob className="bg-pastelia-white/5 w-[35rem] h-[35rem] top-1/4 -right-10 mix-blend-overlay" delay={1.5} />
+      <OrganicBlob className="bg-pastelia-white/5 w-[35rem] h-[35rem] top-1/4 -right-10 mix-blend-overlay" />
       
       <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div 
@@ -47,22 +42,12 @@ export default function Clasicos() {
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               className="group flex flex-col bg-pastelia-cream p-5 md:p-6 rounded-[3rem] shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-out"
             >
-              <div 
-                className="group/img relative aspect-square w-full overflow-hidden rounded-[2.5rem] bg-pastelia-white mb-6 cursor-zoom-in"
-                onClick={() => !imgError[product.id] && setSelectedImage({ src: product.image, alt: product.name })}
-              >
-                {!imgError[product.id] ? (
-                  <img 
-                    src={product.image} alt={product.name} 
-                    onError={() => handleImgError(product.id)}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.03]" loading="lazy"
-                  />
-                ) : (
-                  <div className="flex flex-col items-center justify-center w-full h-full text-pastelia-brown/30"><CakeSlice className="w-10 h-10 mb-2 opacity-30" /></div>
-                )}
-              {/* Tinte sutil al pasar el cursor, igual que en Tortas */}
-              <div className="absolute inset-0 bg-pastelia-burgundy/0 group-hover:bg-pastelia-burgundy/5 transition-colors duration-500 pointer-events-none"></div>
-              </div>
+              <ProductImage
+                product={product}
+                onZoom={openImage}
+                iconClass="w-10 h-10"
+                className="aspect-square w-full rounded-[2.5rem] bg-pastelia-white mb-6"
+              />
               <div className="flex flex-col flex-1 px-4 pb-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-serif italic text-3xl text-pastelia-burgundy">{product.name}</h3>
@@ -80,12 +65,7 @@ export default function Clasicos() {
         </div>
       </div>
       
-      <Lightbox 
-        isOpen={!!selectedImage} 
-        imageSrc={selectedImage?.src} 
-        imageAlt={selectedImage?.alt} 
-        onClose={() => setSelectedImage(null)} 
-      />
+      {lightbox}
     </section>
   );
 }

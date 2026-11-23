@@ -1,17 +1,12 @@
-import { useState } from 'react';
 import { motion } from 'motion/react';
 import { catalog } from '../../data/products';
-import { MessageCircle, CakeSlice } from 'lucide-react';
-import Lightbox from '../ui/Lightbox';
+import { MessageCircle } from 'lucide-react';
+import { useLightbox } from '../ui/Lightbox';
+import ProductImage from '../ui/ProductImage';
 
 export default function Queques() {
   const queques = catalog.queques;
-  const [imgError, setImgError] = useState({});
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleImgError = (id) => {
-    setImgError(prev => ({ ...prev, [id]: true }));
-  };
+  const [openImage, lightbox] = useLightbox();
 
   return (
     <section id="queques" className="relative py-24 scroll-mt-10 md:scroll-mt-5 md:py-32 px-6 max-w-7xl mx-auto border-t border-pastelia-brown/5 overflow-hidden">
@@ -42,23 +37,12 @@ export default function Queques() {
             transition={{ duration: 0.6, delay: idx * 0.1 }}
             className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 md:py-6 rounded-[28px] bg-white/40 backdrop-blur-sm border border-pastelia-brown/5 shadow-sm hover:shadow-md transition-shadow duration-500 ease-out"
           >
-            {/* 1. Imagen a la izquierda (Incrementada 40%) */}
-            <div 
-              className="relative w-full sm:w-56 md:w-64 aspect-[4/3] sm:aspect-square flex-shrink-0 overflow-hidden rounded-[2rem] bg-pastelia-cream/50 mb-6 sm:mb-0 sm:mr-8 cursor-zoom-in group/img"
-              onClick={() => !imgError[product.id] && setSelectedImage({ src: product.image, alt: product.name })}
-            >
-              {!imgError[product.id] ? (
-                <img 
-                  src={product.image} alt={product.name} 
-                  onError={() => handleImgError(product.id)}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.03]" loading="lazy"
-                />
-              ) : (
-                <div className="flex items-center justify-center w-full h-full text-pastelia-brown/30"><CakeSlice className="w-10 h-10 opacity-30" /></div>
-              )}
-            {/* Tinte sutil al pasar el cursor, igual que en Tortas */}
-            <div className="absolute inset-0 bg-pastelia-burgundy/0 group-hover:bg-pastelia-burgundy/5 transition-colors duration-500 pointer-events-none"></div>
-            </div>
+            {/* 1. Imagen a la izquierda */}
+            <ProductImage
+              product={product}
+              onZoom={openImage}
+              className="w-full sm:w-56 md:w-64 aspect-[4/3] sm:aspect-square flex-shrink-0 rounded-[2rem] bg-pastelia-cream/50 mb-6 sm:mb-0 sm:mr-8"
+            />
             
             {/* 2. Información del producto al centro */}
             <div className="flex flex-col justify-center max-w-lg sm:pr-6 md:pr-10">
@@ -79,12 +63,7 @@ export default function Queques() {
         ))}
       </div>
 
-      <Lightbox 
-        isOpen={!!selectedImage} 
-        imageSrc={selectedImage?.src} 
-        imageAlt={selectedImage?.alt} 
-        onClose={() => setSelectedImage(null)} 
-      />
+      {lightbox}
     </section>
   );
 }
