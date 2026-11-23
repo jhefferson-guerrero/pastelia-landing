@@ -72,11 +72,9 @@ export default function Navigation() {
     { label: 'Clásicos', href: '/#clasicos' },
     { label: 'Queques', href: '/#queques' },
     { label: 'Cuchareables', href: '/#cuchareables' },
-    // Solo en el menú móvil: en escritorio el botón "Hacer Pedido" ya cumple esa función
-    { label: 'Cómo pedir', href: '/#como-pedir', mobileOnly: true },
+    { label: 'Cómo pedir', href: '/#como-pedir' },
     { label: 'Preguntas', href: '/#faq' },
   ];
-  const desktopLinks = navLinks.filter((link) => !link.mobileOnly);
 
   // Cerrar el menú con la tecla Escape
   useEffect(() => {
@@ -115,7 +113,7 @@ export default function Navigation() {
         >
           
           <div className={`
-            flex items-center justify-between w-full md:max-w-6xl mx-auto px-4 py-1.5 md:px-8 md:py-4 pointer-events-auto
+            flex items-center justify-between w-full md:max-w-[80rem] mx-auto px-4 py-1.5 md:px-8 md:py-4 pointer-events-auto
             rounded-full md:rounded-none border
             ${isOpen 
               ? 'bg-pastelia-cream/95 backdrop-blur-3xl shadow-md border-pastelia-brown/15 md:bg-transparent md:shadow-none md:border-transparent' 
@@ -123,7 +121,7 @@ export default function Navigation() {
                 ? 'bg-pastelia-cream/95 backdrop-blur-3xl shadow-sm border-pastelia-brown/15 transition-all duration-300 md:bg-transparent md:shadow-none md:border-transparent' 
                 : 'bg-transparent border-transparent shadow-none transition-all duration-300'}
           `}>
-            <div className="flex-1 flex justify-start">
+            <div className="flex-1 md:flex-none xl:flex-1 flex justify-start">
               <a href="/" className="flex-shrink-0 -mt-1" onClick={goToTop}>
                 <img 
                   src="/images/logo.jpg" 
@@ -133,13 +131,13 @@ export default function Navigation() {
               </a>
             </div>
 
-          <nav className="hidden md:flex flex-1 justify-center items-center gap-4 lg:gap-8 xl:gap-10">
-            {desktopLinks.map((link) => (
+          <nav className="hidden md:flex md:flex-1 xl:flex-none justify-center items-center gap-3 lg:gap-6 xl:gap-8">
+            {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => goToSection(e, link.href)}
-                className={`relative group inline-block text-sm lg:text-base font-medium transition-colors duration-300 py-1 ${activeSection === link.href.replace('/#', '') ? 'text-pastelia-burgundy' : 'text-pastelia-brown/70 hover:text-pastelia-burgundy'}`}
+                className={`relative group inline-block whitespace-nowrap text-sm lg:text-base font-medium transition-colors duration-300 py-1 ${activeSection === link.href.replace('/#', '') ? 'text-pastelia-burgundy' : 'text-pastelia-brown/70 hover:text-pastelia-burgundy'}`}
               >
                 {link.label}
                 <span className={`absolute -bottom-0.5 left-0 h-[1.5px] bg-pastelia-burgundy transition-all duration-300 ease-out ${activeSection === link.href.replace('/#', '') ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'}`} />
@@ -147,10 +145,10 @@ export default function Navigation() {
             ))}
           </nav>
 
-            <div className="flex-1 flex justify-end items-center">
+            <div className="flex-1 md:flex-none xl:flex-1 flex justify-end items-center">
               <a 
                 href={contactInfo.whatsappUrl} 
-                className="hidden md:inline-flex items-center justify-center gap-1.5 bg-pastelia-burgundy text-white px-4 lg:px-6 py-2.5 rounded-full text-sm lg:text-[15px] font-medium transition-all duration-300 shadow-sm hover:shadow-md hover:shadow-pastelia-burgundy/15 hover:-translate-y-0.5 group"
+                className="hidden md:inline-flex whitespace-nowrap items-center justify-center gap-1.5 bg-pastelia-burgundy text-white px-4 lg:px-6 py-2.5 rounded-full text-sm lg:text-[15px] font-medium transition-all duration-300 shadow-sm hover:shadow-md hover:shadow-pastelia-burgundy/15 hover:-translate-y-0.5 group"
               >
                 Hacer Pedido <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
