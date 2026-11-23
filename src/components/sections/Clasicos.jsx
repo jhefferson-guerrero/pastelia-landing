@@ -10,7 +10,7 @@ export default function Clasicos() {
   const [openImage, lightbox] = useLightbox();
 
   return (
-    <section id="clasicos" className="relative py-24 scroll-mt-10 md:scroll-mt-5 md:py-32 px-6 bg-pastelia-burgundy overflow-hidden">
+    <section id="clasicos" data-scroll-start="#clasicos-titulo" data-scroll-end="#clasicos-primera" className="relative py-24 scroll-mt-10 md:scroll-mt-5 md:py-32 px-6 bg-pastelia-burgundy overflow-hidden">
       
       {/* Capas Decorativas */}
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
@@ -18,13 +18,14 @@ export default function Clasicos() {
       
       <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div 
+          id="clasicos-titulo"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-          className="mb-16 md:mb-24 text-center"
+          className="mb-16 md:mb-[clamp(1rem,3vh,3rem)] text-center"
         >
-          <h2 className="font-serif text-5xl md:text-6xl 2xl:text-7xl font-bold tracking-tight text-pastelia-cream mb-6">
+          <h2 className="font-serif text-[2.75rem] md:text-[3.25rem] 2xl:text-6xl font-bold tracking-tight text-pastelia-cream mb-6 md:mb-4">
             Clásicos de Pastelia
           </h2>
           <p className="text-pastelia-cream/80 text-lg md:text-2xl font-serif max-w-2xl mx-auto tracking-wide">
@@ -36,6 +37,7 @@ export default function Clasicos() {
           {clasicos.map((product, idx) => (
             <motion.div 
               key={product.id}
+              id={idx === 0 ? 'clasicos-primera' : undefined}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -46,13 +48,13 @@ export default function Clasicos() {
                 product={product}
                 onZoom={openImage}
                 iconClass="w-10 h-10"
-                className="aspect-square w-full rounded-[2.5rem] bg-pastelia-white mb-6"
+                className="aspect-square w-full md:max-h-[max(15rem,calc(100vh_-_35rem))] rounded-[2.5rem] bg-pastelia-white mb-6 md:mb-4"
               />
-              <div className="flex flex-col flex-1 px-4 pb-4">
-                <div className="flex items-center justify-between mb-4">
+              <div className="flex flex-col flex-1 px-4 pb-4 md:pb-2">
+                <div className="flex items-center justify-between mb-4 md:mb-2">
                   <h3 className="font-serif italic text-3xl text-pastelia-burgundy">{product.name}</h3>
                 </div>
-                <p className="text-pastelia-brown/60 text-base leading-relaxed mb-6 font-light">{product.description}</p>
+                <p className="text-pastelia-brown/60 text-base leading-relaxed mb-6 md:mb-3 font-light">{product.description}</p>
                 <div className="mt-auto flex items-center justify-between">
                   <span className="font-sans font-medium text-xl text-pastelia-brown">{product.price}</span>
                   <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="group/wa flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-pastelia-burgundy text-white hover:scale-110 hover:shadow-lg transition-all duration-300">

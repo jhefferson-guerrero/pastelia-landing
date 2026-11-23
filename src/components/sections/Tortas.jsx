@@ -10,18 +10,19 @@ export default function Tortas() {
   const [openImage, lightbox] = useLightbox();
 
   return (
-    <section id="tortas" className="relative w-full border-t border-pastelia-brown/5 overflow-hidden py-24 md:py-32 scroll-mt-10 md:scroll-mt-5">
+    <section id="tortas" data-scroll-start="#tortas-titulo" data-scroll-end="#tortas-primera" className="relative w-full border-t border-pastelia-brown/5 overflow-hidden py-24 md:py-32 scroll-mt-10 md:scroll-mt-5">
       <div className="max-w-6xl 2xl:max-w-7xl mx-auto px-6 relative w-full h-full">
         <OrganicBlob className="bg-pastelia-burgundy/5 w-[30rem] h-[30rem] top-10 md:top-[60px] right-0" />
       
       <motion.div 
+        id="tortas-titulo"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-        className="relative z-10 mb-16 md:mb-24 text-center max-w-3xl mx-auto flex flex-col items-center"
+        className="relative z-10 mb-16 md:mb-[clamp(1.5rem,4vh,4rem)] text-center max-w-3xl mx-auto flex flex-col items-center"
       >
-        <h2 className="font-serif text-5xl md:text-6xl 2xl:text-7xl font-bold tracking-tight text-pastelia-burgundy mb-6">
+        <h2 className="font-serif text-[2.75rem] md:text-[3.25rem] 2xl:text-6xl font-bold tracking-tight text-pastelia-burgundy mb-6">
           Nuestras Tortas
         </h2>
         <p className="text-pastelia-brown/70 text-lg md:text-2xl font-serif tracking-wide">
@@ -36,6 +37,7 @@ export default function Tortas() {
           return (
             <motion.div 
               key={product.id}
+              id={idx === 0 ? 'tortas-primera' : undefined}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
