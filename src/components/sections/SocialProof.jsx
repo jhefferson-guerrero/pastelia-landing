@@ -1,20 +1,9 @@
 import { contactInfo } from '../../data/contact';
+import { communityImages } from '../../data/hero';
 
 export default function SocialProof() {
-  // 8 Imágenes únicas para la marquesina
-  const uniqueImages = [
-    "/images/instagram-1.webp",
-    "/images/instagram-2.webp",
-    "/images/torta-de-chocolate.webp",
-    "/images/carrot-cake.webp",
-    "/images/choco-berry.webp",
-    "/images/vanilla-roll.webp",
-    "/images/queque-de-chocolate.webp",
-    "/images/tres-delicias.webp"
-  ];
-
   // Duplicar el array para crear un bucle infinito continuo
-  const marqueeImages = [...uniqueImages, ...uniqueImages];
+  const marqueeImages = [...communityImages, ...communityImages];
 
   return (
     <section id="comunidad" className="relative pt-24 pb-24 bg-pastelia-burgundy overflow-hidden flex flex-col items-center">
@@ -33,7 +22,7 @@ export default function SocialProof() {
       {/* Tira de Fotos Horizontal con Desplazamiento Automático */}
       <div className="w-full relative z-10 mb-16 flex overflow-hidden">
         {/* Contenedor de Marquesina */}
-        <div className="flex w-max gap-4 md:gap-6 px-4 md:px-6 animate-marquee hover:animation-play-state-paused">
+        <div className="flex w-max gap-4 md:gap-6 px-4 md:px-6 animate-marquee">
           {marqueeImages.map((img, idx) => (
             <a
               key={idx}

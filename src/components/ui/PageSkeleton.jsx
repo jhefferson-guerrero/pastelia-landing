@@ -1,24 +1,51 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { heroImages } from "../../data/hero"
+import { heroImages, communityImages } from "../../data/hero"
 import { catalog } from "../../data/products"
 
 const LOGO_SRC = "/images/logo-skeleton.webp"
 
 // El logo se muestra como mínimo este tiempo, para que la animación siempre se vea completa
 const MIN_VISIBLE_MS = 2400
+// Pausa final con la barra llena, para que se vea el 100% antes de revelar la página
+const FILL_HOLD_MS = 250
 // Tope máximo de espera por recursos en conexiones lentas (el preloader nunca se queda colgado)
 const MAX_ASSETS_WAIT_MS = 8000
 // Tope de espera por el propio logo antes de arrancar la animación
 const MAX_LOGO_WAIT_MS = 3000
 
-function loadImage(src) {
+// Qué se carga y en qué orden. Mientras corre la animación:
+//  1. CRÍTICO: fuentes + primera foto del Hero (lo que se ve apenas se abre la página)
+//  2. IMPORTANTE: resto del Hero, Tortas y Clásicos (lo primero que se desplaza a ver)
+//  El preloader no termina hasta que 1 y 2 están listos (la barra llega al 100% con ellos).
+//  3. SEGUNDO PLANO: Queques, Cuchareables y galería; se cargan sin bloquear nada.
+const unique = (list) => [...new Set(list.filter(Boolean))]
+const imagesOf = (products) => products.map((p) => p.image)
+
+const CRITICAL_IMAGE = heroImages[0].src
+const IMPORTANT_IMAGES = unique([
+  ...heroImages.map((img) => img.src),
+  ...imagesOf(catalog.tortas),
+  ...imagesOf(catalog.clasicos),
+]).filter((src) => src !== CRITICAL_IMAGE)
+const BACKGROUND_IMAGES = unique([
+  ...imagesOf(catalog.queques),
+  ...imagesOf(catalog.cuchareables),
+  ...communityImages,
+]).filter((src) => src !== CRITICAL_IMAGE && !IMPORTANT_IMAGES.includes(src))
+
+// Resuelve siempre (también si la imagen falla): un recurso roto nunca debe frenar el preloader.
+// Con decode=true espera además a que la imagen esté lista para pintarse sin parpadeo.
+function loadImage(src, decode = true) {
   return new Promise((resolve) => {
     const img = new Image()
-    img.onload = () => resolve()
-    img.onerror = () => resolve()
     img.src = src
-    if (img.decode) img.decode().then(resolve, resolve)
+    if (decode && img.decode) {
+      img.decode().then(resolve, resolve)
+    } else {
+      img.onload = () => resolve()
+      img.onerror = () => resolve()
+    }
   })
 }
 
@@ -32,13 +59,17 @@ function loadFonts() {
   ]).catch(() => {})
 }
 
-// Calienta la caché con las fotos del catálogo mientras el navegador está libre
-function warmCatalogImages() {
-  if (navigator.connection?.saveData) return
-  const urls = Object.values(catalog).flat().map((p) => p.image).filter(Boolean)
-  const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 300))
-  idle(() => urls.forEach((src) => loadImage(src)))
+// Carga la lista de a pocas por vez, para no competir con lo que la persona ya está viendo
+async function loadInBackground(list, concurrency = 3) {
+  const queue = [...list]
+  await Promise.all(
+    Array.from({ length: concurrency }, async () => {
+      while (queue.length) await loadImage(queue.shift(), false)
+    })
+  )
 }
+
+const smoothstep = (t) => t * t * (3 - 2 * t)
 
 export default function PageSkeleton({ children }) {
   const [logoReady, setLogoReady] = useState(false)
@@ -46,6 +77,8 @@ export default function PageSkeleton({ children }) {
   const [hasStaticSplash] = useState(() => !!document.getElementById("splash"))
   // 0: logo visible · 1: el logo se desvanece · 2: el fondo se desvanece y se monta la app
   const [stage, setStage] = useState(0)
+  // 0 a 1: avanza con el tiempo, pero nunca más que lo realmente cargado
+  const [progress, setProgress] = useState(0)
 
   // El logo de React ya está pintado encima: se retira el splash estático del HTML
   useEffect(() => {
@@ -54,6 +87,7 @@ export default function PageSkeleton({ children }) {
 
   useEffect(() => {
     let cancelled = false
+    let ticker
     const timers = []
     const wait = (ms) => new Promise((resolve) => timers.push(setTimeout(resolve, ms)))
 
@@ -62,27 +96,49 @@ export default function PageSkeleton({ children }) {
       await Promise.race([loadImage(LOGO_SRC), wait(MAX_LOGO_WAIT_MS)])
       if (cancelled) return
       setLogoReady(true)
+      const start = performance.now()
 
-      // 2. Mientras se anima, cargar fuentes y fotos del hero (el resto en segundo plano)
-      heroImages.slice(1).forEach((img) => loadImage(img.src))
-      const assets = Promise.race([
-        Promise.all([loadFonts(), loadImage(heroImages[0].src)]),
-        wait(MAX_ASSETS_WAIT_MS),
-      ])
+      // 2. Mientras se anima: lo crítico primero y, apenas llega, lo importante en paralelo
+      const saveData = !!navigator.connection?.saveData
+      const important = saveData ? [] : IMPORTANT_IMAGES
+      const total = 2 + important.length
+      let done = 0
+      let settled = false
+      const track = (promise) => promise.then(() => { done++ })
 
-      // 3. Se sale solo cuando pasó el tiempo mínimo Y todo está listo
+      const fonts = track(loadFonts())
+      const hero = track(loadImage(CRITICAL_IMAGE))
+      const rest = hero.then(() => Promise.all(important.map((src) => track(loadImage(src)))))
+      const assets = Promise.race([Promise.all([fonts, hero, rest]), wait(MAX_ASSETS_WAIT_MS)])
+        .then(() => { settled = true })
+
+      // Lo que no es urgente se baja en segundo plano cuando lo importante ya llegó
+      if (!saveData) assets.then(() => loadInBackground(BACKGROUND_IMAGES))
+
+      // La barra sigue al tiempo, pero nunca llega al 100% antes que los recursos
+      ticker = setInterval(() => {
+        const byTime = smoothstep(Math.min(1, (performance.now() - start) / MIN_VISIBLE_MS))
+        const byAssets = settled ? 1 : done / total
+        setProgress((prev) => Math.max(prev, Math.min(byTime, byAssets)))
+      }, 50)
+
+      // 3. Se sale solo cuando pasó el tiempo mínimo Y todo lo importante está listo
       await Promise.all([wait(MIN_VISIBLE_MS), assets])
+      if (cancelled) return
+      clearInterval(ticker)
+      setProgress(1)
+      await wait(FILL_HOLD_MS)
       if (cancelled) return
       setStage(1)
       await wait(450)
       if (cancelled) return
       setStage(2)
-      warmCatalogImages()
     }
 
     run()
     return () => {
       cancelled = true
+      clearInterval(ticker)
       timers.forEach(clearTimeout)
     }
   }, [])
@@ -125,10 +181,10 @@ export default function PageSkeleton({ children }) {
                   {/* Barra de progreso premium */}
                   <div className="splash-bar overflow-hidden rounded-full bg-pastelia-burgundy/10 relative">
                     <motion.div
-                      className="absolute top-0 left-0 bottom-0 bg-pastelia-burgundy/80 w-full rounded-full"
-                      initial={{ x: "-100%" }}
-                      animate={{ x: "0%" }}
-                      transition={{ duration: MIN_VISIBLE_MS / 1000 - 0.2, ease: [0.76, 0, 0.24, 1] }}
+                      className="absolute inset-0 origin-left bg-pastelia-burgundy/80 rounded-full"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: progress }}
+                      transition={{ duration: 0.12, ease: "linear" }}
                     />
                   </div>
 
