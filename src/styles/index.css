@@ -169,7 +169,8 @@ body {
 
 @media (min-width: 1024px) {
   .fit-torta-card {
-    padding: clamp(14px, calc(5.294vh + -17.765px), 32px);
+    padding-block: clamp(14px, calc(5.294vh + -17.765px), 32px);
+    padding-inline: 32px;
   }
   .fit-torta-img {
     max-height: clamp(285px, calc(39.706vh + 46.765px), 420px);
