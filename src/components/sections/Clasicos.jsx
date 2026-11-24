@@ -16,7 +16,7 @@ export default function Clasicos() {
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
       <OrganicBlob className="bg-pastelia-white/5 w-[35rem] h-[35rem] top-1/4 -right-10 mix-blend-overlay" />
       
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 max-w-7xl [@media(max-height:720px)]:max-w-5xl mx-auto">
         <motion.div 
           id="clasicos-titulo"
           initial={{ opacity: 0, y: 40 }}
