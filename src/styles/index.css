@@ -206,14 +206,14 @@ body {
 /* Sección de comunidad: relleno, separaciones y alto de las fotos según el alto de la ventana */
 @media (min-width: 768px) {
   .fit-social-py {
-    padding-block: clamp(40px, calc(16.471vh + -58.824px), 96px);
+    padding-block: clamp(44px, calc(15.294vh + -47.765px), 96px);
   }
   .fit-social-gap {
-    margin-bottom: clamp(20px, calc(12.941vh + -57.647px), 64px);
+    margin-bottom: clamp(26px, calc(11.176vh + -41.059px), 64px);
   }
   .fit-social-tile {
-    width: clamp(240px, calc(51.765vh + -70.588px), 416px);
-    height: clamp(240px, calc(51.765vh + -70.588px), 416px);
+    width: clamp(264px, calc(44.706vh + -4.235px), 416px);
+    height: clamp(264px, calc(44.706vh + -4.235px), 416px);
   }
 }
 
