@@ -59,7 +59,11 @@ function fitTop(section) {
 
   const free = viewport - navHeight - (endBottom - startTop); // espacio sobrante en pantalla
   if (free >= FIT_PADDING * 2) {
-    return startTop - navHeight - free / 2;
+    const centered = startTop - navHeight - free / 2;
+    // No dejar ver el final de la sección anterior (otro color de fondo) por encima de esta,
+    // siempre que el título siga visible
+    const sectionStart = documentTop(section) - navHeight;
+    return Math.min(Math.max(centered, sectionStart), startTop - navHeight - FIT_PADDING);
   }
   // El final queda pegado abajo; si ni así cabe, al menos su parte superior queda bajo el menú
   return Math.min(endBottom - viewport + FIT_PADDING, endTop - navHeight - FIT_PADDING);
