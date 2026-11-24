@@ -45,7 +45,8 @@ export default function Navigation() {
       let current = '';
       for (const section of sections) {
         const element = document.getElementById(section);
-        if (element && window.scrollY >= element.offsetTop - 120) {
+        // Activa la sección cuyo inicio ya está en el 40% superior de la pantalla
+        if (element && window.scrollY + window.innerHeight * 0.4 >= element.offsetTop) {
           current = section;
         }
       }

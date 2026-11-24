@@ -10,7 +10,7 @@ export default function Clasicos() {
   const [openImage, lightbox] = useLightbox();
 
   return (
-    <section id="clasicos" data-scroll-start="#clasicos-titulo" data-scroll-end="#clasicos-primera" className="relative py-24 scroll-mt-10 md:scroll-mt-5 md:py-32 px-6 bg-pastelia-burgundy overflow-hidden">
+    <section id="clasicos" data-scroll-start="#clasicos-titulo" data-scroll-end="#clasicos-primera" className="relative py-24 scroll-mt-10 md:scroll-mt-5 fit-section-py px-6 bg-pastelia-burgundy overflow-hidden">
       
       {/* Capas Decorativas */}
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
@@ -23,12 +23,12 @@ export default function Clasicos() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-          className="mb-16 md:mb-[clamp(1rem,3vh,3rem)] text-center"
+          className="mb-16 fit-gap-sm text-center"
         >
-          <h2 className="font-serif text-[2.75rem] md:text-[3.25rem] 2xl:text-6xl font-bold tracking-tight text-pastelia-cream mb-6 md:mb-4">
+          <h2 className="font-serif text-[2.75rem] fit-title font-bold tracking-tight text-pastelia-cream mb-6">
             Clásicos de Pastelia
           </h2>
-          <p className="text-pastelia-cream/80 text-lg md:text-2xl font-serif max-w-2xl mx-auto tracking-wide">
+          <p className="text-pastelia-cream/80 text-lg fit-lead font-serif max-w-2xl mx-auto tracking-wide">
             Recetas originales que definen la esencia de Pastelia. Perfectas en su simpleza.
           </p>
         </motion.div>
@@ -42,22 +42,22 @@ export default function Clasicos() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="group flex flex-col bg-pastelia-cream p-5 md:p-6 rounded-[3rem] shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-out"
+              className="group flex flex-col bg-pastelia-cream p-5 fit-clasico-card rounded-[3rem] shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-out"
             >
               <ProductImage
                 product={product}
                 onZoom={openImage}
                 iconClass="w-10 h-10"
-                className="aspect-square w-full md:max-h-[max(15rem,calc(100vh_-_35rem))] rounded-[2.5rem] bg-pastelia-white mb-6 md:mb-4"
+                className="aspect-square w-full fit-clasico-img rounded-[2.5rem] bg-pastelia-white mb-6"
               />
               <div className="flex flex-col flex-1 px-4 pb-4 md:pb-2">
                 <div className="flex items-center justify-between mb-4 md:mb-2">
-                  <h3 className="font-serif italic text-3xl text-pastelia-burgundy">{product.name}</h3>
+                  <h3 className="font-serif italic text-3xl fit-clasico-h3 text-pastelia-burgundy">{product.name}</h3>
                 </div>
-                <p className="text-pastelia-brown/60 text-base leading-relaxed mb-6 md:mb-3 font-light">{product.description}</p>
+                <p className="text-pastelia-brown/60 text-base fit-clasico-desc leading-relaxed mb-6 font-light">{product.description}</p>
                 <div className="mt-auto flex items-center justify-between">
-                  <span className="font-sans font-medium text-xl text-pastelia-brown">{product.price}</span>
-                  <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="group/wa flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-pastelia-burgundy text-white hover:scale-110 hover:shadow-lg transition-all duration-300">
+                  <span className="font-sans font-medium text-xl fit-clasico-price text-pastelia-brown">{product.price}</span>
+                  <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="group/wa flex items-center justify-center w-10 h-10 fit-clasico-btn rounded-full bg-pastelia-burgundy text-white hover:scale-110 hover:shadow-lg transition-all duration-300">
                     <MessageCircle className="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover/wa:rotate-12 group-hover/wa:scale-110" />
                   </a>
                 </div>

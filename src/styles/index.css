@@ -94,3 +94,111 @@ body {
 *::-webkit-scrollbar {
   display: none; /* Chrome, Edge, Safari */
 }
+
+/* Escala por alto de pantalla (solo desde 768px de ancho).
+   Cada clamp interpola entre el valor para una ventana de 600px de alto (laptop de 1366x768 con
+   barras del navegador) y el valor original, que se alcanza a 940px de alto (monitor 1920x1080).
+   Así Tortas, Clasicos, Queques y Cuchareables caben completos al navegar desde el menú.
+   Van fuera de @layer a propósito para ganar a las utilidades de Tailwind. */
+@media (min-width: 768px) {
+  .fit-section-py {
+    padding-block: clamp(56px, calc(21.176vh + -71.059px), 128px);
+  }
+  .fit-title {
+    font-size: clamp(36px, calc(4.706vh + 7.765px), 52px);
+    line-height: clamp(44px, calc(10vh + -16px), 78px);
+    margin-bottom: clamp(12px, calc(3.529vh + -9.176px), 24px);
+  }
+  .fit-lead {
+    font-size: clamp(17px, calc(2.059vh + 4.647px), 24px);
+    line-height: clamp(24px, calc(2.353vh + 9.882px), 32px);
+  }
+  .fit-gap-sm {
+    margin-bottom: clamp(14px, calc(7.059vh + -28.353px), 38px);
+  }
+  .fit-gap-lg {
+    margin-bottom: clamp(20px, calc(22.353vh + -114.118px), 96px);
+  }
+  .fit-list-gap {
+    gap: clamp(12px, calc(5.882vh + -23.294px), 32px);
+  }
+  .fit-torta-card {
+    padding: clamp(14px, calc(2.941vh + -3.647px), 24px);
+  }
+  .fit-clasico-card {
+    padding: clamp(14px, calc(2.941vh + -3.647px), 24px);
+  }
+  .fit-clasico-img {
+    max-height: clamp(190px, calc(55.882vh + -145.294px), 380px);
+    margin-bottom: clamp(8px, calc(2.353vh + -6.118px), 16px);
+  }
+  .fit-clasico-h3 {
+    font-size: clamp(24px, calc(1.765vh + 13.412px), 30px);
+    line-height: clamp(30px, calc(1.765vh + 19.412px), 36px);
+  }
+  .fit-clasico-desc {
+    font-size: clamp(14px, calc(0.588vh + 10.471px), 16px);
+    line-height: clamp(20px, calc(1.176vh + 12.941px), 24px);
+    margin-bottom: clamp(6px, calc(1.765vh + -4.588px), 12px);
+  }
+  .fit-clasico-price {
+    font-size: clamp(17px, calc(0.882vh + 11.706px), 20px);
+  }
+  .fit-clasico-btn {
+    width: clamp(40px, calc(2.353vh + 25.882px), 48px);
+    height: clamp(40px, calc(2.353vh + 25.882px), 48px);
+  }
+  .fit-row-card {
+    padding-block: clamp(12px, calc(3.529vh + -9.176px), 24px);
+  }
+  .fit-row-img {
+    width: clamp(168px, calc(25.882vh + 12.706px), 256px);
+  }
+  .fit-row-h3 {
+    font-size: clamp(22px, calc(2.353vh + 7.882px), 30px);
+    line-height: clamp(28px, calc(2.353vh + 13.882px), 36px);
+  }
+  .fit-row-desc {
+    font-size: clamp(14px, calc(0.588vh + 10.471px), 16px);
+    line-height: clamp(20px, calc(1.176vh + 12.941px), 24px);
+  }
+  .fit-row-price {
+    font-size: clamp(17px, calc(0.882vh + 11.706px), 20px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .fit-torta-card {
+    padding: clamp(14px, calc(5.294vh + -17.765px), 32px);
+  }
+  .fit-torta-img {
+    max-height: clamp(285px, calc(39.706vh + 46.765px), 420px);
+  }
+  .fit-torta-h3 {
+    font-size: clamp(28px, calc(2.353vh + 13.882px), 36px);
+    line-height: clamp(34px, calc(1.765vh + 23.412px), 40px);
+    margin-bottom: clamp(8px, calc(2.353vh + -6.118px), 16px);
+  }
+  .fit-torta-price {
+    font-size: clamp(18px, calc(1.765vh + 7.412px), 24px);
+    line-height: clamp(24px, calc(2.353vh + 9.882px), 32px);
+    margin-bottom: clamp(8px, calc(4.706vh + -20.235px), 24px);
+  }
+  .fit-torta-desc {
+    font-size: clamp(15px, calc(0.882vh + 9.706px), 18px);
+    line-height: clamp(22px, calc(1.765vh + 11.412px), 28px);
+    margin-bottom: clamp(12px, calc(5.882vh + -23.294px), 32px);
+  }
+}
+
+@media (min-width: 1536px) {
+  .fit-title {
+    font-size: clamp(36px, calc(7.059vh + -6.353px), 60px);
+    line-height: clamp(44px, calc(13.529vh + -37.176px), 90px);
+  }
+  .fit-torta-h3 {
+    font-size: clamp(28px, calc(5.882vh + -7.294px), 48px);
+    line-height: clamp(34px, calc(4.118vh + 9.294px), 48px);
+  }
+}
+

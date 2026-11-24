@@ -10,7 +10,7 @@ export default function Tortas() {
   const [openImage, lightbox] = useLightbox();
 
   return (
-    <section id="tortas" data-scroll-start="#tortas-titulo" data-scroll-end="#tortas-primera" className="relative w-full border-t border-pastelia-brown/5 overflow-hidden py-24 md:py-32 scroll-mt-10 md:scroll-mt-5">
+    <section id="tortas" data-scroll-start="#tortas-titulo" data-scroll-end="#tortas-primera" className="relative w-full border-t border-pastelia-brown/5 overflow-hidden py-24 fit-section-py scroll-mt-10 md:scroll-mt-5">
       <div className="max-w-6xl 2xl:max-w-7xl mx-auto px-6 relative w-full h-full">
         <OrganicBlob className="bg-pastelia-burgundy/5 w-[30rem] h-[30rem] top-10 md:top-[60px] right-0" />
       
@@ -20,12 +20,12 @@ export default function Tortas() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-        className="relative z-10 mb-16 md:mb-[clamp(1.5rem,4vh,4rem)] text-center max-w-3xl mx-auto flex flex-col items-center"
+        className="relative z-10 mb-16 fit-gap-sm text-center max-w-3xl mx-auto flex flex-col items-center"
       >
-        <h2 className="font-serif text-[2.75rem] md:text-[3.25rem] 2xl:text-6xl font-bold tracking-tight text-pastelia-burgundy mb-6">
+        <h2 className="font-serif text-[2.75rem] fit-title font-bold tracking-tight text-pastelia-burgundy mb-6">
           Nuestras Tortas
         </h2>
-        <p className="text-pastelia-brown/70 text-lg md:text-2xl font-serif tracking-wide">
+        <p className="text-pastelia-brown/70 text-lg fit-lead font-serif tracking-wide">
           Arte en cada capa. Bizcochos húmedos, rellenos artesanales abundantes y un diseño cuidado al detalle, pensado para deslumbrar en el centro de tu mesa.
         </p>
       </motion.div>
@@ -42,7 +42,7 @@ export default function Tortas() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="group block bg-white/40 backdrop-blur-sm border border-pastelia-brown/5 rounded-[28px] md:rounded-[2.5rem] p-5 md:p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow duration-500 ease-out"
+              className="group block bg-white/40 backdrop-blur-sm border border-pastelia-brown/5 rounded-[28px] md:rounded-[2.5rem] p-5 fit-torta-card shadow-sm hover:shadow-md transition-shadow duration-500 ease-out"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-center">
                 
@@ -51,14 +51,14 @@ export default function Tortas() {
                   product={product}
                   onZoom={openImage}
                   iconClass="w-12 h-12"
-                  className={`lg:col-span-6 aspect-square md:aspect-[4/3] w-full max-h-[55vh] lg:max-h-[60vh] rounded-[1.75rem] md:rounded-[2rem] bg-pastelia-cream/50 order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'}`}
+                  className={`lg:col-span-6 [@media(max-height:720px)]:lg:col-span-5 aspect-square md:aspect-[4/3] w-full max-h-[55vh] fit-torta-img rounded-[1.75rem] md:rounded-[2rem] bg-pastelia-cream/50 order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'}`}
                 />
 
                 {/* Bloque de Texto */}
-                <div className={`lg:col-span-6 flex flex-col order-2 ${isReverse ? 'lg:order-1 lg:pr-6 2xl:pr-10' : 'lg:order-2 lg:pl-6 2xl:pl-10'}`}>
-                  <h3 className="font-serif italic text-3xl md:text-4xl 2xl:text-5xl text-pastelia-burgundy mb-3 md:mb-4">{product.name}</h3>
-                  <span className="font-sans font-medium text-xl md:text-2xl text-pastelia-brown mb-4 md:mb-6">{product.price}</span>
-                  <p className="text-pastelia-brown/60 text-base md:text-lg leading-relaxed mb-6 md:mb-8 font-light">{product.description}</p>
+                <div className={`lg:col-span-6 [@media(max-height:720px)]:lg:col-span-7 flex flex-col order-2 ${isReverse ? 'lg:order-1 lg:pr-6 2xl:pr-10' : 'lg:order-2 lg:pl-6 2xl:pl-10'}`}>
+                  <h3 className="font-serif italic text-3xl md:text-4xl fit-torta-h3 text-pastelia-burgundy mb-3 md:mb-4">{product.name}</h3>
+                  <span className="font-sans font-medium text-xl md:text-2xl fit-torta-price text-pastelia-brown mb-4 md:mb-6">{product.price}</span>
+                  <p className="text-pastelia-brown/60 text-base md:text-lg fit-torta-desc leading-relaxed mb-6 md:mb-8 font-light">{product.description}</p>
                   <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="group/btn relative inline-flex items-center text-sm font-bold uppercase tracking-[0.2em] text-pastelia-burgundy hover:text-pastelia-brown transition-colors w-fit pb-1">
                     <MessageCircle className="w-5 h-5 md:w-6 md:h-6 mr-3 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:scale-110" /> 
                     Pedir por WhatsApp
