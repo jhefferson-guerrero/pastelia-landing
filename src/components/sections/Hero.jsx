@@ -68,7 +68,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      <div className="relative z-10 w-full max-w-7xl [@media(max-height:720px)]:max-w-6xl [@media(max-height:720px)]:md:px-8 mx-auto pointer-events-none grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-10 items-center mt-4 md:mt-0">
+      <div className="relative z-10 w-full max-w-7xl [@media(max-height:720px)]:max-w-[78rem] [@media(max-height:720px)]:md:px-8 mx-auto pointer-events-none grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-10 items-center mt-4 md:mt-0">
 
         {/* Bloque de Texto Asimétrico (Centrado en móviles) */}
         <div className="md:col-span-7 pointer-events-auto flex flex-col items-center md:items-start text-center md:text-left w-full max-w-full z-20 pt-4 md:pt-0">
