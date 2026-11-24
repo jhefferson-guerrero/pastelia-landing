@@ -202,3 +202,64 @@ body {
   }
 }
 
+
+/* Sección de comunidad: relleno, separaciones y alto de las fotos según el alto de la ventana */
+@media (min-width: 768px) {
+  .fit-social-py {
+    padding-block: clamp(40px, calc(16.471vh + -58.824px), 96px);
+  }
+  .fit-social-gap {
+    margin-bottom: clamp(20px, calc(12.941vh + -57.647px), 64px);
+  }
+  .fit-social-tile {
+    width: clamp(240px, calc(51.765vh + -70.588px), 416px);
+    height: clamp(240px, calc(51.765vh + -70.588px), 416px);
+  }
+}
+
+/* Footer: espacios y tamaños según el alto de la ventana */
+@media (min-width: 768px) {
+  .fit-foot-pad {
+    padding-top: clamp(36px, calc(8.235vh + -13.412px), 64px);
+    padding-bottom: clamp(24px, calc(2.353vh + 9.882px), 32px);
+  }
+  .fit-foot-brand {
+    margin-bottom: clamp(24px, calc(4.706vh + -4.235px), 40px);
+  }
+  .fit-foot-logo {
+    width: clamp(80px, calc(14.118vh + -4.706px), 128px);
+    height: clamp(80px, calc(14.118vh + -4.706px), 128px);
+    margin-bottom: clamp(12px, calc(1.176vh + 4.941px), 16px);
+  }
+  .fit-foot-quote {
+    font-size: clamp(18px, calc(1.765vh + 7.412px), 24px);
+    line-height: clamp(28px, calc(3.235vh + 8.588px), 39px);
+  }
+  .fit-foot-sep {
+    margin-bottom: clamp(22px, calc(5.294vh + -9.765px), 40px);
+  }
+  .fit-foot-action {
+    gap: clamp(14px, calc(2.941vh + -3.647px), 24px);
+    margin-bottom: clamp(26px, calc(11.176vh + -41.059px), 64px);
+  }
+  .fit-foot-title {
+    font-size: clamp(19px, calc(1.471vh + 10.176px), 24px);
+    line-height: clamp(26px, calc(1.765vh + 15.412px), 32px);
+  }
+  .fit-foot-phone {
+    font-size: clamp(16px, calc(1.176vh + 8.941px), 20px);
+    line-height: clamp(24px, calc(1.176vh + 16.941px), 28px);
+  }
+  .fit-foot-cta {
+    padding-block: clamp(11px, calc(1.471vh + 2.176px), 16px);
+    font-size: clamp(15px, calc(0.882vh + 9.706px), 18px);
+    line-height: clamp(22px, calc(1.765vh + 11.412px), 28px);
+  }
+  .fit-foot-social {
+    margin-top: clamp(10px, calc(4.118vh + -14.706px), 24px);
+  }
+  .fit-foot-legal {
+    padding-top: clamp(20px, calc(3.529vh + -1.176px), 32px);
+    gap: clamp(12px, calc(2.353vh + -2.118px), 20px);
+  }
+}

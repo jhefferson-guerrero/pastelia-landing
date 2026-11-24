@@ -3,35 +3,35 @@ import { MessageCircle } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-pastelia-burgundy text-pastelia-cream overflow-hidden pt-16 pb-8 px-6">
+    <footer className="relative bg-pastelia-burgundy text-pastelia-cream overflow-hidden pt-16 pb-8 fit-foot-pad px-6">
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
       
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
         
         {/* Marca y Misión */}
-        <div className="mb-10 flex flex-col items-center">
+        <div className="mb-10 fit-foot-brand flex flex-col items-center">
           <img
             src="/images/logo-skeleton.webp"
             alt="Pastelia Bakery"
             width="160"
             height="160"
             loading="lazy"
-            className="h-24 w-24 md:h-32 md:w-32 object-contain mb-4"
+            className="h-24 w-24 md:h-32 md:w-32 fit-foot-logo object-contain mb-4"
           />
-          <p className="text-pastelia-cream/80 text-lg md:text-2xl font-serif italic max-w-xl leading-relaxed">
+          <p className="text-pastelia-cream/80 text-lg md:text-2xl fit-foot-quote font-serif italic max-w-xl leading-relaxed">
             "Postres artesanales hechos con dedicación para momentos especiales."
           </p>
         </div>
 
-        <div className="w-full h-px bg-pastelia-cream/10 mb-10 max-w-md mx-auto"></div>
+        <div className="w-full h-px bg-pastelia-cream/10 mb-10 fit-foot-sep max-w-md mx-auto"></div>
 
         {/* Área de Acción */}
-        <div className="flex flex-col items-center justify-center w-full max-w-2xl gap-6 mb-16">
-          <span className="font-serif italic text-xl md:text-2xl text-pastelia-cream">
+        <div className="flex flex-col items-center justify-center w-full max-w-2xl gap-6 mb-16 fit-foot-action">
+          <span className="font-serif italic text-xl md:text-2xl fit-foot-title text-pastelia-cream">
             Realiza tu pedido vía WhatsApp
           </span>
           
-          <div className="flex flex-wrap justify-center items-center gap-4 font-sans text-lg md:text-xl text-pastelia-cream/80 font-light mb-2">
+          <div className="flex flex-wrap justify-center items-center gap-4 font-sans text-lg md:text-xl fit-foot-phone text-pastelia-cream/80 font-light mb-2">
             <a href={contactInfo.whatsappChatUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               {contactInfo.whatsapp1}
             </a>
@@ -41,13 +41,13 @@ export default function Footer() {
             href={contactInfo.whatsappUrl} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-8 md:px-10 py-3 md:py-4 rounded-full bg-pastelia-cream text-pastelia-burgundy font-medium text-base md:text-lg hover:scale-105 transition-transform duration-500 shadow-xl mt-2"
+            className="inline-flex items-center justify-center px-8 md:px-10 py-3 md:py-4 fit-foot-cta rounded-full bg-pastelia-cream text-pastelia-burgundy font-medium text-base md:text-lg hover:scale-105 transition-transform duration-500 shadow-xl mt-2"
           >
             <MessageCircle className="w-6 h-6 mr-3" /> Hacer pedido por WhatsApp
           </a>
 
           {/* Enlaces Sociales en Texto Elegante */}
-          <div className="flex items-center gap-5 mt-6">
+          <div className="flex items-center gap-5 mt-6 fit-foot-social">
             <a 
               href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`} 
               target="_blank" 
@@ -79,7 +79,7 @@ export default function Footer() {
         </div>
 
         {/* Letra Pequeña (Horario y Entrega) */}
-        <div className="w-full flex flex-col items-center gap-5 pt-8 border-t border-pastelia-cream/15">
+        <div className="w-full flex flex-col items-center gap-5 pt-8 fit-foot-legal border-t border-pastelia-cream/15">
 
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center">
             <p className="flex flex-col md:flex-row items-center gap-1 md:gap-3">

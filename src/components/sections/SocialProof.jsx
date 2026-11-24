@@ -6,13 +6,13 @@ export default function SocialProof() {
   const marqueeImages = [...communityImages, ...communityImages];
 
   return (
-    <section id="comunidad" className="relative pt-24 pb-24 bg-pastelia-burgundy overflow-hidden flex flex-col items-center">
+    <section id="comunidad" className="relative pt-24 pb-24 fit-social-py bg-pastelia-burgundy overflow-hidden flex flex-col items-center">
 
       {/* Capas Decorativas */}
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
 
       {/* Encabezado */}
-      <div className="relative z-10 flex flex-col items-center text-center mb-16 px-6">
+      <div className="relative z-10 flex flex-col items-center text-center mb-16 fit-social-gap px-6">
         <h2 className="font-serif text-3xl md:text-4xl 2xl:text-5xl font-bold tracking-tight text-pastelia-cream mb-6">
           Únete a nuestra dulce comunidad
         </h2>
@@ -20,7 +20,7 @@ export default function SocialProof() {
       </div>
 
       {/* Tira de Fotos Horizontal con Desplazamiento Automático */}
-      <div className="w-full relative z-10 mb-16 flex overflow-hidden">
+      <div className="w-full relative z-10 mb-16 fit-social-gap flex overflow-hidden">
         {/* Contenedor de Marquesina */}
         <div className="flex w-max gap-4 md:gap-6 px-4 md:px-6 animate-marquee">
           {marqueeImages.map((img, idx) => (
@@ -29,7 +29,7 @@ export default function SocialProof() {
               href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-[26rem] md:h-[26rem] flex-shrink-0 overflow-hidden rounded-[20px] md:rounded-[24px] bg-pastelia-cream/10 block group"
+              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-[26rem] md:h-[26rem] fit-social-tile flex-shrink-0 overflow-hidden rounded-[20px] md:rounded-[24px] bg-pastelia-cream/10 block group"
             >
               <img 
                 src={img} 
