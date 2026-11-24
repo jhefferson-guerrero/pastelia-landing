@@ -11,7 +11,7 @@ export default function Tortas() {
 
   return (
     <section id="tortas" data-scroll-start="#tortas-titulo" data-scroll-end="#tortas-primera" className="relative w-full border-t border-pastelia-brown/5 overflow-hidden py-24 fit-section-py scroll-mt-10 md:scroll-mt-5">
-      <div className="max-w-6xl 2xl:max-w-7xl mx-auto px-6 relative w-full h-full">
+      <div className="max-w-6xl 2xl:max-w-7xl [@media(max-height:720px)]:max-w-4xl [@media(max-height:720px)]:2xl:max-w-4xl mx-auto px-6 relative w-full h-full">
         <OrganicBlob className="bg-pastelia-burgundy/5 w-[30rem] h-[30rem] top-10 md:top-[60px] right-0" />
       
       <motion.div 
@@ -51,7 +51,7 @@ export default function Tortas() {
                   product={product}
                   onZoom={openImage}
                   iconClass="w-12 h-12"
-                  className={`lg:col-span-6 [@media(max-height:720px)]:lg:col-span-5 aspect-square md:aspect-[4/3] w-full max-h-[55vh] fit-torta-img rounded-[1.75rem] md:rounded-[2rem] bg-pastelia-cream/50 order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'}`}
+                  className={`lg:col-span-6 [@media(max-height:720px)]:lg:col-span-5 aspect-square md:aspect-[4/3] [@media(max-height:720px)]:lg:aspect-square w-full max-h-[55vh] fit-torta-img rounded-[1.75rem] md:rounded-[2rem] bg-pastelia-cream/50 order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'}`}
                 />
 
                 {/* Bloque de Texto */}
