@@ -51,11 +51,11 @@ export default function Tortas() {
                   product={product}
                   onZoom={openImage}
                   iconClass="w-12 h-12"
-                  className={`lg:col-span-6 [@media(max-height:720px)]:lg:col-span-5 aspect-square md:aspect-[4/3] [@media(max-height:720px)]:lg:aspect-square w-full max-h-[55vh] fit-torta-img rounded-[1.75rem] md:rounded-[2rem] bg-pastelia-cream/50 order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'}`}
+                  className={`lg:col-span-6 aspect-square md:aspect-[4/3] w-full max-h-[55vh] fit-torta-img rounded-[1.75rem] md:rounded-[2rem] bg-pastelia-cream/50 order-1 ${isReverse ? 'lg:order-2' : 'lg:order-1'}`}
                 />
 
                 {/* Bloque de Texto */}
-                <div className={`lg:col-span-6 [@media(max-height:720px)]:lg:col-span-7 flex flex-col order-2 ${isReverse ? 'lg:order-1 lg:pr-6 2xl:pr-10' : 'lg:order-2 lg:pl-6 2xl:pl-10'}`}>
+                <div className={`lg:col-span-6 flex flex-col order-2 ${isReverse ? 'lg:order-1 lg:pr-6 2xl:pr-10' : 'lg:order-2 lg:pl-6 2xl:pl-10'}`}>
                   <h3 className="font-serif italic text-3xl md:text-4xl fit-torta-h3 text-pastelia-burgundy mb-3 md:mb-4">{product.name}</h3>
                   <span className="font-sans font-medium text-xl md:text-2xl fit-torta-price text-pastelia-brown mb-4 md:mb-6">{product.price}</span>
                   <p className="text-pastelia-brown/60 text-base md:text-lg fit-torta-desc leading-relaxed mb-6 md:mb-8 font-light">{product.description}</p>
