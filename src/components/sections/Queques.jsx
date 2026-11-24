@@ -28,7 +28,7 @@ export default function Queques() {
       </motion.div>
 
       {/* Contenedor de Menú Elegante y Compacto */}
-      <div className="relative z-10 flex flex-col gap-6 fit-list-gap max-w-4xl mx-auto">
+      <div className="relative z-10 flex flex-col gap-6 fit-list-gap max-w-4xl [@media(max-height:720px)]:max-w-2xl mx-auto">
         {queques.map((product, idx) => (
           <motion.div 
             key={product.id}
