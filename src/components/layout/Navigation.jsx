@@ -5,8 +5,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { contactInfo } from '../../data/contact';
 import { scrollToSection, scrollToTop } from '../../lib/smoothScroll';
 import { revealAll } from '../../lib/stagedMount';
+import { useRevealed } from '../../lib/reveal';
 
 export default function Navigation() {
+  const revealed = useRevealed();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -122,7 +124,7 @@ export default function Navigation() {
       `}>
         <motion.div
           initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: -16 }}
           transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1], delay: 0.5 }}
           className="w-full relative flex justify-center items-center pointer-events-none md:pointer-events-auto pt-4 px-4 md:p-0"
         >

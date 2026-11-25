@@ -6,16 +6,21 @@ import Button from '../ui/Button';
 import { contactInfo } from '../../data/contact';
 import { heroImages } from '../../data/hero';
 import { OrganicBlob } from '../ui/Decorations';
+import { useRevealed } from '../../lib/reveal';
 
-// Entrada escalonada: cada elemento aparece un poco después del anterior
+// Entrada escalonada: cada elemento aparece un poco después del anterior.
+// Parte oculto y solo se anima cuando la página ya se ve (el preloader se retiró); así la
+// entrada se ve completa aunque la página se haya montado detrás del preloader.
 const EASE = [0.32, 0.72, 0, 1];
-const enter = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
+const HIDDEN = { opacity: 0, y: 24 };
+const enter = (revealed, delay = 0) => ({
+  initial: HIDDEN,
+  animate: revealed ? { opacity: 1, y: 0 } : HIDDEN,
   transition: { duration: 0.8, ease: EASE, delay },
 });
 
 export default function Hero() {
+  const revealed = useRevealed();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextImage = () => {
@@ -23,11 +28,13 @@ export default function Hero() {
   };
 
   // Rotación automática: 5 segundos después de cada cambio, también si fue manual (así el
-  // temporizador se reinicia y la foto que acabas de elegir no se va de inmediato)
+  // temporizador se reinicia y la foto que acabas de elegir no se va de inmediato).
+  // La cuenta empieza cuando la página ya se ve, no mientras sigue el preloader.
   useEffect(() => {
+    if (!revealed) return;
     const timer = setTimeout(nextImage, 5000);
     return () => clearTimeout(timer);
-  }, [currentIndex]);
+  }, [currentIndex, revealed]);
 
   return (
     <section className="relative min-h-[75vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-pastelia-cream px-6 pt-24 md:pt-24 pb-16 md:pb-0">
@@ -39,7 +46,7 @@ export default function Hero() {
       {/* Desktop Full-Height Image Background */}
       <motion.div
         initial={{ opacity: 0, scale: 1.06 }}
-        animate={{ opacity: 1, scale: 1 }}
+        animate={revealed ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.06 }}
         transition={{ duration: 1.3, ease: EASE, delay: 0.05 }}
         className="hidden md:block absolute top-0 right-0 bottom-0 w-1/2 z-0 [mask-image:linear-gradient(to_right,transparent,black_20%)] group"
       >
@@ -73,11 +80,11 @@ export default function Hero() {
         {/* Bloque de Texto Asimétrico (Centrado en móviles) */}
         <div className="md:col-span-7 pointer-events-auto flex flex-col items-center md:items-start text-center md:text-left w-full max-w-full z-20 pt-4 md:pt-0">
           {/* Logo / Nombre de Marca como el punto focal masivo */}
-          <motion.h1 {...enter(0)} className="font-serif text-[15vw] sm:text-6xl md:text-7xl lg:text-7xl 2xl:text-[7.5rem] font-bold tracking-tight text-pastelia-burgundy mb-3 md:mb-6 2xl:mb-8 leading-[0.9] max-w-full break-words">
+          <motion.h1 {...enter(revealed, 0)} className="font-serif text-[15vw] sm:text-6xl md:text-7xl lg:text-7xl 2xl:text-[7.5rem] font-bold tracking-tight text-pastelia-burgundy mb-3 md:mb-6 2xl:mb-8 leading-[0.9] max-w-full break-words">
             Pastelia <span className="sr-only">Bakery</span>
           </motion.h1>
 
-          <motion.div {...enter(0.12)} className="flex flex-col items-center md:items-start gap-2 md:gap-4 2xl:gap-6 mb-5 md:mb-8 2xl:mb-10 border-t md:border-t-0 border-l-0 md:border-l border-pastelia-brown/20 pt-4 md:pt-0 md:pl-5 w-full">
+          <motion.div {...enter(revealed, 0.12)} className="flex flex-col items-center md:items-start gap-2 md:gap-4 2xl:gap-6 mb-5 md:mb-8 2xl:mb-10 border-t md:border-t-0 border-l-0 md:border-l border-pastelia-brown/20 pt-4 md:pt-0 md:pl-5 w-full">
             <h2 className="uppercase text-pastelia-brown/60 text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] font-bold">
               Carta de Pedidos {new Date().getFullYear()}
             </h2>
@@ -91,7 +98,7 @@ export default function Hero() {
             </p>
           </motion.div>
 
-          <motion.div {...enter(0.24)}>
+          <motion.div {...enter(revealed, 0.24)}>
           <MagneticButton>
             <Button
               href={contactInfo.whatsappUrl}
@@ -106,7 +113,7 @@ export default function Hero() {
         {/* Bloque de Imagen (Arco elegante en móviles) */}
         <motion.div
           initial={{ opacity: 0, y: 24, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          animate={revealed ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 24, scale: 0.96 }}
           transition={{ duration: 0.9, ease: EASE, delay: 0.3 }}
           className="md:hidden pointer-events-auto relative z-10 mt-2 flex justify-center w-full group"
         >

@@ -1,13 +1,15 @@
 
 import { motion } from 'motion/react';
 import { contactInfo } from '../../data/contact';
+import { useRevealed } from '../../lib/reveal';
 
 export default function FloatingWhatsApp() {
+  const revealed = useRevealed();
   return (
     <motion.div
       className="fixed bottom-6 right-6 z-50"
       initial={{ opacity: 0, scale: 0.4 }}
-      animate={{ opacity: 1, scale: 1 }}
+      animate={revealed ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.4 }}
       transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.9 }}
     >
     <a

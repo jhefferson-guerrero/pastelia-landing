@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import { MotionConfig } from "motion/react"
 import Lenis from "lenis"
 import { setLenis, scrollToSection } from "./lib/smoothScroll"
-import { startStaging, revealAll, Deferred } from "./lib/stagedMount"
+import { startStaging, revealAll, whenFullyMounted, Deferred } from "./lib/stagedMount"
+import { useRevealed } from "./lib/reveal"
 import Navigation from "./components/layout/Navigation"
 import Footer from "./components/layout/Footer"
 import FloatingWhatsApp from "./components/ui/FloatingWhatsApp"
@@ -23,19 +24,28 @@ function ScrollToTop() {
 // va a ella cuando la página termina de montarse
 function StagedStart() {
   const { pathname } = useLocation();
+  const revealed = useRevealed();
+
   useEffect(() => {
     if (pathname !== "/") {
       revealAll()
       return
     }
-    startStaging()
-    const goToHash = () => {
+    // Si el preloader todavía se ve, la página se monta detrás de él, sin esperas entre etapas
+    startStaging({ fast: !revealed })
+  }, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Con una dirección tipo /#clasicos, va a esa sección cuando la página ya se ve y está montada
+  useEffect(() => {
+    if (!revealed) return
+    let cancelled = false
+    whenFullyMounted().then(() => {
       const id = window.location.hash.slice(1)
-      if (id) setTimeout(() => scrollToSection(id, { immediate: true }), 100)
-    }
-    window.addEventListener("pastelia:mounted", goToHash, { once: true })
-    return () => window.removeEventListener("pastelia:mounted", goToHash)
-  }, [pathname])
+      if (!cancelled && id) setTimeout(() => scrollToSection(id, { immediate: true }), 100)
+    })
+    return () => { cancelled = true }
+  }, [revealed])
+
   return null
 }
 

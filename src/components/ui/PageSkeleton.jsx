@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from "motion/react"
 import { heroImages, communityImages } from "../../data/hero"
 import { catalog } from "../../data/products"
 import { thumb } from "../../lib/images"
+import { RevealContext } from "../../lib/reveal"
+import { whenFullyMounted } from "../../lib/stagedMount"
+import { lockScroll, unlockScroll } from "../../lib/smoothScroll"
 
 const LOGO_SRC = "/images/logo-skeleton.webp"
 
@@ -14,6 +17,8 @@ const FILL_HOLD_MS = 250
 const MAX_ASSETS_WAIT_MS = 8000
 // Tope de espera por el propio logo antes de arrancar la animación
 const MAX_LOGO_WAIT_MS = 3000
+// Tope de espera a que la página termine de montarse detrás del preloader
+const MAX_MOUNT_WAIT_MS = 4000
 
 // Qué se carga y en qué orden. Mientras corre la animación:
 //  1. CRÍTICO: fuentes + primera foto del Hero (lo que se ve apenas se abre la página)
@@ -81,6 +86,29 @@ export default function PageSkeleton({ children }) {
   const [stage, setStage] = useState(0)
   // 0 a 1: avanza con el tiempo, pero nunca más que lo realmente cargado
   const [progress, setProgress] = useState(0)
+  // En pantallas de escritorio la página se monta DETRÁS del preloader (cuando ya están las
+  // fuentes y la primera foto), así el trabajo pesado ocurre mientras se ve el logo y no justo
+  // al retirarse. En móvil se mantiene el montaje al retirarse el preloader.
+  const [mountBehind] = useState(() => window.matchMedia("(min-width: 768px)").matches)
+  const [appMounted, setAppMounted] = useState(false)
+  // Las animaciones de entrada de la página arrancan cuando el preloader ya se retira
+  const revealed = stage >= 2
+  const showApp = revealed || (mountBehind && appMounted)
+
+  // Mientras se ve el preloader no se puede desplazar la página que ya está montada detrás
+  useEffect(() => {
+    if (revealed) return
+    const html = document.documentElement
+    html.style.overflow = "hidden"
+    lockScroll()
+    // Lenis se crea en un efecto del padre, que corre después de este: se reintenta al siguiente cuadro
+    const frame = requestAnimationFrame(() => lockScroll())
+    return () => {
+      cancelAnimationFrame(frame)
+      html.style.overflow = ""
+      unlockScroll()
+    }
+  }, [revealed])
 
   // El logo de React ya está pintado encima: se retira el splash estático del HTML
   useEffect(() => {
@@ -110,6 +138,8 @@ export default function PageSkeleton({ children }) {
 
       const fonts = track(loadFonts())
       const hero = track(loadImage(CRITICAL_IMAGE))
+      // Con las fuentes y la primera foto listas, la página ya puede montarse detrás del preloader
+      if (mountBehind) Promise.all([fonts, hero]).then(() => { if (!cancelled) setAppMounted(true) })
       const rest = hero.then(() => Promise.all(important.map((src) => track(loadImage(src)))))
       const assets = Promise.race([Promise.all([fonts, hero, rest]), wait(MAX_ASSETS_WAIT_MS)])
         .then(() => { settled = true })
@@ -126,6 +156,9 @@ export default function PageSkeleton({ children }) {
 
       // 3. Se sale solo cuando pasó el tiempo mínimo Y todo lo importante está listo
       await Promise.all([wait(MIN_VISIBLE_MS), assets])
+      if (cancelled) return
+      // ...y la página ya está montada detrás (con tope, para que el preloader nunca se quede colgado)
+      if (mountBehind) await Promise.race([whenFullyMounted(), wait(MAX_MOUNT_WAIT_MS)])
       if (cancelled) return
       clearInterval(ticker)
       setProgress(1)
@@ -205,9 +238,9 @@ export default function PageSkeleton({ children }) {
         )}
       </AnimatePresence>
 
-      {/* La app se monta solo cuando el preloader ya casi desapareció, para que las
-          animaciones de entrada del Hero arranquen después. */}
-      {stage >= 2 && children}
+      {/* En móvil la app se monta cuando el preloader ya casi desapareció; en escritorio, detrás de él.
+          En ambos casos las animaciones de entrada esperan a `revealed` (ver lib/reveal.js). */}
+      {showApp && <RevealContext.Provider value={revealed}>{children}</RevealContext.Provider>}
     </>
   )
 }
