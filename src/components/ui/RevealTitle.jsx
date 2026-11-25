@@ -39,18 +39,31 @@ export function RevealTitle({ children, className = '', as = 'h2', delay = 0 }) 
   );
 }
 
-// Aparición suave de lo que acompaña al título (subtítulo o etiqueta), un momento después
-export function RevealLead({ children, className = '', as = 'p', delay = 0.45 }) {
+// Aparición de lo que acompaña al título (subtítulo o etiqueta): una ola suave y corta que recorre
+// el texto palabra por palabra, solo aclarándose (sin movimiento, para no competir con el título).
+// No altera cómo se parte el texto en líneas, y los lectores de pantalla lo leen igual.
+export function RevealLead({ children, className = '', as = 'p', delay = 0.3 }) {
   const Tag = motion[as];
+  const words = String(children).replace(/\s+/g, ' ').trim().split(' ');
+  // La ola dura como mucho 0,4 s, sea cual sea el largo del texto
+  const stagger = Math.min(0.025, 0.4 / words.length);
+
   return (
     <Tag
       className={className}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 0.7, ease: EASE, delay }}
+      variants={{ hidden: {}, visible: { transition: { staggerChildren: stagger, delayChildren: delay } } }}
     >
-      {children}
+      {words.map((word, i) => (
+        <Fragment key={i}>
+          <motion.span variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.45, ease: 'easeOut' } } }}>
+            {word}
+          </motion.span>
+          {i < words.length - 1 && ' '}
+        </Fragment>
+      ))}
     </Tag>
   );
 }
