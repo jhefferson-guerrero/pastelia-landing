@@ -141,8 +141,10 @@ export default function Navigation() {
             <div className="flex-1 md:flex-none xl:flex-1 flex justify-start">
               <a href="/" className="flex-shrink-0 -mt-1" onClick={goToTop}>
                 <img 
-                  src="/images/logo.jpg" 
-                  alt="Pastelia Bakery" 
+                  src="/images/logo-nav.webp"
+                  alt="Pastelia Bakery"
+                  width="176"
+                  height="176"
                   className="h-9 md:h-11 w-auto mix-blend-multiply hover:scale-105 transition-transform duration-300"
                 />
               </a>
