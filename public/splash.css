@@ -13,4 +13,6 @@
   .splash-text { margin-top: 1.5rem; font-size: 0.875rem; line-height: 1.25rem; }
   @media (min-width: 640px) { .splash-logo { width: 12rem; padding: 1rem; } .splash-bar { width: 16rem; } .splash-text { font-size: 1rem; line-height: 1.5rem; } }
   @media (min-width: 768px) { .splash-logo { width: 16rem; padding: 1.5rem; } .splash-bar { width: 20rem; } .splash-text { font-size: 1.125rem; line-height: 1.75rem; } }
+  /* Pantallas bajas (laptops): logo un poco más pequeño. Mantener igual en src/styles/index.css */
+  @media (min-width: 768px) and (max-height: 720px) { .splash-logo { width: 13.5rem; padding: 1.25rem; } .splash-bar { margin-top: 3rem; } }
 }

@@ -33,6 +33,11 @@
   .splash-text {
     @apply mt-6 font-serif font-semibold tracking-[0.3em] text-sm sm:text-base md:text-lg uppercase text-center px-4;
   }
+  /* Pantallas bajas (laptops): logo un poco más pequeño. Mantener igual en public/splash.css */
+  @media (min-width: 768px) and (max-height: 720px) {
+    .splash-logo { @apply w-[13.5rem] p-5; }
+    .splash-bar { @apply mt-12; }
+  }
 }
 
 html, body, #root {
