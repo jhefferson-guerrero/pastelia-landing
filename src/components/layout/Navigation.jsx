@@ -4,6 +4,7 @@ import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { contactInfo } from '../../data/contact';
 import { scrollToSection, scrollToTop } from '../../lib/smoothScroll';
+import { revealAll } from '../../lib/stagedMount';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +18,7 @@ export default function Navigation() {
     e.preventDefault();
     setIsOpen(false);
     const id = href.replace('/#', '');
+    revealAll(); // si la página aún se está montando por etapas, la sección existe antes de ir a ella
     // Pequeña espera para que el menú móvil termine de cerrarse antes de empezar a desplazar
     const run = () => scrollToSection(id);
     if (pathname !== '/') {
@@ -37,23 +39,35 @@ export default function Navigation() {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+    // Mismo orden que las secciones en la página
+    const sections = ['tortas', 'clasicos', 'queques', 'cuchareables', 'como-pedir', 'comunidad', 'faq'];
+    let frame = 0;
 
-      // Mismo orden que las secciones en la página
-      const sections = ['tortas', 'clasicos', 'queques', 'cuchareables', 'como-pedir', 'comunidad', 'faq'];
+    // Se calcula como mucho una vez por cuadro, no en cada evento de scroll
+    const update = () => {
+      frame = 0;
+      const y = window.scrollY;
+      setScrolled(y > 50);
       let current = '';
       for (const section of sections) {
         const element = document.getElementById(section);
         // Activa la sección cuyo inicio ya está en el 40% superior de la pantalla
-        if (element && window.scrollY + window.innerHeight * 0.4 >= element.offsetTop) {
-          current = section;
-        }
+        if (element && y + window.innerHeight * 0.4 >= element.offsetTop) current = section;
       }
       setActiveSection(current);
     };
+    const handleScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    update();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('pastelia:mounted', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('pastelia:mounted', handleScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   // Prevenir el desplazamiento del fondo cuando el menú móvil está abierto
@@ -117,9 +131,9 @@ export default function Navigation() {
             flex items-center justify-between w-full md:max-w-[80rem] mx-auto px-4 py-1.5 md:px-8 md:py-4 pointer-events-auto
             rounded-full md:rounded-none border
             ${isOpen 
-              ? 'bg-pastelia-cream/95 backdrop-blur-3xl shadow-md border-pastelia-brown/15 md:bg-transparent md:shadow-none md:border-transparent' 
+              ? 'bg-pastelia-cream/95 shadow-md border-pastelia-brown/15 md:bg-transparent md:shadow-none md:border-transparent' 
               : scrolled 
-                ? 'bg-pastelia-cream/95 backdrop-blur-3xl shadow-sm border-pastelia-brown/15 transition-all duration-300 md:bg-transparent md:shadow-none md:border-transparent' 
+                ? 'bg-pastelia-cream/95 shadow-sm border-pastelia-brown/15 transition-all duration-300 md:bg-transparent md:shadow-none md:border-transparent' 
                 : 'bg-transparent border-transparent shadow-none transition-all duration-300'}
           `}>
             <div className="flex-1 md:flex-none xl:flex-1 flex justify-start">
@@ -170,7 +184,7 @@ export default function Navigation() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
-                className="absolute top-full mt-2 left-4 right-4 z-10 bg-pastelia-cream/95 backdrop-blur-3xl shadow-2xl border border-pastelia-brown/15 rounded-[2rem] overflow-y-auto overscroll-contain max-h-[calc(100dvh-6.5rem)] flex flex-col p-4 md:hidden pointer-events-auto"
+                className="absolute top-full mt-2 left-4 right-4 z-10 bg-pastelia-cream/95 shadow-2xl border border-pastelia-brown/15 rounded-[2rem] overflow-y-auto overscroll-contain max-h-[calc(100dvh-6.5rem)] flex flex-col p-4 md:hidden pointer-events-auto"
               >
                 <nav className="flex flex-col items-center justify-center w-full">
                   {navLinks.map((link, i) => (

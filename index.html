@@ -58,7 +58,9 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <!-- Precarga del logo del preloader y de la imagen principal (LCP) -->
   <link rel="preload" as="image" href="/images/logo-skeleton.webp" fetchpriority="high">
-  <link rel="preload" as="image" href="/images/carrot-cake.webp">
+  <!-- Primera foto del Hero: copia liviana en pantallas normales, original en pantallas muy grandes (misma regla que src/data/hero.js) -->
+  <link rel="preload" as="image" href="/images/thumbs/carrot-cake-800.webp" media="(max-resolution: 1.1dppx) and (max-width: 1700px)">
+  <link rel="preload" as="image" href="/images/carrot-cake.webp" media="not all and (max-resolution: 1.1dppx) and (max-width: 1700px)">
   <!-- Las fuentes (Playfair Display y Plus Jakarta Sans) se sirven desde el propio sitio (@fontsource) -->
 
   <!-- CSS mínimo del splash (public/splash.css): se ve bien desde el primer instante, antes de la hoja principal -->

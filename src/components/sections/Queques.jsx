@@ -37,12 +37,13 @@ export default function Queques() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: idx * 0.1 }}
-            className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 fit-row-card rounded-[28px] bg-white/40 backdrop-blur-sm border border-pastelia-brown/5 shadow-sm hover:shadow-md transition-shadow duration-500 ease-out"
+            className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 fit-row-card rounded-[28px] bg-white/40 border border-pastelia-brown/5 shadow-sm hover:shadow-md transition-shadow duration-500 ease-out"
           >
             {/* 1. Imagen a la izquierda */}
             <ProductImage
               product={product}
               onZoom={openImage}
+              thumbWidth={480}
               className="w-full sm:w-56 md:w-64 fit-row-img aspect-[4/3] sm:aspect-square flex-shrink-0 rounded-[2rem] bg-pastelia-cream/50 mb-6 sm:mb-0 sm:mr-8"
             />
             

@@ -2,7 +2,8 @@ import { useEffect } from "react"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import { MotionConfig } from "motion/react"
 import Lenis from "lenis"
-import { setLenis } from "./lib/smoothScroll"
+import { setLenis, scrollToSection } from "./lib/smoothScroll"
+import { startStaging, revealAll, Deferred } from "./lib/stagedMount"
 import Navigation from "./components/layout/Navigation"
 import Footer from "./components/layout/Footer"
 import FloatingWhatsApp from "./components/ui/FloatingWhatsApp"
@@ -16,6 +17,26 @@ function ScrollToTop() {
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
+}
+
+// Arranca el montaje por etapas (solo en la portada) y, si la dirección trae #sección,
+// va a ella cuando la página termina de montarse
+function StagedStart() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (pathname !== "/") {
+      revealAll()
+      return
+    }
+    startStaging()
+    const goToHash = () => {
+      const id = window.location.hash.slice(1)
+      if (id) setTimeout(() => scrollToSection(id, { immediate: true }), 100)
+    }
+    window.addEventListener("pastelia:mounted", goToHash, { once: true })
+    return () => window.removeEventListener("pastelia:mounted", goToHash)
+  }, [pathname])
+  return null
 }
 
 function App() {
@@ -54,6 +75,7 @@ function App() {
       <ScrollToTop />
       <PageSkeleton>
         <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-pastelia-cream text-pastelia-brown font-sans selection:bg-pastelia-burgundy selection:text-pastelia-cream">
+          <StagedStart />
           <Navigation />
           <main>
             <Routes>
@@ -61,7 +83,9 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
-          <Footer />
+          <Deferred stage={4}>
+            <Footer />
+          </Deferred>
           <FloatingWhatsApp />
         </div>
       </PageSkeleton>

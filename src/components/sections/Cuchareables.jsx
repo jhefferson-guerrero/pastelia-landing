@@ -46,6 +46,7 @@ export default function Cuchareables() {
             <ProductImage
               product={product}
               onZoom={openImage}
+              thumbWidth={480}
               className="w-full sm:w-56 md:w-64 fit-row-img aspect-[4/3] sm:aspect-square flex-shrink-0 rounded-[2rem] bg-white mb-6 sm:mb-0 sm:mr-8"
             />
             

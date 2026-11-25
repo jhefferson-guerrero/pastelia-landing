@@ -1,5 +1,6 @@
 import { contactInfo } from '../../data/contact';
 import { communityImages } from '../../data/hero';
+import { thumb } from '../../lib/images';
 
 export default function SocialProof() {
   // Duplicar el array para crear un bucle infinito continuo
@@ -32,10 +33,11 @@ export default function SocialProof() {
               className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-[26rem] md:h-[26rem] fit-social-tile flex-shrink-0 overflow-hidden rounded-[20px] md:rounded-[24px] bg-pastelia-cream/10 block group"
             >
               <img 
-                src={img} 
+                src={thumb(img, 640)}
                 alt="Instagram Pastelia Gallery" 
                 className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-[1.03] group-hover:brightness-105"
                 loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-pastelia-burgundy/0 group-hover:bg-pastelia-burgundy/5 transition-colors duration-500"></div>
             </a>

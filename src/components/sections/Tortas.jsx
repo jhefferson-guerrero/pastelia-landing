@@ -42,7 +42,7 @@ export default function Tortas() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="group block bg-white/40 backdrop-blur-sm border border-pastelia-brown/5 rounded-[28px] md:rounded-[2.5rem] p-5 fit-torta-card shadow-sm hover:shadow-md transition-shadow duration-500 ease-out"
+              className="group block bg-white/40 border border-pastelia-brown/5 rounded-[28px] md:rounded-[2.5rem] p-5 fit-torta-card shadow-sm hover:shadow-md transition-shadow duration-500 ease-out"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-center">
                 

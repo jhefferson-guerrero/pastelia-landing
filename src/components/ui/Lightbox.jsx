@@ -11,8 +11,9 @@ const DRAG_THRESHOLD = 5;
 const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 const RESET = { s: 1, x: 0, y: 0 };
 
-export default function Lightbox({ imageSrc, imageAlt, isOpen, onClose }) {
+export default function Lightbox({ imageSrc, placeholderSrc, imageAlt, isOpen, onClose }) {
   const [view, setView] = useState(RESET);
+  const [fullReady, setFullReady] = useState(false);
   const [interacting, setInteracting] = useState(false);
 
   const overlayRef = useRef(null);
@@ -56,6 +57,19 @@ export default function Lightbox({ imageSrc, imageAlt, isOpen, onClose }) {
     setInteracting(false);
     zoomAt(viewRef.current.s * factor, 0, 0);
   };
+
+  // Carga progresiva: se ve al instante la copia liviana y, cuando la original ya está
+  // descargada y decodificada, se cambia por ella (misma proporción, sin saltos)
+  useEffect(() => {
+    setFullReady(false);
+    if (!isOpen || !imageSrc) return;
+    let cancelled = false;
+    const full = new Image();
+    full.src = imageSrc;
+    const ready = full.decode ? full.decode() : new Promise((res, rej) => { full.onload = res; full.onerror = rej; });
+    ready.then(() => { if (!cancelled) setFullReady(true); }, () => {});
+    return () => { cancelled = true; };
+  }, [isOpen, imageSrc]);
 
   // Al abrir: bloquear el scroll de la página, rueda para acercar y teclado
   useEffect(() => {
@@ -179,7 +193,7 @@ export default function Lightbox({ imageSrc, imageAlt, isOpen, onClose }) {
           >
             <img
               ref={imgRef}
-              src={imageSrc}
+              src={placeholderSrc && !fullReady ? placeholderSrc : imageSrc}
               alt={imageAlt}
               draggable={false}
               style={{
@@ -236,13 +250,14 @@ export default function Lightbox({ imageSrc, imageAlt, isOpen, onClose }) {
 
 // Estado + visor listos para usar en una sección:
 //   const [openImage, lightbox] = useLightbox();
-//   ...onClick → openImage({ src, alt })   ...y renderizar {lightbox} una vez
+//   ...onClick → openImage({ src, thumb, alt })  (thumb = copia liviana que se ve mientras llega la original)   ...y renderizar {lightbox} una vez
 export function useLightbox() {
   const [selected, setSelected] = useState(null);
   const lightbox = (
     <Lightbox
       isOpen={!!selected}
       imageSrc={selected?.src}
+      placeholderSrc={selected?.thumb}
       imageAlt={selected?.alt}
       onClose={() => setSelected(null)}
     />

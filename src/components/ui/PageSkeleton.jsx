@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { heroImages, communityImages } from "../../data/hero"
 import { catalog } from "../../data/products"
+import { thumb } from "../../lib/images"
 
 const LOGO_SRC = "/images/logo-skeleton.webp"
 
@@ -20,18 +21,19 @@ const MAX_LOGO_WAIT_MS = 3000
 //  El preloader no termina hasta que 1 y 2 están listos (la barra llega al 100% con ellos).
 //  3. SEGUNDO PLANO: Queques, Cuchareables y galería; se cargan sin bloquear nada.
 const unique = (list) => [...new Set(list.filter(Boolean))]
-const imagesOf = (products) => products.map((p) => p.image)
+// Se precargan las copias livianas (las que se ven en las tarjetas), con el ancho de cada sección
+const imagesOf = (products, width) => products.map((p) => thumb(p.image, width))
 
 const CRITICAL_IMAGE = heroImages[0].src
 const IMPORTANT_IMAGES = unique([
   ...heroImages.map((img) => img.src),
-  ...imagesOf(catalog.tortas),
-  ...imagesOf(catalog.clasicos),
+  ...imagesOf(catalog.tortas, 800),
+  ...imagesOf(catalog.clasicos, 640),
 ]).filter((src) => src !== CRITICAL_IMAGE)
 const BACKGROUND_IMAGES = unique([
-  ...imagesOf(catalog.queques),
-  ...imagesOf(catalog.cuchareables),
-  ...communityImages,
+  ...imagesOf(catalog.queques, 480),
+  ...imagesOf(catalog.cuchareables, 480),
+  ...communityImages.map((src) => thumb(src, 640)),
 ]).filter((src) => src !== CRITICAL_IMAGE && !IMPORTANT_IMAGES.includes(src))
 
 // Resuelve siempre (también si la imagen falla): un recurso roto nunca debe frenar el preloader.

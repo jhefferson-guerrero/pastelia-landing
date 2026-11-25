@@ -47,6 +47,7 @@ export default function Clasicos() {
               <ProductImage
                 product={product}
                 onZoom={openImage}
+                thumbWidth={640}
                 iconClass="w-10 h-10"
                 className="aspect-square w-full fit-clasico-img rounded-[2.5rem] bg-pastelia-white mb-6"
               />
