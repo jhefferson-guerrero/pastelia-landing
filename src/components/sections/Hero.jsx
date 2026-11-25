@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import MagneticButton from '../ui/MagneticButton';
 import Button from '../ui/Button';
@@ -24,6 +24,13 @@ const enter = (revealed, delay = 0) => ({
 export default function Hero() {
   const revealed = useRevealed();
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Paralaje del arco en móvil: la foto se mueve más lento que el scroll dentro del arco, que
+  // queda fijo. Va ampliada (18 %) para que con el desplazamiento (±7 %) nunca se vean los bordes.
+  const archRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: archRef, offset: ['start end', 'end start'] });
+  const parallaxY = useTransform(scrollYProgress, [0, 1], ['-7%', '7%']);
 
   const nextImage = () => {
     setCurrentIndex((prev) => (prev + 1) % heroImages.length);
@@ -119,21 +126,26 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: EASE, delay: 0.3 }}
           className="md:hidden pointer-events-auto relative z-10 mt-2 flex justify-center w-full group"
         >
-          <div className="relative isolate transform-gpu aspect-[4/5] w-[85%] max-w-[360px] my-6 mx-auto overflow-hidden shadow-2xl shadow-pastelia-brown/15 rounded-t-full rounded-b-3xl transition-all duration-700 ease-in-out group-hover:-translate-y-1 group-hover:shadow-pastelia-burgundy/15">
+          <div ref={archRef} className="relative isolate transform-gpu aspect-[4/5] w-[85%] max-w-[360px] my-6 mx-auto overflow-hidden shadow-2xl shadow-pastelia-brown/15 rounded-t-full rounded-b-3xl transition-all duration-700 ease-in-out group-hover:-translate-y-1 group-hover:shadow-pastelia-burgundy/15">
 
-            <AnimatePresence initial={false}>
-              <motion.img
-                key={currentIndex}
-                src={heroImages[currentIndex].src}
-                alt={heroImages[currentIndex].alt}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-                className="absolute inset-0 w-full h-full object-cover"
-                loading={currentIndex === 0 ? "eager" : "lazy"}
-              />
-            </AnimatePresence>
+            <motion.div
+              style={reduceMotion ? undefined : { y: parallaxY, scale: 1.18 }}
+              className="absolute inset-0 will-change-transform"
+            >
+              <AnimatePresence initial={false}>
+                <motion.img
+                  key={currentIndex}
+                  src={heroImages[currentIndex].src}
+                  alt={heroImages[currentIndex].alt}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading={currentIndex === 0 ? "eager" : "lazy"}
+                />
+              </AnimatePresence>
+            </motion.div>
 
           </div>
         </motion.div>
