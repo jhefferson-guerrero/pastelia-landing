@@ -44,8 +44,8 @@ function documentTop(el) {
 //   data-scroll-start="#id" → desde dónde (normalmente el título)
 //   data-scroll-end="#id"   → hasta dónde (normalmente la primera tarjeta)
 // Si el bloque cabe en la pantalla, se muestra completo y centrado entre el menú y el borde
-// inferior (con el mismo aire arriba y abajo). Si no cabe
-// (pantalla baja), se prioriza ver el final entero y se recorta lo de arriba (el título).
+// inferior (con el mismo aire arriba y abajo). Si no cabe (celulares, ventanas muy bajas),
+// se prioriza el título, justo bajo el menú; el resto del bloque se ve al seguir bajando.
 function fitTop(section) {
   const start = section.dataset.scrollStart && document.querySelector(section.dataset.scrollStart);
   const end = section.dataset.scrollEnd && document.querySelector(section.dataset.scrollEnd);
@@ -65,8 +65,8 @@ function fitTop(section) {
     const sectionStart = documentTop(section) - navHeight;
     return Math.min(Math.max(centered, sectionStart), startTop - navHeight - FIT_PADDING);
   }
-  // El final queda pegado abajo; si ni así cabe, al menos su parte superior queda bajo el menú
-  return Math.min(endBottom - viewport + FIT_PADDING, endTop - navHeight - FIT_PADDING);
+  // No cabe: el título queda visible bajo el menú y el final de la tarjeta puede quedar cortado
+  return startTop - navHeight - FIT_PADDING;
 }
 
 export function scrollToSection(id, options) {
