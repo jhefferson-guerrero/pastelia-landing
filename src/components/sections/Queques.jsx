@@ -4,6 +4,7 @@ import { MessageCircle } from 'lucide-react';
 import { useLightbox } from '../ui/Lightbox';
 import ProductImage from '../ui/ProductImage';
 import { RevealTitle, RevealLead } from '../ui/RevealTitle';
+import { RevealCard, itemVariants } from '../ui/RevealCard';
 
 export default function Queques() {
   const queques = catalog.queques;
@@ -22,13 +23,10 @@ export default function Queques() {
       {/* Contenedor de Menú Elegante y Compacto */}
       <div className="relative z-10 flex flex-col gap-6 fit-list-gap max-w-4xl [@media(max-height:720px)]:max-w-2xl mx-auto">
         {queques.map((product, idx) => (
-          <motion.div 
+          <RevealCard
             key={product.id}
             id={idx === 0 ? 'queques-primera' : undefined}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: idx * 0.1 }}
+            index={idx}
             className="group flex flex-col sm:flex-row items-start sm:items-center p-6 md:px-7 fit-row-card rounded-[28px] bg-white/40 border border-pastelia-brown/5 shadow-sm hover:shadow-md transition-shadow duration-500 ease-out"
           >
             {/* 1. Imagen a la izquierda */}
@@ -40,21 +38,21 @@ export default function Queques() {
             />
             
             {/* 2. Información del producto al centro */}
-            <div className="flex flex-col justify-center max-w-lg sm:pr-6 md:pr-10">
+            <motion.div variants={itemVariants} className="flex flex-col justify-center max-w-lg sm:pr-6 md:pr-10">
               <h3 className="font-serif italic text-2xl md:text-3xl fit-row-h3 text-pastelia-burgundy mb-2">{product.name}</h3>
               <p className="text-pastelia-brown/60 text-base md:text-base fit-row-desc leading-relaxed mb-4 sm:mb-0 font-light">
                 {product.description}
               </p>
-            </div>
+            </motion.div>
 
             {/* 3. Precio e icono de WhatsApp (Horizontal en móviles, vertical en escritorio) */}
-            <div className="sm:ml-auto flex flex-row sm:flex-col justify-between sm:justify-center items-center w-full sm:w-auto gap-3 mt-4 sm:mt-0 border-t sm:border-t-0 border-pastelia-brown/10 pt-5 sm:pt-0">
+            <motion.div variants={itemVariants} className="sm:ml-auto flex flex-row sm:flex-col justify-between sm:justify-center items-center w-full sm:w-auto gap-3 mt-4 sm:mt-0 border-t sm:border-t-0 border-pastelia-brown/10 pt-5 sm:pt-0">
               <span className="font-sans font-medium text-lg md:text-xl fit-row-price text-pastelia-brown whitespace-nowrap">{product.price}</span>
               <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-pastelia-burgundy text-white sm:bg-pastelia-brown/5 sm:text-pastelia-burgundy hover:bg-pastelia-burgundy hover:text-white hover:scale-110 hover:shadow-lg hover:shadow-pastelia-burgundy/30 transition-all duration-300 group">
                 <MessageCircle className="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
               </a>
-            </div>
-          </motion.div>
+            </motion.div>
+          </RevealCard>
         ))}
       </div>
 

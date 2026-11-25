@@ -5,6 +5,7 @@ import { MessageCircle } from 'lucide-react';
 import { useLightbox } from '../ui/Lightbox';
 import ProductImage from '../ui/ProductImage';
 import { RevealTitle, RevealLead } from '../ui/RevealTitle';
+import { RevealCard, itemVariants } from '../ui/RevealCard';
 
 export default function Clasicos() {
   const clasicos = catalog.clasicos;
@@ -27,13 +28,10 @@ export default function Clasicos() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {clasicos.map((product, idx) => (
-            <motion.div 
+            <RevealCard
               key={product.id}
               id={idx === 0 ? 'clasicos-primera' : undefined}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              index={idx}
               className="group flex flex-col bg-pastelia-cream p-5 fit-clasico-card rounded-[3rem] shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-out"
             >
               <ProductImage
@@ -44,18 +42,18 @@ export default function Clasicos() {
                 className="aspect-square w-full fit-clasico-img rounded-[2.5rem] bg-pastelia-white mb-6"
               />
               <div className="flex flex-col flex-1 px-4 pb-4 md:pb-2">
-                <div className="flex items-center justify-between mb-4 md:mb-2">
+                <motion.div variants={itemVariants} className="flex items-center justify-between mb-4 md:mb-2">
                   <h3 className="font-serif italic text-3xl fit-clasico-h3 text-pastelia-burgundy">{product.name}</h3>
-                </div>
-                <p className="text-pastelia-brown/60 text-base fit-clasico-desc leading-relaxed mb-6 font-light">{product.description}</p>
-                <div className="mt-auto flex items-center justify-between">
+                </motion.div>
+                <motion.p variants={itemVariants} className="text-pastelia-brown/60 text-base fit-clasico-desc leading-relaxed mb-6 font-light">{product.description}</motion.p>
+                <motion.div variants={itemVariants} className="mt-auto flex items-center justify-between">
                   <span className="font-sans font-medium text-xl fit-clasico-price text-pastelia-brown">{product.price}</span>
                   <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="group/wa flex items-center justify-center w-10 h-10 fit-clasico-btn rounded-full bg-pastelia-burgundy text-white hover:scale-110 hover:shadow-lg transition-all duration-300">
                     <MessageCircle className="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover/wa:rotate-12 group-hover/wa:scale-110" />
                   </a>
-                </div>
+                </motion.div>
               </div>
-            </motion.div>
+            </RevealCard>
           ))}
         </div>
       </div>

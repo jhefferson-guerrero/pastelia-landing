@@ -5,6 +5,7 @@ import { MessageCircle } from 'lucide-react';
 import { useLightbox } from '../ui/Lightbox';
 import ProductImage from '../ui/ProductImage';
 import { RevealTitle, RevealLead } from '../ui/RevealTitle';
+import { RevealCard, itemVariants } from '../ui/RevealCard';
 
 export default function Tortas() {
   const tortas = catalog.tortas;
@@ -27,13 +28,10 @@ export default function Tortas() {
         {tortas.map((product, idx) => {
           const isReverse = idx % 2 !== 0;
           return (
-            <motion.div 
+            <RevealCard
               key={product.id}
               id={idx === 0 ? 'tortas-primera' : undefined}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              rise={40}
               className="group block bg-white/40 border border-pastelia-brown/5 rounded-[28px] md:rounded-[2.5rem] p-5 fit-torta-card shadow-sm hover:shadow-md transition-shadow duration-500 ease-out"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-center">
@@ -48,20 +46,20 @@ export default function Tortas() {
 
                 {/* Bloque de Texto */}
                 <div className={`lg:col-span-6 flex flex-col order-2 ${isReverse ? 'lg:order-1 lg:pr-6 2xl:pr-10 [@media(max-height:720px)]:lg:pl-6' : 'lg:order-2 lg:pl-6 2xl:pl-10'}`}>
-                  <h3 className="font-serif italic text-3xl md:text-4xl fit-torta-h3 text-pastelia-burgundy mb-3 md:mb-4">{product.name}</h3>
-                  <span className="font-sans font-medium text-xl md:text-2xl fit-torta-price text-pastelia-brown mb-4 md:mb-6">{product.price}</span>
-                  <p className="text-pastelia-brown/60 text-base md:text-lg fit-torta-desc leading-relaxed mb-6 md:mb-8 font-light">{product.description}</p>
-                  <a href={product.waLink} target="_blank" rel="noopener noreferrer" className="group/btn relative inline-flex items-center text-sm font-bold uppercase tracking-[0.2em] text-pastelia-burgundy hover:text-pastelia-brown transition-colors w-fit pb-1">
+                  <motion.h3 variants={itemVariants} className="font-serif italic text-3xl md:text-4xl fit-torta-h3 text-pastelia-burgundy mb-3 md:mb-4">{product.name}</motion.h3>
+                  <motion.span variants={itemVariants} className="font-sans font-medium text-xl md:text-2xl fit-torta-price text-pastelia-brown mb-4 md:mb-6">{product.price}</motion.span>
+                  <motion.p variants={itemVariants} className="text-pastelia-brown/60 text-base md:text-lg fit-torta-desc leading-relaxed mb-6 md:mb-8 font-light">{product.description}</motion.p>
+                  <motion.a variants={itemVariants} href={product.waLink} target="_blank" rel="noopener noreferrer" className="group/btn relative inline-flex items-center text-sm font-bold uppercase tracking-[0.2em] text-pastelia-burgundy hover:text-pastelia-brown transition-colors w-fit pb-1">
                     <MessageCircle className="w-5 h-5 md:w-6 md:h-6 mr-3 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:scale-110" /> 
                     <span className="relative">
                       Pedir por WhatsApp
                       <span className="absolute -bottom-2 left-0 w-0 h-[1.5px] bg-pastelia-brown transition-all duration-300 ease-out group-hover/btn:w-full"></span>
                     </span>
-                  </a>
+                  </motion.a>
                 </div>
 
               </div>
-            </motion.div>
+            </RevealCard>
           );
         })}
 
