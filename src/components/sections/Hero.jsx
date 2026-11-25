@@ -126,7 +126,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: EASE, delay: 0.3 }}
           className="md:hidden pointer-events-auto relative z-10 mt-2 flex justify-center w-full group"
         >
-          <div ref={archRef} className="relative isolate transform-gpu aspect-[4/5] w-[85%] max-w-[360px] my-6 mx-auto overflow-hidden shadow-2xl shadow-pastelia-brown/15 ring-[7px] ring-[#E9DCCB] rounded-t-full rounded-b-3xl transition-all duration-700 ease-in-out group-hover:-translate-y-1 group-hover:shadow-pastelia-burgundy/15">
+          <div ref={archRef} className="relative isolate transform-gpu aspect-[4/5] w-[85%] max-w-[360px] my-6 mx-auto overflow-hidden shadow-2xl shadow-pastelia-brown/15 ring-[3px] ring-[#EBE0D1] rounded-t-full rounded-b-3xl transition-all duration-700 ease-in-out group-hover:-translate-y-1 group-hover:shadow-pastelia-burgundy/15">
 
             <motion.div
               style={reduceMotion ? undefined : { y: parallaxY, scale: 1.3 }}
