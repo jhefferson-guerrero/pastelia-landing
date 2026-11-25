@@ -26,11 +26,11 @@ export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Paralaje del arco en móvil: la foto se mueve más lento que el scroll dentro del arco, que
-  // queda fijo. Va ampliada (18 %) para que con el desplazamiento (±7 %) nunca se vean los bordes.
+  // queda fijo. Va ampliada (30 %) para que con el desplazamiento (±12 %) nunca se vean los bordes.
   const archRef = useRef(null);
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: archRef, offset: ['start end', 'end start'] });
-  const parallaxY = useTransform(scrollYProgress, [0, 1], ['-7%', '7%']);
+  const parallaxY = useTransform(scrollYProgress, [0, 1], ['-12%', '12%']);
 
   const nextImage = () => {
     setCurrentIndex((prev) => (prev + 1) % heroImages.length);
@@ -129,7 +129,7 @@ export default function Hero() {
           <div ref={archRef} className="relative isolate transform-gpu aspect-[4/5] w-[85%] max-w-[360px] my-6 mx-auto overflow-hidden shadow-2xl shadow-pastelia-brown/15 rounded-t-full rounded-b-3xl transition-all duration-700 ease-in-out group-hover:-translate-y-1 group-hover:shadow-pastelia-burgundy/15">
 
             <motion.div
-              style={reduceMotion ? undefined : { y: parallaxY, scale: 1.18 }}
+              style={reduceMotion ? undefined : { y: parallaxY, scale: 1.3 }}
               className="absolute inset-0 will-change-transform"
             >
               <AnimatePresence initial={false}>
