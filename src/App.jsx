@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import { MotionConfig } from "motion/react"
 import Lenis from "lenis"
 import { setLenis, scrollToSection } from "./lib/smoothScroll"
-import { startStaging, revealAll, whenFullyMounted, Deferred } from "./lib/stagedMount"
+import { startStaging, revealAll, Deferred } from "./lib/stagedMount"
 import { useRevealed } from "./lib/reveal"
 import Navigation from "./components/layout/Navigation"
 import Footer from "./components/layout/Footer"
@@ -20,14 +20,15 @@ function ScrollToTop() {
   return null;
 }
 
-// Arranca el montaje por etapas (solo en la portada) y, si la dirección trae #sección,
-// va a ella cuando la página termina de montarse
+// Arranca el montaje por etapas (solo en la portada). Si la dirección trae #sección, monta todo de una
+// vez y va a esa sección apenas se ve la página, antes de que la persona empiece a desplazarse.
+// No salta al recargar ni al volver atrás: solo cuando se abre un enlace con #sección.
 function StagedStart() {
   const { pathname } = useLocation();
   const revealed = useRevealed();
 
   useEffect(() => {
-    if (pathname !== "/") {
+    if (pathname !== "/" || window.location.hash) {
       revealAll()
       return
     }
@@ -35,16 +36,16 @@ function StagedStart() {
     startStaging({ fast: !revealed })
   }, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Con una dirección tipo /#clasicos, va a esa sección cuando la página ya se ve y está montada
   useEffect(() => {
-    if (!revealed) return
-    let cancelled = false
-    whenFullyMounted().then(() => {
-      const id = window.location.hash.slice(1)
-      if (!cancelled && id) setTimeout(() => scrollToSection(id, { immediate: true }), 100)
-    })
-    return () => { cancelled = true }
-  }, [revealed])
+    if (!revealed || pathname !== "/") return
+    const id = window.location.hash.slice(1)
+    const nav = performance.getEntriesByType("navigation")[0]
+    if (!id || (nav && nav.type !== "navigate")) return
+    const timer = setTimeout(() => {
+      if (window.scrollY < 80) scrollToSection(id, { immediate: true })
+    }, 150)
+    return () => clearTimeout(timer)
+  }, [revealed]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return null
 }
