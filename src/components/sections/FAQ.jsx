@@ -58,7 +58,7 @@ export default function FAQ() {
                   <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-                    className="text-pastelia-burgundy bg-pastelia-burgundy/5 p-2 rounded-full transition-all duration-300 group-hover:bg-pastelia-burgundy/10 group-hover:translate-y-1"
+                    className={`p-2 rounded-full transition-all duration-300 group-hover:translate-y-1 ${isOpen ? 'bg-pastelia-burgundy text-pastelia-cream' : 'text-pastelia-burgundy bg-pastelia-burgundy/5 group-hover:bg-pastelia-burgundy/10'}`}
                   >
                     <ChevronDown className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />
                   </motion.div>
@@ -71,11 +71,17 @@ export default function FAQ() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0 text-pastelia-brown/70 leading-relaxed font-light">
+                    {/* El texto se aclara y sube un poco una vez que el espacio ya empezó a abrirse */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] } }}
+                      exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                      className="px-6 md:px-8 pb-6 md:pb-8 pt-0 text-pastelia-brown/70 leading-relaxed font-light"
+                    >
                       {faq.answer}
-                    </div>
+                    </motion.div>
                   </motion.div>
                 )}
               </AnimatePresence>
