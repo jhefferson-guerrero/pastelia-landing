@@ -126,7 +126,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: EASE, delay: 0.3 }}
           className="md:hidden pointer-events-auto relative z-10 mt-2 flex justify-center w-full group"
         >
-          <div ref={archRef} className="relative isolate transform-gpu aspect-[4/5] w-[85%] max-w-[360px] my-6 mx-auto overflow-hidden shadow-2xl shadow-pastelia-brown/15 rounded-t-full rounded-b-3xl transition-all duration-700 ease-in-out group-hover:-translate-y-1 group-hover:shadow-pastelia-burgundy/15">
+          <div ref={archRef} className="relative isolate transform-gpu aspect-[4/5] w-[85%] max-w-[360px] my-6 mx-auto overflow-hidden shadow-2xl shadow-pastelia-brown/15 ring-[7px] ring-[#E9DCCB] rounded-t-full rounded-b-3xl transition-all duration-700 ease-in-out group-hover:-translate-y-1 group-hover:shadow-pastelia-burgundy/15">
 
             <motion.div
               style={reduceMotion ? undefined : { y: parallaxY, scale: 1.3 }}
@@ -147,6 +147,12 @@ export default function Hero() {
               </AnimatePresence>
             </motion.div>
 
+            {/* Efecto ventana: sombra interior (la foto queda "al fondo", detrás del marco) y un
+                reflejo muy tenue de vidrio. Es decorativo y no intercepta toques. */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_26px_34px_-14px_rgba(60,28,12,0.5),inset_16px_0_22px_-16px_rgba(60,28,12,0.3),inset_-16px_0_22px_-16px_rgba(60,28,12,0.3),inset_0_-12px_20px_-14px_rgba(60,28,12,0.22),inset_0_0_0_1px_rgba(60,28,12,0.25)] bg-[linear-gradient(135deg,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0)_34%)]"
+            ></div>
           </div>
         </motion.div>
 
