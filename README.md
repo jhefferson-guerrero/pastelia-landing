@@ -5,7 +5,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0.9-38B2AC?style=for-the-badge&logo=tailwind-css)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.4.7-black?style=for-the-badge&logo=framer)
 
-![Vista Previa del Proyecto](./public/screenshot-hero.png)
+![Vista Previa del Proyecto](./docs/screenshot-hero.png)
 
 Una landing page moderna, dinámica y altamente atractiva para **Pastelia**, especializada en repostería artesanal (tortas, queques, clásicos y cuchareables). El proyecto destaca por un enfoque premium en diseño de interfaz (UI), utilizando animaciones fluidas y *smooth scrolling* para brindar una experiencia de usuario (UX) excepcional.
 

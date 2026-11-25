@@ -4,6 +4,9 @@
    src/styles/index.css (.splash-*) lo sustituyen en cuanto llegan. Si cambias medidas allá, cámbialas aquí. */
 @layer theme, base, components, utilities;
 
+/* Fondo crema inmediato: evita un destello blanco antes de que cargue el CSS principal */
+html { background-color: #F5EDE3; }
+
 @layer components {
   #splash { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; background-color: #F5EDE3; }
   #splash .splash-text { visibility: hidden; }
