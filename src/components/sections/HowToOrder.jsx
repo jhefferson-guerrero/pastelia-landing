@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { CakeSlice, MessageCircle, Gift } from 'lucide-react';
+import { RevealTitle, RevealLead } from '../ui/RevealTitle';
 
 const steps = [
   {
@@ -23,20 +24,12 @@ export default function HowToOrder() {
   return (
     <section id="como-pedir" className="scroll-mt-10 md:scroll-mt-[4.75rem] py-24 md:py-[clamp(1.5rem,6vh,8rem)] md:min-h-[calc(100vh-4.75rem)] md:flex md:flex-col md:justify-center px-6 bg-pastelia-cream overflow-hidden border-t border-pastelia-brown/5 relative z-10">
       <div className="w-full max-w-6xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16 md:mb-[clamp(2rem,10vh,8rem)]"
-        >
-          <h2 className="font-serif text-4xl md:text-4xl 2xl:text-5xl font-bold text-pastelia-burgundy mb-4">
-            Cómo hacer tu pedido
-          </h2>
-          <p className="text-pastelia-brown/70 text-lg md:text-[clamp(1.125rem,2.1vh,1.375rem)] font-light max-w-xl mx-auto">
+        <div className="text-center mb-16 md:mb-[clamp(2rem,10vh,8rem)]">
+          <RevealTitle className="font-serif text-4xl md:text-4xl 2xl:text-5xl font-bold text-pastelia-burgundy mb-4">Cómo hacer tu pedido</RevealTitle>
+          <RevealLead className="text-pastelia-brown/70 text-lg md:text-[clamp(1.125rem,2.1vh,1.375rem)] font-light max-w-xl mx-auto">
             Un proceso tan simple como disfrutar de nuestras recetas.
-          </p>
-        </motion.div>
+          </RevealLead>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative md:[--circle:clamp(8rem,20vh,13rem)]">
           {/* Línea conectora (solo visible en escritorio) */}

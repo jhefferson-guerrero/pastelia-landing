@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { contactInfo } from '../../data/contact';
 import { communityImages } from '../../data/hero';
 import { thumb } from '../../lib/images';
+import { RevealTitle, RevealLead } from '../ui/RevealTitle';
 
 export default function SocialProof() {
   // Duplicar el array para crear un bucle infinito continuo
@@ -14,18 +15,10 @@ export default function SocialProof() {
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
 
       {/* Encabezado */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-        className="relative z-10 flex flex-col items-center text-center mb-16 fit-social-gap px-6"
-      >
-        <h2 className="font-serif text-3xl md:text-4xl 2xl:text-5xl font-bold tracking-tight text-pastelia-cream mb-6">
-          Únete a nuestra dulce comunidad
-        </h2>
+      <div className="relative z-10 flex flex-col items-center text-center mb-16 fit-social-gap px-6">
+        <RevealTitle className="font-serif text-3xl md:text-4xl 2xl:text-5xl font-bold tracking-tight text-pastelia-cream mb-6">Únete a nuestra dulce comunidad</RevealTitle>
 
-      </motion.div>
+      </div>
 
       {/* Tira de Fotos Horizontal con Desplazamiento Automático */}
       <motion.div

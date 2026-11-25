@@ -4,6 +4,7 @@ import { catalog } from '../../data/products';
 import { MessageCircle } from 'lucide-react';
 import { useLightbox } from '../ui/Lightbox';
 import ProductImage from '../ui/ProductImage';
+import { RevealTitle, RevealLead } from '../ui/RevealTitle';
 
 export default function Tortas() {
   const tortas = catalog.tortas;
@@ -14,21 +15,12 @@ export default function Tortas() {
       <div className="max-w-6xl 2xl:max-w-7xl [@media(max-height:720px)]:max-w-4xl [@media(max-height:720px)]:2xl:max-w-4xl mx-auto px-6 relative w-full h-full">
         <OrganicBlob className="bg-pastelia-burgundy/5 w-[30rem] h-[30rem] top-10 md:top-[60px] right-0" />
       
-      <motion.div 
-        id="tortas-titulo"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-        className="relative z-10 mb-16 fit-gap-sm text-center max-w-3xl mx-auto flex flex-col items-center"
-      >
-        <h2 className="font-serif text-[2.75rem] fit-title font-bold tracking-tight text-pastelia-burgundy mb-6">
-          Nuestras Tortas
-        </h2>
-        <p className="text-pastelia-brown/70 text-lg fit-lead font-serif tracking-wide">
+      <div id="tortas-titulo" className="relative z-10 mb-16 fit-gap-sm text-center max-w-3xl mx-auto flex flex-col items-center">
+        <RevealTitle className="font-serif text-[2.75rem] fit-title font-bold tracking-tight text-pastelia-burgundy mb-6">Nuestras Tortas</RevealTitle>
+        <RevealLead className="text-pastelia-brown/70 text-lg fit-lead font-serif tracking-wide">
           Arte en cada capa. Bizcochos húmedos, rellenos artesanales abundantes y un diseño cuidado al detalle, pensado para deslumbrar en el centro de tu mesa.
-        </p>
-      </motion.div>
+        </RevealLead>
+      </div>
 
       <div className="relative z-10 flex flex-col gap-10 lg:gap-14 2xl:gap-20">
         

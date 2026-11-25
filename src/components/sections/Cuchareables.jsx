@@ -3,6 +3,7 @@ import { catalog } from '../../data/products';
 import { MessageCircle } from 'lucide-react';
 import { useLightbox } from '../ui/Lightbox';
 import ProductImage from '../ui/ProductImage';
+import { RevealTitle, RevealLead } from '../ui/RevealTitle';
 
 export default function Cuchareables() {
   const cuchareables = catalog.cuchareables;
@@ -15,22 +16,13 @@ export default function Cuchareables() {
       <div className="absolute inset-0 bg-cherry-pattern opacity-10 pointer-events-none mix-blend-overlay"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-      <motion.div
-        id="cuchareables-titulo"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-        className="relative z-10 mb-16 fit-gap-lg text-center max-w-xl mx-auto flex flex-col items-center"
-      >
-        <span className="text-pastelia-cream/70 font-sans uppercase tracking-widest text-sm font-semibold mb-2">Nuevo Lanzamiento</span>
-        <h2 className="font-serif text-[2.75rem] fit-title font-bold tracking-tight text-pastelia-cream mb-6">
-          Cuchareables
-        </h2>
-        <p className="text-pastelia-cream/80 text-lg fit-lead font-serif tracking-wide">
+      <div id="cuchareables-titulo" className="relative z-10 mb-16 fit-gap-lg text-center max-w-xl mx-auto flex flex-col items-center">
+        <RevealLead as="span" delay={0} className="text-pastelia-cream/70 font-sans uppercase tracking-widest text-sm font-semibold mb-2">Nuevo Lanzamiento</RevealLead>
+        <RevealTitle className="font-serif text-[2.75rem] fit-title font-bold tracking-tight text-pastelia-cream mb-6">Cuchareables</RevealTitle>
+        <RevealLead className="text-pastelia-cream/80 text-lg fit-lead font-serif tracking-wide">
           Capas de puro sabor en su formato más indulgente. Perfectos para disfrutar a tu propio ritmo.
-        </p>
-      </motion.div>
+        </RevealLead>
+      </div>
 
       <div className="relative z-10 flex flex-col gap-6 fit-list-gap max-w-4xl [@media(max-height:720px)]:max-w-2xl mx-auto">
         {cuchareables.map((product, idx) => (

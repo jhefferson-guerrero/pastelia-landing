@@ -4,6 +4,7 @@ import { catalog } from '../../data/products';
 import { MessageCircle } from 'lucide-react';
 import { useLightbox } from '../ui/Lightbox';
 import ProductImage from '../ui/ProductImage';
+import { RevealTitle, RevealLead } from '../ui/RevealTitle';
 
 export default function Clasicos() {
   const clasicos = catalog.clasicos;
@@ -17,21 +18,12 @@ export default function Clasicos() {
       <OrganicBlob className="bg-pastelia-white/5 w-[35rem] h-[35rem] top-1/4 -right-10 mix-blend-overlay" />
       
       <div className="relative z-10 max-w-7xl [@media(max-height:720px)]:max-w-5xl mx-auto">
-        <motion.div 
-          id="clasicos-titulo"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-          className="mb-16 fit-gap-sm text-center"
-        >
-          <h2 className="font-serif text-[2.75rem] fit-title font-bold tracking-tight text-pastelia-cream mb-6">
-            Clásicos de Pastelia
-          </h2>
-          <p className="text-pastelia-cream/80 text-lg fit-lead font-serif max-w-2xl mx-auto tracking-wide">
+        <div id="clasicos-titulo" className="mb-16 fit-gap-sm text-center">
+          <RevealTitle className="font-serif text-[2.75rem] fit-title font-bold tracking-tight text-pastelia-cream mb-6">Clásicos de Pastelia</RevealTitle>
+          <RevealLead className="text-pastelia-cream/80 text-lg fit-lead font-serif max-w-2xl mx-auto tracking-wide">
             Recetas originales que definen la esencia de Pastelia. Perfectas en su simpleza.
-          </p>
-        </motion.div>
+          </RevealLead>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {clasicos.map((product, idx) => (

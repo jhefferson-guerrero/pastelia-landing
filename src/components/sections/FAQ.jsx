@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
+import { RevealTitle, RevealLead } from '../ui/RevealTitle';
 
 const faqs = [
   {
@@ -26,20 +27,12 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-24 md:py-32 px-6 max-w-4xl mx-auto border-t border-pastelia-brown/5 relative z-10">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
-        className="text-center mb-12 md:mb-16"
-      >
-        <h2 className="font-serif font-semibold text-4xl md:text-4xl 2xl:text-5xl text-pastelia-burgundy mb-4">
-          Preguntas Frecuentes
-        </h2>
-        <p className="text-pastelia-brown/70 max-w-xl mx-auto text-lg">
+      <div className="text-center mb-12 md:mb-16">
+        <RevealTitle className="font-serif font-semibold text-4xl md:text-4xl 2xl:text-5xl text-pastelia-burgundy mb-4">Preguntas Frecuentes</RevealTitle>
+        <RevealLead className="text-pastelia-brown/70 max-w-xl mx-auto text-lg">
           Resolvemos tus principales dudas para que tu experiencia de compra sea lo más dulce posible.
-        </p>
-      </motion.div>
+        </RevealLead>
+      </div>
 
       <div className="space-y-4">
         {faqs.map((faq, index) => {

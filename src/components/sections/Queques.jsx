@@ -3,6 +3,7 @@ import { catalog } from '../../data/products';
 import { MessageCircle } from 'lucide-react';
 import { useLightbox } from '../ui/Lightbox';
 import ProductImage from '../ui/ProductImage';
+import { RevealTitle, RevealLead } from '../ui/RevealTitle';
 
 export default function Queques() {
   const queques = catalog.queques;
@@ -11,21 +12,12 @@ export default function Queques() {
   return (
     <section id="queques" data-scroll-start="#queques-titulo" data-scroll-end="#queques-primera" className="relative py-24 scroll-mt-10 md:scroll-mt-5 fit-section-py px-6 max-w-7xl mx-auto border-t border-pastelia-brown/5 overflow-hidden">
       
-      <motion.div
-        id="queques-titulo"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-        className="relative z-10 mb-16 fit-gap-lg text-center max-w-xl mx-auto flex flex-col items-center"
-      >
-        <h2 className="font-serif text-[2.75rem] fit-title font-bold tracking-tight text-pastelia-burgundy mb-6">
-          Queques Artesanales
-        </h2>
-        <p className="text-pastelia-brown/70 text-lg fit-lead font-serif tracking-wide">
+      <div id="queques-titulo" className="relative z-10 mb-16 fit-gap-lg text-center max-w-xl mx-auto flex flex-col items-center">
+        <RevealTitle className="font-serif text-[2.75rem] fit-title font-bold tracking-tight text-pastelia-burgundy mb-6">Queques Artesanales</RevealTitle>
+        <RevealLead className="text-pastelia-brown/70 text-lg fit-lead font-serif tracking-wide">
           El acompañante definitivo. Migas suaves, cortezas doradas y sabores pensados para la hora del té.
-        </p>
-      </motion.div>
+        </RevealLead>
+      </div>
 
       {/* Contenedor de Menú Elegante y Compacto */}
       <div className="relative z-10 flex flex-col gap-6 fit-list-gap max-w-4xl [@media(max-height:720px)]:max-w-2xl mx-auto">
