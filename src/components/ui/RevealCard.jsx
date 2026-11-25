@@ -11,6 +11,17 @@ export const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
 };
 
+// La foto se "destapa" de abajo hacia arriba (cortina) mientras se asienta desde un poco más grande.
+// Se separa en dos capas para no pisar el zoom al pasar el cursor, que vive en la propia <img>.
+export const unveilVariants = {
+  hidden: { clipPath: 'inset(100% 0% 0% 0%)' },
+  visible: { clipPath: 'inset(0% 0% 0% 0%)', transition: { duration: 1, ease: EASE } },
+};
+export const settleVariants = {
+  hidden: { scale: 1.12 },
+  visible: { scale: 1, transition: { duration: 1.3, ease: EASE } },
+};
+
 // `index` escalona las tarjetas de una misma fila o lista; `rise` es cuánto suben al aparecer
 export function RevealCard({ children, className = '', id, index = 0, rise = 28 }) {
   return (

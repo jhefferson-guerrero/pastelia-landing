@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react';
+import { motion } from 'motion/react';
 import { CakeSlice } from 'lucide-react';
+import { unveilVariants, settleVariants } from './RevealCard';
 import { thumb } from '../../lib/images';
 
 // Foto de un producto: ampliable al hacer clic, con tinte al pasar el cursor y un ícono de
@@ -27,28 +29,32 @@ export default function ProductImage({ product, onZoom, className = '', iconClas
   };
 
   return (
-    <div
+    // Las variantes toman su estado de la tarjeta que contiene la foto (ver RevealCard)
+    <motion.div
+      variants={unveilVariants}
       className={`relative overflow-hidden group/img ${hasImage ? 'cursor-zoom-in' : ''} ${className}`}
       onClick={() => hasImage && onZoom({ src: product.image, thumb: small, alt: product.name })}
       onPointerEnter={warmOriginal}
       onFocus={warmOriginal}
     >
-      {hasImage ? (
-        <img
-          src={small}
-          alt={product.name}
-          onError={() => setStage((s) => (s === 0 && lightCopy !== product.image ? 1 : 2))}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.03]"
-          loading="lazy"
-          decoding="async"
-        />
-      ) : (
-        <div className="flex items-center justify-center w-full h-full text-pastelia-brown/30">
-          <CakeSlice className={`${iconClass} opacity-30`} />
-        </div>
-      )}
+      <motion.div variants={settleVariants} className="w-full h-full">
+        {hasImage ? (
+          <img
+            src={small}
+            alt={product.name}
+            onError={() => setStage((s) => (s === 0 && lightCopy !== product.image ? 1 : 2))}
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.03]"
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <div className="flex items-center justify-center w-full h-full text-pastelia-brown/30">
+            <CakeSlice className={`${iconClass} opacity-30`} />
+          </div>
+        )}
+      </motion.div>
       {/* Tinte sutil al pasar el cursor */}
       <div className="absolute inset-0 bg-pastelia-burgundy/0 group-hover:bg-pastelia-burgundy/5 transition-colors duration-500 pointer-events-none"></div>
-    </div>
+    </motion.div>
   );
 }
