@@ -91,6 +91,13 @@ body {
   animation-play-state: paused;
 }
 
+/* Con "reducir movimiento" la tira de fotos se queda quieta */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
 /* Sin barra de scroll visible (la página sigue desplazándose con rueda, trackpad, teclado y táctil) */
 * {
   scrollbar-width: none; /* Firefox */
@@ -215,6 +222,11 @@ body {
   }
   .fit-social-gap {
     margin-bottom: clamp(30px, calc(10vh + -30px), 64px);
+  }
+  .fit-social-btn {
+    padding-block: clamp(9px, calc(1.471vh + 0.176px), 14px);
+    padding-inline: clamp(20px, calc(2.353vh + 5.882px), 28px);
+    font-size: clamp(14px, calc(0.588vh + 10.471px), 16px);
   }
   .fit-social-tile {
     width: clamp(272px, calc(42.353vh + 17.882px), 416px);
