@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { RevealTitle, RevealLead } from '../ui/RevealTitle';
+import { RevealCard, itemVariants } from '../ui/RevealCard';
 
 const faqs = [
   {
@@ -38,12 +39,10 @@ export default function FAQ() {
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index;
           return (
-            <motion.div
+            <RevealCard
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.32, 0.72, 0, 1] }}
+              index={index}
+              rise={24}
               className={`border border-pastelia-brown/10 rounded-[1.5rem] overflow-hidden transition-[background-color,box-shadow] duration-300 ${isOpen ? 'bg-white/60 shadow-md shadow-pastelia-brown/5' : 'bg-transparent hover:bg-white/30'}`}
             >
               <button
@@ -51,15 +50,18 @@ export default function FAQ() {
                 className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group"
                 aria-expanded={isOpen}
               >
-                <span className="font-serif text-lg md:text-xl text-pastelia-brown font-semibold pr-8">
+                <motion.span variants={itemVariants} className="font-serif text-lg md:text-xl text-pastelia-brown font-semibold pr-8">
                   {faq.question}
-                </span>
-                <motion.div
-                  animate={{ rotate: isOpen ? 180 : 0 }}
-                  transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-                  className="flex-shrink-0 text-pastelia-burgundy bg-pastelia-burgundy/5 p-2 rounded-full transition-all duration-300 group-hover:bg-pastelia-burgundy/10 group-hover:translate-y-1"
-                >
-                  <ChevronDown className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />
+                </motion.span>
+                {/* El contenedor recibe la cascada de entrada; la circulita interior gira al abrir */}
+                <motion.div variants={itemVariants} className="flex-shrink-0">
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+                    className="text-pastelia-burgundy bg-pastelia-burgundy/5 p-2 rounded-full transition-all duration-300 group-hover:bg-pastelia-burgundy/10 group-hover:translate-y-1"
+                  >
+                    <ChevronDown className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />
+                  </motion.div>
                 </motion.div>
               </button>
               
@@ -77,7 +79,7 @@ export default function FAQ() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.div>
+            </RevealCard>
           );
         })}
       </div>
