@@ -10,7 +10,7 @@ export default function FloatingWhatsApp() {
       className="fixed bottom-6 right-6 z-50"
       initial={{ opacity: 0, scale: 0.4 }}
       animate={revealed ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.4 }}
-      transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.9 }}
+      transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.7 }}
     >
     <a
       href={contactInfo.whatsappUrl}
